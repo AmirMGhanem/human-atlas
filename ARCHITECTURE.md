@@ -1,4 +1,4 @@
-# Architecture
+# Architecture — Body Explorer
 
 Living document — updated as each piece lands.
 
@@ -24,14 +24,14 @@ npm run build && npx cap sync ios
 `xcode-project use-profiles` → `xcode-project build-ipa` → publish to TestFlight.
 
 - Signing: Codemagic automatic signing (`ios_signing`, `app_store`), driven by the App Store Connect
-  API key integration `human-atlas-asc`. No certificates or Xcode on the dev machine.
+  API key integration `body-explorer-asc`. No certificates or Xcode on the dev machine.
 - Build number: latest TestFlight build + 1, passed as `CURRENT_PROJECT_VERSION` at archive time.
-- `APP_STORE_APPLE_ID` must be set to the app record's numeric Apple ID.
+- `APP_STORE_APPLE_ID` = 6823626044 (App Store Connect app record "Body Explorer: 3D Anatomy", SKU bodyexplorer).
 
 ## On-device debugging
 
 TestFlight builds set `webContentsDebuggingEnabled` (iOS 16.4+), so Safari's Web Inspector can attach
-over USB: iPhone Settings → Safari → Advanced → Web Inspector on; Mac Safari → Develop → [device] → Human Atlas.
+over USB: iPhone Settings → Safari → Advanced → Web Inspector on; Mac Safari → Develop → [device] → Body Explorer.
 Release builds (`CAP_RELEASE=1`) turn it off. A dev stats overlay (fps, frame time, draw calls) is planned
 for reading numbers without a Mac attached.
 

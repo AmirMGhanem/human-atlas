@@ -1,4 +1,8 @@
-# Human Atlas
+# Body Explorer
+
+Offline iOS 3D anatomy atlas (iPhone + iPad), built on a fork of [human-atlas](https://github.com/ashemag/human-atlas). See [ARCHITECTURE.md](ARCHITECTURE.md).
+
+## Upstream: Human Atlas
 
 An interactive 3D anatomy explorer built with React, Three.js, and shadcn/ui. Take the BodyParts3D adult male reference apart into **2,234 individually selectable meshes**, explore **15 anatomical systems**, and search **3,432 named concepts**.
 

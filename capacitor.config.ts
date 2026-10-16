@@ -2,8 +2,8 @@ import type {CapacitorConfig} from '@capacitor/cli';
 
 // Offline-only shell: no server.url, so the WebView loads the bundled dist/ from capacitor://localhost.
 const config:CapacitorConfig={
- appId:'com.amirmghanem.humanatlas',
- appName:'Human Atlas',
+ appId:'com.burrowcode.bodyexplorer',
+ appName:'Body Explorer',
  webDir:'dist',
  ios:{
   contentInset:'never',

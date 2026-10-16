@@ -7,17 +7,17 @@ workflows:
     instance_type: mac_mini_m2
     max_build_duration: 60
     integrations:
-      app_store_connect: human-atlas-asc
+      app_store_connect: body-explorer-asc
     environment:
       node: 22
       xcode: latest
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.amirmghanem.humanatlas
+        bundle_identifier: com.burrowcode.bodyexplorer
       vars:
         XCODE_PROJECT: ios/App/App.xcodeproj
         XCODE_SCHEME: App
-        APP_STORE_APPLE_ID: 0000000000 # numeric Apple ID of the App Store Connect app record
+        APP_STORE_APPLE_ID: 6823626044
     scripts:
       - name: Install dependencies
         script: npm ci
