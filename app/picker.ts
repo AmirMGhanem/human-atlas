@@ -1,0 +1,59 @@
+import * as T from 'three';
+
+// GPU id picking. Every system mesh is re-drawn with a flat id shader into a tiny render target that covers
+// only the pixels around the touch point (camera view offset), then those pixels are read back.
+// Encoding: id = meshId + 1 in R (low byte) and G (high byte); 0 = nothing.
+const RADIUS=4,SIZE=RADIUS*2+1;
+
+export const PICK_VERTEX=`
+attribute float _meshid;
+uniform sampler2D partState;
+uniform float stateWidth;
+varying float vId;
+varying float vVisible;
+void main(){
+ vId=_meshid;
+ vVisible=texture2D(partState,vec2((_meshid+.5)/stateWidth,.5)).r;
+ gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);
+}`;
+const PICK_FRAGMENT=`
+varying float vId;
+varying float vVisible;
+uniform float pickThreshold;
+void main(){
+ if(vVisible<pickThreshold)discard;
+ float id=floor(vId+.5)+1.;
+ gl_FragColor=vec4(mod(id,256.)/255.,floor(id/256.)/255.,0.,1.);
+}`;
+
+export class Picker {
+ readonly scene=new T.Scene();
+ private target=new T.WebGLRenderTarget(SIZE,SIZE,{type:T.UnsignedByteType,format:T.RGBAFormat,depthBuffer:true,generateMipmaps:false,minFilter:T.NearestFilter,magFilter:T.NearestFilter,colorSpace:T.NoColorSpace});
+ private pixels=new Uint8Array(SIZE*SIZE*4);
+ readonly material:T.ShaderMaterial;
+ constructor(partState:T.Texture,stateWidth:number){
+  // Parts with visibility below 0.5 (hidden or faded layers) are not pickable.
+  this.material=new T.ShaderMaterial({vertexShader:PICK_VERTEX,fragmentShader:PICK_FRAGMENT,side:T.DoubleSide,uniforms:{partState:{value:partState},stateWidth:{value:stateWidth},pickThreshold:{value:.5}}});
+  this.scene.background=new T.Color(0,0,0);
+ }
+ add(geometry:T.BufferGeometry,matrix:T.Matrix4){
+  const m=new T.Mesh(geometry,this.material);m.matrixAutoUpdate=false;m.matrix.copy(matrix);m.matrixWorldNeedsUpdate=true;m.frustumCulled=false;this.scene.add(m);return m;
+ }
+ /** x,y in CSS pixels relative to the canvas. Returns the meshId nearest the touch point, or -1. */
+ pick(renderer:T.WebGLRenderer,camera:T.PerspectiveCamera,x:number,y:number,width:number,height:number):number{
+  const prevTarget=renderer.getRenderTarget(),prevView=camera.view?{...camera.view}:null;
+  camera.setViewOffset(width,height,x-RADIUS,y-RADIUS,SIZE,SIZE);
+  renderer.setRenderTarget(this.target);renderer.setClearColor(0x000000,0);renderer.clear();renderer.render(this.scene,camera);
+  renderer.readRenderTargetPixels(this.target,0,0,SIZE,SIZE,this.pixels);
+  renderer.setRenderTarget(prevTarget);
+  if(prevView?.enabled)camera.setViewOffset(prevView.fullWidth,prevView.fullHeight,prevView.offsetX,prevView.offsetY,prevView.width,prevView.height);else camera.clearViewOffset();
+  // Fat-finger tolerance: nearest non-empty pixel to the centre of the patch.
+  let best=-1,bestD=Infinity;
+  for(let py=0;py<SIZE;py++)for(let px=0;px<SIZE;px++){
+   const o=(py*SIZE+px)*4,id=this.pixels[o]+this.pixels[o+1]*256;if(!id)continue;
+   const d=(px-RADIUS)**2+(py-RADIUS)**2;if(d<bestD){bestD=d;best=id-1;}
+  }
+  return best;
+ }
+ dispose(){this.target.dispose();this.material.dispose();}
+}

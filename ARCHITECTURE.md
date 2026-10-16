@@ -69,5 +69,23 @@ public/atlas/          <system>.glb ×15 + atlas.json  generated, gitignored, bu
 
 ## Rendering
 
-- Per-part state lives in a float DataTexture (offset xyz + visibility) and a selection texture, sampled in the vertex shader by meshId.
-- Picking: GPU id pass (next step) — replaces the fork's CPU raycasting.
+- `app/viewer.ts` (no React): one `THREE.Mesh` per system per LOD, all sharing one material per system.
+- **Part state** is an RGBA8 `DataTexture`, 4096×1, indexed by meshId: R = visibility, G = selected. Shaders read
+  it in the vertex stage via `_meshid`. A system whose parts are all hidden is skipped entirely (`mesh.visible = false`),
+  so hidden layers cost no draw calls. Three.js would otherwise draw a transparent double-sided mesh twice.
+- **LOD**: LOD 0 loads first; LOD 1 (`<system>.lod1.glb`, 934k triangles, each part simplified separately with a 1% error bound)
+  streams in after first paint. Mode `auto` draws LOD 1 while the camera moves (and up to 120 ms after it settles),
+  LOD 0 at rest. Picking always uses LOD 0.
+- **GPU picking** (`app/picker.ts`): a second scene re-uses the same geometries with a flat id shader
+  (meshId + 1 packed into R/G; parts with visibility < 0.5 discard). On tap, `camera.setViewOffset` narrows the frustum to a
+  9×9 CSS-pixel patch around the finger, which renders into a 9×9 target. `readRenderTargetPixels` returns the id nearest the centre
+  (fat-finger tolerance). No CPU raycasting. Measured in desktop Chrome: ~4 ms including readback.
+- Rendering is on demand (dirty flag), except while spinning.
+
+## Stats overlay (dev builds)
+
+On by default; `VITE_STATS=0` removes it for release. It shows fps (rendered frames per second), frame-time p50/p95 from rAF
+deltas on consecutive rendered frames, JS-side `render()` submit time, draw calls and triangles from `renderer.info`,
+DPR, canvas size, cold start (`performance.now()` at first full paint, i.e. since the WebView started loading) and pick time.
+Buttons: **Spin** (continuous rendering for sustained fps), **DPR** 1/2/3, **LOD** full/auto/low.
+iOS WebKit has no GPU timer queries, so sustained fps while spinning is the number that matters.

@@ -65,7 +65,19 @@ for(const s of atlas.systems){
  triangles+=ic/3;
 }
 assert.equal(seen.reduce((a,b)=>a+b,0),2234,'every part present exactly in its system');
+
+// LOD 1: same contract minus vertex identity — every part present, ids exact, no mixed triangles.
+let lodTriangles=0;const lodSeen=new Uint8Array(2234);
+for(const s of atlas.systems){
+ const file=at('public/'+s.lod1.file);bytes+=fs.statSync(file).size;
+ const doc=await io.read(file.pathname),prim=doc.getRoot().listMeshes()[0].listPrimitives()[0];
+ const ids=prim.getAttribute('_MESHID'),index=prim.getIndices();assert.equal(ids.getComponentType(),5123);
+ for(let v=0;v<ids.getCount();v++){const id=ids.getScalar(v);assert.equal(atlas.parts[id].system,s.id);lodSeen[id]=1;}
+ for(let t=0;t<index.getCount();t+=3){const a=ids.getScalar(index.getScalar(t));assert.ok(ids.getScalar(index.getScalar(t+1))===a&&ids.getScalar(index.getScalar(t+2))===a,'LOD1 triangle spans two meshIds');}
+ lodTriangles+=index.getCount()/3;
+}
+assert.equal(lodSeen.reduce((a,b)=>a+b,0),2234,'LOD1 dropped a part');
 assert.equal(triangles,manifest.triangles);
 assert.ok(maxPos<.0005,`position error ${maxPos} m exceeds 0.5 mm`);
 assert.ok(checkedNormals>1e6&&badNormals===0,`${badNormals} normals deviate more than 11°`);
-console.log(JSON.stringify({systems:atlas.systems.length,drawCalls:atlas.systems.length,parts:2234,triangles,maxPositionErrorMm:+(maxPos*1000).toFixed(3),minNormalDot:+minNormalDot.toFixed(4),geometryMB:+(bytes/1e6).toFixed(2)}));
+console.log(JSON.stringify({systems:atlas.systems.length,drawCalls:atlas.systems.length,parts:2234,triangles,lodTriangles,maxPositionErrorMm:+(maxPos*1000).toFixed(3),minNormalDot:+minNormalDot.toFixed(4),geometryMB:+(bytes/1e6).toFixed(2)}));

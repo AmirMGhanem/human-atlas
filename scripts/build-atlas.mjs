@@ -7,12 +7,13 @@
 // Outputs (generated, gitignored):
 //   public/atlas/<system>.glb   one merged mesh per anatomical system: POSITION, NORMAL, _MESHID (uint16 = part index)
 //                               quantized (KHR_mesh_quantization) + EXT_meshopt_compression
+//   public/atlas/<system>.lod1.glb  motion fallback, each part simplified independently (same attributes)
 //   public/atlas/atlas.json     parts, concepts, hierarchy paths, Latin terms, per-system stats
 import fs from 'node:fs';
 import {Document,Logger,NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS,EXTMeshoptCompression} from '@gltf-transform/extensions';
 import {quantize,reorder} from '@gltf-transform/functions';
-import {MeshoptEncoder} from 'meshoptimizer';
+import {MeshoptEncoder,MeshoptSimplifier} from 'meshoptimizer';
 
 const root=new URL('../',import.meta.url),at=p=>new URL(p,root);
 const OUT=at('public/atlas/');
@@ -60,38 +61,56 @@ const paths=parts.map(pathFor);
 for(const path of paths)for(const id of path)if(!concepts.has(id))throw new Error('path references unknown concept '+id);
 
 // ---------- geometry ----------
-await MeshoptEncoder.ready;
+// LOD 0 is the committed source geometry unchanged. LOD 1 is the motion fallback: every part simplified on its own
+// (so meshIds survive and no part disappears), drawn only while the camera moves; picking always uses LOD 0.
+const LOD1={ratio:.3,error:.01,minIndices:48};
+await Promise.all([MeshoptEncoder.ready,MeshoptSimplifier.ready]);
 fs.rmSync(OUT,{recursive:true,force:true});fs.mkdirSync(OUT,{recursive:true});
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.encoder':MeshoptEncoder});
-const systems=[];let totalTriangles=0,totalBytes=0;
-for(const [system,list] of [...systemParts].sort(([a],[b])=>a.localeCompare(b))){
- let vertices=0,indices=0;for(const i of list){vertices+=parts[i].vertexCount;indices+=parts[i].indexCount;}
- if(list.length>65535)throw new Error('meshId exceeds uint16');
+
+const partGeometry=(i,lod)=>{
+ const p=parts[i],b=chunks[p.chunk];
+ const position=new Float32Array(b.buffer,b.byteOffset+p.positions,p.vertexCount*3),normal=new Int16Array(b.buffer,b.byteOffset+p.normals,p.vertexCount*3),index=new Uint32Array(b.buffer,b.byteOffset+p.indices,p.indexCount);
+ if(lod===0)return {position,normal,index};
+ const target=Math.max(LOD1.minIndices,Math.floor(p.indexCount*LOD1.ratio/3)*3);
+ const [simplified]=MeshoptSimplifier.simplify(index,position,3,Math.min(index.length,target),LOD1.error);
+ const [remap,count]=MeshoptSimplifier.compactMesh(simplified);
+ const pos=new Float32Array(count*3),nor=new Int16Array(count*3);
+ for(let old=0;old<remap.length;old++){const n=remap[old];if(n===0xffffffff)continue;pos.set(position.subarray(old*3,old*3+3),n*3);nor.set(normal.subarray(old*3,old*3+3),n*3);}
+ return {position:pos,normal:nor,index:simplified};
+};
+
+const writeSystem=async(system,list,lod)=>{
+ const geos=list.map(i=>partGeometry(i,lod));
+ let vertices=0,indices=0;for(const g of geos){vertices+=g.position.length/3;indices+=g.index.length;}
  const position=new Float32Array(vertices*3),normal=new Int16Array(vertices*3),meshId=new Uint16Array(vertices),index=new Uint32Array(indices);
  let v=0,x=0;
- for(const i of list){
-  const p=parts[i],b=chunks[p.chunk];
-  position.set(new Float32Array(b.buffer,b.byteOffset+p.positions,p.vertexCount*3),v*3);
-  normal.set(new Int16Array(b.buffer,b.byteOffset+p.normals,p.vertexCount*3),v*3);
-  meshId.fill(i,v,v+p.vertexCount);
-  const src=new Uint32Array(b.buffer,b.byteOffset+p.indices,p.indexCount);for(let k=0;k<src.length;k++)index[x+k]=src[k]+v;
-  v+=p.vertexCount;x+=p.indexCount;
- }
+ geos.forEach((g,k)=>{
+  const n=g.position.length/3;position.set(g.position,v*3);normal.set(g.normal,v*3);meshId.fill(list[k],v,v+n);
+  for(let j=0;j<g.index.length;j++)index[x+j]=g.index[j]+v;
+  v+=n;x+=g.index.length;
+ });
  const doc=new Document().setLogger(new Logger(Logger.Verbosity.WARN)),buffer=doc.createBuffer();
  const acc=(type,array,normalized=false)=>doc.createAccessor().setType(type).setArray(array).setNormalized(normalized).setBuffer(buffer);
  const prim=doc.createPrimitive().setAttribute('POSITION',acc('VEC3',position)).setAttribute('NORMAL',acc('VEC3',normal,true)).setAttribute('_MESHID',acc('SCALAR',meshId)).setIndices(acc('SCALAR',index));
- const mesh=doc.createMesh(system).addPrimitive(prim);
- doc.createScene(system).addChild(doc.createNode(system).setMesh(mesh));
+ doc.createScene(system).addChild(doc.createNode(system).setMesh(doc.createMesh(system).addPrimitive(prim)));
  await doc.transform(
   reorder({encoder:MeshoptEncoder,target:'size'}),
   // 14-bit positions ≈ 0.1 mm over a 1.8 m body; _MESHID is excluded and stays exact uint16.
   quantize({pattern:/^(POSITION|NORMAL)$/,quantizePosition:14,quantizeNormal:10}),
  );
  doc.createExtension(EXTMeshoptCompression).setRequired(true).setEncoderOptions({method:EXTMeshoptCompression.EncoderMethod.FILTER});
- const glb=await io.writeBinary(doc);
- fs.writeFileSync(new URL(system+'.glb',OUT),glb);
- const triangles=indices/3;totalTriangles+=triangles;totalBytes+=glb.length;
- systems.push({id:system,name:SYSTEM_NAMES[system],file:`atlas/${system}.glb`,parts:list.length,triangles,vertices,bytes:glb.length});
+ const glb=await io.writeBinary(doc),file=`${system}${lod?'.lod'+lod:''}.glb`;
+ fs.writeFileSync(new URL(file,OUT),glb);
+ return {file:`atlas/${file}`,triangles:indices/3,vertices,bytes:glb.length};
+};
+
+const systems=[];let totalTriangles=0,totalBytes=0,lodTriangles=0;
+for(const [system,list] of [...systemParts].sort(([a],[b])=>a.localeCompare(b))){
+ if(list.length>65535)throw new Error('meshId exceeds uint16');
+ const full=await writeSystem(system,list,0),low=await writeSystem(system,list,1);
+ totalTriangles+=full.triangles;lodTriangles+=low.triangles;totalBytes+=full.bytes+low.bytes;
+ systems.push({id:system,name:SYSTEM_NAMES[system],file:full.file,parts:list.length,triangles:full.triangles,vertices:full.vertices,bytes:full.bytes,lod1:low});
 }
 
 // ---------- metadata ----------
@@ -107,4 +126,4 @@ const atlas={
 fs.writeFileSync(new URL('atlas.json',OUT),JSON.stringify(atlas));
 const metaBytes=fs.statSync(new URL('atlas.json',OUT)).size;
 const latinParts=parts.filter(p=>latinFor(p.conceptId)).length;
-console.log(JSON.stringify({systems:systems.length,parts:parts.length,concepts:conceptList.length,triangles:totalTriangles,glbMB:+(totalBytes/1e6).toFixed(2),metaMB:+(metaBytes/1e6).toFixed(2),latinParts,partofPaths:paths.filter(p=>!p[1].startsWith('system:')).length},null,1));
+console.log(JSON.stringify({systems:systems.length,parts:parts.length,concepts:conceptList.length,triangles:totalTriangles,lod1Triangles:lodTriangles,glbMB:+(totalBytes/1e6).toFixed(2),metaMB:+(metaBytes/1e6).toFixed(2),latinParts,partofPaths:paths.filter(p=>!p[1].startsWith('system:')).length},null,1));
