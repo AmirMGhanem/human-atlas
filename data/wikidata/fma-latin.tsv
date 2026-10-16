@@ -1,0 +1,2033 @@
+fma	qid	latin	ta98
+FMA10419	Q668063	Ductus pancreaticus	A05.9.01.015
+FMA10635	Q125276	Arteria carotis externa	A12.2.05.001
+FMA10636	Q484868	Truncus costocervicalis	A12.2.08.059
+FMA10645	Q664446	Arteria musculophrenica	A12.2.08.040
+FMA10646	Q707152	Arteria epigastrica superior	A12.2.08.041
+FMA10659	Q485148	Arteria cervicalis profunda	A12.2.08.060
+FMA10662	Q488711	arteria thyreoidea inferior	A12.2.08.043
+FMA10663	Q493426	Arteria suprascapularis	A12.2.08.051
+FMA10664	Q591706	Arteria transversa cervicis	A12.2.08.053
+FMA10951	Q745438	vena cava inferior	A12.3.09.001
+FMA11350	Q4115800	Cavitas pericardiaca	A07.1.03.001
+FMA11361	Q2211994	Planities sagittalis	A01.2.00.003
+FMA11948	Q915235	Processus spinosus	A02.2.01.012
+FMA11949	Q1187810	Processus transversus	A02.2.01.013
+FMA11952	Q651620	Processus articularis inferior vertebrae,	
+FMA12246	Q1470152	plana frontalia	A01.2.00.001
+FMA12266	Q682466	cavitas abdominis	A01.1.00.051
+FMA12267	Q3330507	cavitas abdominopelvica	A01.1.00.050
+FMA12274	Q40924	urina	
+FMA12275	Q3503092	sudor	
+FMA12278	Q11364	hormon	
+FMA12516	Q553	dens	
+FMA12519	Q655357	Atlas, vertebra cervicalis I	A02.2.02.101
+FMA12520	Q792567	Axis, vertebra cervicalis II	A02.2.02.201
+FMA12845	Q6545268	Vena subcostalis	A12.3.07.013
+FMA12851	Q5422059	Plexus venosi vertebrales externi	
+FMA12858	Q4803822	Vena lumbalis ascendens	
+FMA13109	Q757083	Musculus pectoralis minor	A04.4.01.006
+FMA13110	Q2512768	Vena jugularis externa	A12.3.05.045
+FMA13295	Q9654	Diaphragma	A04.4.02.001
+FMA13303	Q162595	Humerus	A02.4.04.001
+FMA13305	Q4118376	Corpus humeri	A02.4.04.010
+FMA13315	Q725616	Angulus inferior scapulae	A02.4.01.016
+FMA13318	Q3269830	Vena jugularis anterior	A12.3.05.047
+FMA13321	Q16343	Clavicula	A02.4.02.001
+FMA13324	Q1670335	Vena cephalica	A12.3.08.015
+FMA13329	Q682122	vena axillaris	A12.3.08.005
+FMA13335	Q746123	Musculus obliquus externus abdominis	A04.5.01.008
+FMA13341	Q925888	Musculus sternohyoideus	A04.2.04.002
+FMA13342	Q1049279	Musculus omohyoideus	A04.2.04.003
+FMA13343	Q545171	Musculus sternothyreoideus	A04.2.04.006
+FMA13344	Q1072039	Musculus thyreohyoideus	A04.2.04.007
+FMA13345	Q718062	Musculus levator glandulae thyroideae	A04.2.04.008
+FMA13354	Q3302518	Musculi intercostales	
+FMA13357	Q283673	Musculus latissimus dorsi	A04.3.01.006
+FMA13370	Q1055797	Musculus longus colli	A04.2.01.002
+FMA13379	Q617389	musculus rhomboideus major	A04.3.01.007
+FMA13380	Q901538	Musculus rhomboideus minor	A04.3.01.008
+FMA13385	Q914148	Musculus scalenus anterior	A04.2.01.004
+FMA13394	Q16336	Scapula	A02.4.01.001
+FMA13397	Q743294	Musculus serratus anterior	A04.4.01.008
+FMA13401	Q1085940	Musculus serratus posterior superior	A04.3.01.011
+FMA13402	Q920567	Musculus serratus posterior inferior	A04.3.01.010
+FMA13407	Q272830	Musculus sternocleidomastoideus	A04.2.01.008
+FMA13410	Q130086	Musculus subclavius	A04.4.01.007
+FMA13413	Q130050	Musculus subscapularis	A04.6.02.012
+FMA13425	Q1471133	ligamentum supraspinale	A03.2.01.005
+FMA13427	Q519216	Ligamentum nuchae	A03.2.01.006
+FMA13455	Q905716	Processus coracoideus	A02.4.01.023
+FMA13889	Q156871	glandula pituitaria	A11.1.00.001
+FMA13890	Q650401	Glandulae parathyroidae	A11.4.00.001
+FMA13891	Q1334595	Musculus obliquus internus abdominis	A04.5.01.017
+FMA14070	Q208453	Musculus levis	
+FMA14074	Q35970	Mesothelium	
+FMA14181	Q133279	dorsum	A01.1.00.018
+FMA14318	Q7234192	Vena jugularis posterior	
+FMA14319	Q7644751	Vena suprascapularis	A12.3.05.049
+FMA14323	Q7643681	Vena thyreoidea superior	A12.3.05.014
+FMA14324	Q7643635	Vena laryngea superior	A12.3.05.017
+FMA14326	Q5306281	Vena lingualis	A12.3.05.009
+FMA14331	Q3091615	Vena lienalis	A12.3.12.028
+FMA14332	Q751322	Vena mesenterica superior	A12.3.12.018
+FMA14333	Q3143036	Vena iliaca communis	A12.3.10.001
+FMA14334	Q132318	Venae renales	A12.3.09.009
+FMA14337	Q1578686	Venae hepaticae	A12.3.09.005
+FMA14344	Q585624	Vena testicularis	
+FMA14346	Q3555262	Vena ovarica sinistra vena ovarica dextra	
+FMA14348	Q7644746	Venae suprarenales	
+FMA14385	Q1364876	Nervus medianus	A14.2.03.031
+FMA14515	Q827450	Hepatocytus	
+FMA14539	Q664439	Ductus cysticus	A05.8.02.011
+FMA14541	Q185317	caecum	A05.7.02.001
+FMA14542	Q9656	Appendix vermiformis	A05.7.02.007
+FMA14543	Q5982337	Colon	A05.7.03.001
+FMA14544	Q158716	rectum	A05.7.04.001
+FMA14545	Q2562556	colon ascendens	A05.7.03.002
+FMA14546	Q2619732	colon transversum	A05.7.03.004
+FMA14547	Q2562565	colon descendens	A05.7.03.006
+FMA14548	Q677253	colon sigmoideum	A05.7.03.007
+FMA14573	Q763560	incisura angularis	A05.5.01.006
+FMA14576	Q5038330	incisura cardialis	A05.5.01.011
+FMA14581	Q290248	Pylorus	A05.5.01.017
+FMA14667	Q1263617	Ductus choledochus	A05.8.02.013
+FMA14668	Q2043581	Ductus hepaticus communis	A05.8.01.061
+FMA14704	Q1030169	cavitas peritonealis	A10.1.02.001
+FMA14710	Q1779395	Recessus splenicus	A10.1.02.407
+FMA14734	Q3491693	Arteriae phrenicae inferiores	A12.2.12.002
+FMA14749	Q367570	Arteria mesenterica superior	A12.2.12.053
+FMA14750	Q707384	Arteria mesenterica inferior	A12.2.12.069
+FMA14751	Q707540	Arteria renalis	A12.2.12.075
+FMA14754	Q3507797	Arteria suprarenalis media	A12.2.12.074
+FMA14757	Q707535	Arteria sacralis mediana	A12.2.12.008
+FMA14758	Q707616	Arteria testicularis	A12.2.12.086M
+FMA14761	Q707419	Arteria ovarica	A12.2.12.086F
+FMA14764	Q707257	Arteria iliaca communis	A12.2.14.001
+FMA14768	Q508792	Arteria gastrica sinistra	A12.2.12.013
+FMA14771	Q707236	arteria hepatica communis	A12.2.12.015
+FMA14772	Q542166	Arteria hepatica propria	A12.2.12.029
+FMA14773	Q707326	arteria splenica	A12.2.12.040
+FMA14775	Q707194	Arteria gastroduodenalis	A12.2.12.016
+FMA14776	Q707177	Arteria gastrica dextra	A12.2.12.028
+FMA14781	Q707202	Arteria gastro-omentalis dextra	A12.2.12.022
+FMA14787	Q5298799	Arteria pancreatica dorsalis	A12.2.12.042
+FMA14792	Q707433	Arteria pancreatica magna	A12.2.12.045
+FMA14796	Q707204	Arteria gastroomentalis sinistra	A12.2.12.047
+FMA14805	Q707436	Arteriae pancreaticoduodenales inferiores	A12.2.12.054
+FMA14810	Q707115	Arteria colica media	A12.2.12.067
+FMA14811	Q707113	Arteria colica dextra	A12.2.12.065
+FMA14815	Q241186	Arteria ileocolica	A12.2.12.059
+FMA14816	Q707052	Arteria caecalis anterior	A12.2.12.060
+FMA14817	Q707058	Arteria caecalis posterior	A12.2.12.061
+FMA14818	Q706969	Arteria appendicularis	A12.2.12.062
+FMA14819	Q5997438	Rami ilealis arteriae ileocolicae	A12.2.12.063
+FMA14820	Q5144814	Ramus colicus arteriae ileocolicae	A12.2.12.064
+FMA14824	Q3621435	Arteria marginalis coli	A12.2.12.068
+FMA14826	Q1816515	Arteria colica sinistra	A12.2.12.071
+FMA14830	Q707709	Arteriae sigmoideae	A12.2.12.072
+FMA14832	Q384950	Arteria rectalis superior	A12.2.12.073
+FMA14835	Q707135	Arteria cystica	A12.2.12.031
+FMA14863	Q3290350	Arteria suprarenales superior	A12.2.12.003
+FMA15040	Q66511259	Appendix epiploica	
+FMA15076	Q594066	Ampulla hepatopancreatica	A05.8.02.017
+FMA15080	Q577238	Spatium retroperitoneale	A10.1.01.002
+FMA15390	Q6381103	Vena gastroomentalis sinistra vena gastroepiploica sinistra	A12.3.12.031
+FMA15391	Q3176575	Vena mesenterica inferior	A12.3.12.032
+FMA15393	Q7643673	Vena rectalis superior	A12.3.12.035
+FMA15394	Q4115340	Vena colica sinistra	A12.3.12.033
+FMA15397	Q4115374	Vena gastroomentalis dextra	A12.3.12.021
+FMA15399	Q730403	Vena gastrica sinistra	A12.3.12.015
+FMA15400	Q4115303	Vena gastrica dextra	A12.3.12.016
+FMA15403	Q3322746	Vena cystica	A12.3.12.012
+FMA15406	Q4115373	Vena colica media	A12.3.12.027
+FMA15407	Q4115294	Vena colica dextra	A12.3.12.026
+FMA15408	Q4115339	Vena ileocolica	A12.3.12.024
+FMA15410	Q3774950	Vena appendicularis	A12.3.12.025
+FMA15568	Q1756826	Musculus pyramidalis	A04.5.01.007
+FMA15569	Q1426052	Musculus quadratus lumborum	A04.5.01.027
+FMA15570	Q1427665	Musculus transversus abdominis	A04.5.01.019
+FMA15624	Q909882	Glumerulum renale	
+FMA15647	Q3355932	Corpora paraaortica	A12.2.04.003
+FMA15703	Q2465231	canalis analis	A05.7.05.001
+FMA15710	Q2601133	Musculus sphincter ani internus	A05.7.05.011
+FMA15720	Q484645	glandula analis	
+FMA15839	Q66512645	facies renalis	A13.2.01.009
+FMA15900	Q9382	Vesica	A08.3.01.001
+FMA16016	Q728309	Insulae pancreaticae	A05.9.01.019
+FMA16202	Q233316	Os sacrum	A02.2.05.001
+FMA16482	Q478619	Nervus iliohypogastricus	A14.2.07.003
+FMA16483	Q1460988	Nervus ilioinguinalis	A14.2.07.006
+FMA16484	Q1523307	\"Nervus genitofemoralis''	A14.2.07.008
+FMA16485	Q510755	Nervus cutaneus femoris lateralis	A14.2.07.011
+FMA16486	Q545676	Nervus femoralis	A14.2.07.020
+FMA16487	Q1978161	Nervus obturatorius	A14.2.07.012
+FMA16488	Q4163340	Nervus obturatorius accessorius	A14.2.07.019
+FMA16496	Q6703135	Ramus femoralis nervi genitofemoralis, nervus lumboinguinalis	A14.2.07.010
+FMA16509	Q286437	Nervus musculi piriformis	A14.2.07.029
+FMA16510	Q1761014	Nervus gluteus superior	A14.2.07.031
+FMA16511	Q1978150	Nervus gluteus inferior	A14.2.07.032
+FMA16579	Q1130461	acetabulum	A02.5.01.002
+FMA16580	Q3356933	Os coxae	A02.5.01.001
+FMA16581	Q2943862	cingulum pelvicum	A01.1.00.032
+FMA16585	Q3356933	Os coxae	A02.5.01.001
+FMA16589	Q728889	Os ilium	A02.5.01.101
+FMA16592	Q531029	Os ischii	A02.5.01.201
+FMA16595	Q220815	Os pubis	A02.5.01.301
+FMA16900	Q5997966	Tuberculum iliacum	A02.5.01.108
+FMA16902	Q5600912	Incisura ischiadica major	A02.5.01.009
+FMA16907	Q5998345	Eminentia iliopubica	A02.5.01.307
+FMA16908	Q17057138	Tuberositas iliaca	A02.5.01.122
+FMA16911	Q6531632	Incisura ischiadica minor	A02.5.01.206
+FMA16914	Q3774464	Crista iliaca	A02.5.01.106
+FMA16922	Q4771345	Linea glutaea anterior	A02.5.01.117
+FMA16925	Q16965170	Linea glutaea posterior	A02.5.01.118
+FMA16928	Q6029332	Linea glutaea inferior	A02.5.01.119
+FMA16944	Q4673243	Incisura acetabuli	A02.5.01.005
+FMA16950	Q1571074	Symphysis pubica	A03.6.02.001
+FMA16951	Q7257269	Arcus pubicus	A02.5.02.003
+FMA16952	Q7257270	Crista pubica	A02.5.01.305
+FMA16953	Q7257273	Tuberculum pubicum ossis pubis	A02.5.01.303
+FMA16976	Q7075563	Crista obturatoria	A02.5.01.309
+FMA16979	Q7158842	Linea pectinea ossis pubis,	A02.5.01.308
+FMA16987	Q4936943	Corpus ossis pubis	A02.5.01.302
+FMA16988	Q7643668	Ramus superior ossis pubis	A02.5.01.306
+FMA16989	Q6029407	Ramus inferior ossis pubis	A02.5.01.313
+FMA16999	Q1436597	Foramen obturatum	A02.5.01.008
+FMA17004	Q66713556	Corpus ossis ischii	A02.5.01.202
+FMA17007	Q66713559	Ramus ossis ischii	A02.5.01.203
+FMA17010	Q7850869	Tuber ischiadicum	A02.5.01.204
+FMA17028	Q17111677	Spina ischiadica	A02.5.01.205
+FMA17269	Q4673239	Fossa acetabuli	A02.5.01.004
+FMA17272	Q748286	Apertura pelvis superior	A02.5.02.008
+FMA17273	Q3045429	Apertura pelvis inferior	A02.5.02.009
+FMA17558	Q9612	Uterus	A09.1.03.001
+FMA17640	Q58184	Nephron	
+FMA17740	Q666412	Cervix	A09.1.03.010
+FMA17742	Q839508	Endometrium	A09.1.03.027
+FMA18060	Q1550323	Musculus psoas major	A04.7.02.004
+FMA18086	Q3829592	Ligamentum suspensorium penis	A04.5.02.019M
+FMA18088	Q490098	Tunica dartos	A09.4.03.003
+FMA18245	Q1233836	Tuba uterina	A09.1.02.001
+FMA18247	Q650891	Glans penis	A09.4.01.007
+FMA18252	Q174471	Scrotum	A09.4.03.001
+FMA18255	Q1973610	Epidydimis	A09.3.02.001
+FMA18305	Q1635075	Ampulla tubae uterinae	A09.1.02.006
+FMA18674	Q219841	zona pellucida	
+FMA18691	Q761745	epoophoron	A09.1.05.001
+FMA18805	Q585053	Arteria iliaca externa	A12.2.16.002
+FMA18808	Q532558	Arteria iliaca interna	A12.2.15.001
+FMA18820	Q1724233	Arteria umbilicalis	A12.2.15.020
+FMA18823	Q707686	Arteria vesicalis inferior	A12.2.15.027
+FMA18826	Q4115301	Arteria rectalis media	A12.2.15.036
+FMA18829	Q707674	Arteria uterina	A12.2.15.029F
+FMA18832	Q707680	Arteria vaginalis	A12.2.15.035F
+FMA18835	Q707489	Arteria pudenda interna	A12.2.15.038
+FMA18839	Q707692	Arteriae vesicales superiores	A12.2.15.024
+FMA18845	Q545929	Arteria iliolumbalis	A12.2.15.002
+FMA18849	Q8960673	Ramus lumbalis arteriae iliolumbalis	A12.2.15.003
+FMA18865	Q707393	Arteria obturatoria	A12.2.15.008
+FMA18868	Q707218	Arteria glutaea superior	A12.2.15.013
+FMA18871	Q132000	Arteria glutaea inferior	A12.2.15.018
+FMA18877	Q7850708	Ramus tubarius arteriae uterinae	A12.2.15.034F
+FMA18883	Q3090687	Vena iliaca externa	A12.3.10.024
+FMA18884	Q1165743	Vena iliaca interna	A12.3.10.004
+FMA18902	Q5998326	Vena iliolumbalis	A12.3.10.003
+FMA18917	Q4116893	Vena pudenda interna	A12.3.10.019
+FMA18930	Q1752822	Arteria ductus deferentis	A12.2.15.022
+FMA18933	Q4115552	Plexus venosus rectalis	A12.3.10.010
+FMA18934	Q4117095	Plexus venosus vesicalis	A12.3.10.012
+FMA19034	Q307869	Nervus ischiadicus	A14.2.07.046
+FMA19035	Q1978198	Nervus tibialis	A14.2.07.058
+FMA19037	Q1753038	Nervus pudendi	A14.2.07.037
+FMA19038	Q1134638	Nervus anococcygeus	A14.2.07.045
+FMA19039	Q1577203	nervus fibularis communis	A14.2.07.047
+FMA19040	Q17119890	Nervus cutaneus perforans	A14.2.07.036
+FMA19082	Q1144893	Musculus piriformis	A04.7.02.011
+FMA19087	Q537123	Musculus levator ani	A04.5.04.002
+FMA19088	Q1059818	Musculus coccygeus	A04.5.04.011
+FMA19090	Q1084757	Musculus pubococcygeus	A04.5.04.003
+FMA19091	Q842547	Musculus puborectalis	A04.5.04.007
+FMA19092	Q383359	Musculus iliococcygeus	A04.5.04.008
+FMA19234	Q735505	Vas deferens	A09.3.05.001
+FMA19386	Q217259	Vesicula seminalis	A09.3.06.001
+FMA19607	Q1169783	Plexus pampiniformis	A12.3.09.015
+FMA19617	Q14413567	corpus spongiosum penis	A09.4.01.015
+FMA19627	Q1061328	corona glandis penis	A09.4.01.008
+FMA19639	Q673203	Praeputium	A09.4.01.011
+FMA19647	Q1772935	Frenulum preputii penis	A09.4.01.012
+FMA19656	Q156102	Smegma	
+FMA19667	Q9386	Urethra	A08.4.01.001F
+FMA19702	Q2632491	Prostatic utricle	A09.4.02.009
+FMA19729	Q1757893	Musculus bulbospongiosus	A09.5.02.005
+FMA19730	Q611369	Musculus ischiocavernosus	A09.5.02.004
+FMA19733	Q17001932	Musculus sphincter urethrae externus urethrae masculinae	A09.4.02.016M
+FMA19794	Q4115302	Arteria profunda penis	A12.2.15.045M
+FMA19795	Q2080394	Arteria dorsalis penis	A12.2.15.044M
+FMA19800	Q2256690	bursa omentalis	A10.1.02.402
+FMA19822	Q3829580	Ligamentum suspensorium ovarii	A09.1.01.018F
+FMA19825	Q503431	tubuli seminiferi contorti	A09.3.01.022
+FMA19855	Q285715	Ligamentum inguinale	A04.5.01.009
+FMA19949	Q5880	Vagina	A09.1.04.001
+FMA20083	Q1762220	Glandulae vestibulares minores	A09.2.01.017
+FMA20209	Q15223957	fossae lumbales laterales	
+FMA20229	Q193176	Os coccygis	A02.2.06.001
+FMA20244	Q490195	Raphe penis	A09.4.01.013
+FMA20292	Q27042858	Cavum oris	A05.1.01.001
+FMA20348	Q7900860	regio urogenitalis	A01.2.06.003
+FMA20374	Q1211892	labium minus pudendi	A09.2.01.007
+FMA20394	Q23852	Corpus humanum	A01.0.00.000
+FMA20417	Q1862100	Frenulum clitoridis	A09.2.01.010
+FMA20462	Q2192288	Vulva	A09.2.01.001
+FMA20509	Q3867498	Musculus suspensorius duodeni	A05.6.02.011
+FMA20560	Q5533224	Ramus genitalis nervi genitofemoralis	A14.2.07.009
+FMA20686	Q305187	Arteria epigastrica inferior	A12.2.16.003
+FMA20687	Q707105	Arteria circumflexa ilium profunda	A12.2.16.008
+FMA20734	Q707145	Arteria epigastrica superficialis	A12.2.16.011
+FMA20737	Q707107	Arteria circumflexa iliaca superficialis	A12.2.16.012
+FMA20738	Q430758	Arteria pudenda externa superficialis	A12.2.16.013
+FMA20739	Q5250384	Arteria pudenda externa profunda	A12.2.16.014
+FMA20741	Q707477	Arteria profunda femoris	A12.2.16.020
+FMA20798	Q707089	Arteria circumflexa femoris lateralis	A12.2.16.027
+FMA20799	Q707096	Arteria circumflexa femoris medialis	A12.2.16.021
+FMA20804	Q4803815	Ramus ascendens arteriae circumflexae femoris lateralis	A12.2.16.028
+FMA20805	Q5263717	Ramus descendens arteriae circumflexae femoris lateralis	A12.2.16.029
+FMA20806	Q7835425	Ramus transversus arteriae circumflexae femoris lateralis	A12.2.16.030
+FMA20810	Q7643301	Ramus superficialis arteriae circumflexae femoris medialis	A12.2.16.022
+FMA20811	Q4803816	Ramus ascendens arteriae circumflexae femoris medialis	A12.2.16.025
+FMA20813	Q4673242	Ramus acetabularis arteriae circumflexae femoris medialis	A12.2.16.024
+FMA20824	Q4115692	Arteria rectalis inferior	A12.2.15.039
+FMA20836	Q4117172	Arteria perinealis	A12.2.15.040
+FMA20864	Q549079	Arteria bulbi penis	A12.2.15.043M
+FMA20867	Q4117090	Arteria dorsalis clitoridis	A12.2.15.044F
+FMA20870	Q4117153	Arteria profunda clitoridis	A12.2.15.045F
+FMA20900	Q4117168	Arteria bulbi vestibuli	A12.2.15.043F
+FMA20903	Q4117182	Arteria urethralis	A12.2.15.042
+FMA21162	Q6029315	Vena epigastrica inferior	A12.3.10.025
+FMA21182	Q4116864	Vena circumflexa ilium profunda	A12.3.10.027
+FMA21185	Q368521	Vena femoralis	A12.3.11.023
+FMA21246	Q3448955	Venae fibulares	A12.3.11.033
+FMA21376	Q543323	Vena saphena magna	A12.3.11.003
+FMA21479	Q1575134	Ligamentum sacrotuberale	A03.6.03.005
+FMA21531	Q1724194	Musculus cremaster	A04.5.01.018M
+FMA21536	Q7643672	Plexus rectalis superior	A14.3.03.038
+FMA21540	Q7130417	Plexus pancreaticus	A14.3.03.025
+FMA21847	Q7168571	Rami perineales nervi cutanei femoris posterioris	A14.2.07.035
+FMA21866	Q7168576	Nervi perineales	A14.2.07.039
+FMA21867	Q7234234	Nervi scrotales posteriores	A14.2.07.040M
+FMA21868	Q7234206	Nervi labiales posteriores	A14.2.07.040F
+FMA21869	Q376687	Nervus dorsalis penis	A14.2.07.042M
+FMA21870	Q5298796	nervus dorsalis clitoridis	A14.2.07.042F
+FMA21930	Q2379958	Musculus sphincter ani externus	A04.5.04.012
+FMA22298	Q1500758	Musculus obturatorius internus	A04.7.02.012
+FMA22299	Q1756762	Musculus obturatorius externus	A04.7.02.031
+FMA22310	Q1508879	Musculus iliacus	A04.7.02.003
+FMA22314	Q637545	Musculus glutaeus maximus	A04.7.02.006
+FMA22315	Q1126170	Musculus glutaeus medius	A04.7.02.007
+FMA22317	Q523799	Musculus glutaeus minimus	A04.7.02.008
+FMA22318	Q1732695	Musculus gemellus superior	A04.7.02.013
+FMA22320	Q1892060	Musculus gemellus inferior	A04.7.02.014
+FMA22321	Q1428240	Musculus quadratus femoris	A04.7.02.015
+FMA22350	Q1850432	Musculus psoas minor	A04.7.02.005
+FMA22353	Q740337	Musculus sartorius	A04.7.02.015
+FMA22356	Q601016	Musculus biceps femoris	A04.7.02.032
+FMA22357	Q1163035	Musculus semitendinosus	A04.7.02.035
+FMA22362	Q12230575	Ramus iliacus arteriae iliolumbalis	A12.2.15.005
+FMA22417	Q5250371	Ramus profundus arteriae circumflexae femoris medialis	A12.2.16.023
+FMA22423	Q1429453	Musculus tensor fasciae latae	A04.7.02.010
+FMA22428	Q504536	Musculus quadriceps femoris	A04.7.02.017
+FMA22430	Q1633822	Musculus rectus femoris	A04.7.02.018
+FMA22431	Q975459	Musculus vastus lateralis	A04.7.02.021
+FMA22432	Q1590935	Musculus vastus medialis	A04.7.02.023
+FMA22433	Q1812578	Musculus vastus intermedius	A04.7.02.022
+FMA22437	Q1640816	Musculus articularis genus	A04.7.02.024
+FMA22438	Q1270633	Musculus semimembranosus	A04.7.02.036
+FMA22440	Q1501677	Musculus pectineus	A04.7.02.025
+FMA22441	Q1428231	Musculus adductor longus	A04.7.02.026
+FMA22442	Q1551135	Musculus adductor brevis	A04.7.02.027
+FMA22443	Q478040	Musculus adductor magnus	A04.7.02.028
+FMA22474	Q3216080	Sura	A01.1.00.039
+FMA224850	Q18680	Os praefrontale	
+FMA224854	Q18707	Cortex motorius primus	
+FMA22506	Q707138	Arteria descendens genus	A12.2.16.017
+FMA22510	Q17027450	Ramus saphenus arteriae descendentis genus	A12.2.16.018
+FMA22511	Q4800935	Rami articulares arteriae descendentis genicularis	A12.2.16.019
+FMA22525	Q663799	Fossa poplitea	A01.2.08.013
+FMA22532	Q975054	Musculus tibialis anterior	A04.7.02.037
+FMA22533	Q1446138	Musculus extensor hallucis longus	A04.7.02.040
+FMA22534	Q1684283	Musculus extensor digitorum longus	A04.7.02.038
+FMA22535	Q7643620	Arteriae genus superiores	
+FMA22536	Q707208	Arteria media genus	A12.2.16.036
+FMA22537	Q6029326	Arteriae genus inferiores	
+FMA22538	Q1757887	Musculus fibularis tertius	A04.7.02.039
+FMA22539	Q1386945	Musculus fibularis longus	A04.7.02.041
+FMA22540	Q1723682	Musculus fibularis brevis	A04.7.02.042
+FMA22541	Q943203	Musculus gastrocnemius	A04.7.02.044
+FMA22542	Q1954164	Musculus soleus	A04.7.02.047
+FMA22543	Q526239	Musculus plantaris	A04.7.02.049
+FMA22570	Q7645364	Arteriae surales	A12.2.16.037
+FMA22584	Q2835952	Arteria superior medialis genus	A12.2.16.035
+FMA22585	Q7643641	Arteria superior lateralis genus	A12.2.16.034
+FMA22590	Q1308051	Musculus popliteus	A04.7.02.050
+FMA22593	Q1500559	Musculus flexor hallucis longus	A04.7.02.053
+FMA226221	Q18676	cortex auditivus	
+FMA22653	Q1088126	Musculus splenius capitis	A04.3.02.103
+FMA22654	Q502164	arteria axillaris	A12.2.09.002
+FMA22668	Q707632	Arteria thoracica superior	A12.2.09.004
+FMA22671	Q493410	Arteria thoracoacromialis	A12.2.09.005
+FMA22674	Q707624	Arteria thoracalis lateralis	A12.2.09.011
+FMA22677	Q707588	Arteria subscapularis	A12.2.09.013
+FMA22680	Q707098	Arteria circumflexa humeri anterior	A12.2.09.016
+FMA22681	Q1076423	Musculus splenius cervicis	A04.3.02.104
+FMA22684	Q707104	Arteria circumflexa humeri posterior	A12.2.09.017
+FMA22689	Q503643	Arteria brachialis	A12.2.09.018
+FMA22695	Q707473	Arteria profunda brachii	A12.2.09.020
+FMA22702	Q1180020	iliocostalis lumborum	A04.3.02.007
+FMA22703	Q66514734	iliocostalis thoracis	A04.3.02.008
+FMA22704	Q66514735	iliocostalis cervicis	A04.3.02.009
+FMA22706	Q707124	Arteria collateralis ulnaris superior	A12.2.09.025
+FMA22709	Q2012698	longissimus thoracis	A04.3.02.011
+FMA22710	Q707121	Arteria collateralis ulnaris inferior	A12.2.09.026
+FMA22730	Q662857	Arteria radialis	A12.2.09.027
+FMA22748	Q543450	Arteria recurrens radialis	A12.2.09.028
+FMA22752	Q7643325	Ramus palmaris superficialis arteriae radialis	A12.2.09.031
+FMA22755	Q3329385	Ramus carpalis dorsalis arteriae radialis	A12.2.09.032
+FMA22762	Q3328747	Arteria princeps pollicis	A12.2.09.036
+FMA22763	Q3328741	Arteria radialis indicis	A12.2.09.037
+FMA22765	Q66514780	spinalis thoracis	A04.3.02.016
+FMA22796	Q599817	Arteria Ulnaris	A12.2.09.041
+FMA22800	Q4771418	Ramus anterior arteriae recurrentis ulnaris	A12.2.09.043
+FMA22803	Q7234257	Ramus posterior arteriae recurrentis ulnaris	A12.2.09.044
+FMA22806	Q707303	Arteria interossea communis	A12.2.09.047
+FMA22810	Q3391674	Arteria interossea anterior	A12.2.09.048
+FMA22811	Q3391876	Arteria interossea posterior	A12.2.09.050
+FMA22817	Q12383332	Ramus carpalis palmaris arteriae ulnaris	A12.2.09.054
+FMA22820	Q5298768	Ramus carpalis dorsalis arteriae ulnaris	A12.2.09.053
+FMA22823	Q7449673	Musculus semispinalis	A04.3.02.206
+FMA22824	Q5250421	Ramus palmaris profundus arteriae ulnaris	A12.2.09.055
+FMA22827	Q371010	Musculus multifidus	A04.3.02.202
+FMA22828	Q2799932	Musculus semispinalis thoracis	A04.3.02.207
+FMA22829	Q225308	Musculus semispinalis cervicis	A04.3.02.208
+FMA22830	Q1071881	Musculus semispinalis capitis	A04.3.02.209
+FMA22831	Q66514827	musculus multifidus lumborum	A04.3.02.203
+FMA22834	Q7643328	Arcus palmaris superficialis	A12.2.09.056
+FMA22838	Q638316	Arcus palmaris profundus	A12.2.09.038
+FMA22841	Q726832	Musculi interspinales	A04.3.02.301
+FMA22848	Q729294	Musculi intertransversarii	A04.3.02.401
+FMA22852	Q3330358	Arteriae digitales palmares communes arteriae digitales volares communes	A12.2.09.057
+FMA228738	Q16364	Gula	
+FMA22908	Q1601362	Vena basilica	A12.3.08.018
+FMA22911	Q3320884	Arcus venosus palmaris profundus	A12.3.08.034
+FMA22914	Q629692	Arcus venosus palmaris superficialis	A12.3.08.026
+FMA22931	Q5298807	Vena scapularis dorsalis	A12.3.08.004
+FMA22934	Q939933	Venae brachiales	A12.3.08.029
+FMA22963	Q3320949	Vena mediana cubiti	A12.3.08.019
+FMA22967	Q3324292	Vena mediana antebrachii	A12.3.08.020
+FMA22970	Q3320895	Vena cephalica accessoria	A12.3.08.017
+FMA23067	Q5254857	Ramus deltoideus arteriae thoracoacromialis	A12.2.09.009
+FMA23081	Q838638	Musculi rotatores	A04.3.02.210
+FMA23119	Q3323498	Arteria collateralis media	A12.2.09.023
+FMA23120	Q3323540	Arteria collateralis radialis	A12.2.09.024
+FMA231515	Q28846049	Leptomeninx	A14.1.01.003
+FMA231572	Q268930	Meninges	A14.1.01.001
+FMA23179	Q707112	Arteria circumflexa scapulae	A12.2.09.015
+FMA23217	Q756066	Cingulum membri superiores	A01.1.00.020
+FMA23249	Q725790	Angulus lateralis scapulae	A02.4.01.017
+FMA23254	Q14855650	Collum scapulae	A02.4.01.022
+FMA23257	Q17080287	Angulus acromialis	A02.4.01.011
+FMA23260	Q615414	Acromion	A02.4.01.009
+FMA23266	Q747524	Tuberculum infraglenoidale	A02.4.01.021
+FMA23272	Q837926	Fossa infraspinata	A02.4.01.008
+FMA23275	Q19544	Cavitas glenoidalis, fossa glenoidalis	A02.4.01.019
+FMA23278	Q17129579	Tuberculum deltoideum (spinae scapulae)	A02.4.01.006
+FMA23356	Q868304	Collum anatomicum humeri	A02.4.04.003
+FMA23359	Q836597	collum chirurgicum humeri	A02.4.04.004
+FMA23373	Q718149	Capitulum humeri	A02.4.04.022
+FMA23377	Q23809765	Condylus humeri	A02.4.04.021
+FMA23390	Q897631	Tuberculum majus humeri	A02.4.04.005
+FMA23393	Q897486	Tuberculum minus humeri	A02.4.04.006
+FMA23396	Q724537	Sulcus intertubercularis humeri	A02.4.04.007
+FMA23418	Q836921	Tuberositas deltoidea humeri	A02.4.04.020
+FMA23441	Q792532	Epicondylus medialis humeri	A02.4.04.027
+FMA23442	Q388431	Epicondylus lateralis humeri	A02.4.04.029
+FMA23450	Q834774	Fossa olecrani	A02.4.04.024
+FMA23451	Q724544	Fossa coronoidea humeri	A02.4.04.025
+FMA23452	Q836589	Fossa radialis humeri	A02.4.04.026
+FMA23463	Q178492	Radius	A02.4.05.001
+FMA23466	Q199507	Ulna	A02.4.06.001
+FMA23616	Q3327889	Processus coronoideus ulnae	A02.4.06.003
+FMA23706	Q1692993	membrana interossea antebrachii	A03.5.06.002
+FMA23709	Q13143	Os scaphoideum	A02.4.08.003
+FMA23712	Q13141	Os lunatum	A02.4.08.005
+FMA23715	Q278417	os triquetrum	A02.4.08.006
+FMA23718	Q691942	Os pisiforme	A02.4.08.007
+FMA23721	Q265617	Os trapezium	A02.4.08.008
+FMA23724	Q847084	os trapezoideum	A02.4.08.010
+FMA23727	Q752369	Os capitatum	A02.4.08.011
+FMA23730	Q54393	Os hamatum	A02.4.08.012
+FMA23881	Q9621	Ossa humanum	A02.0.00.000
+FMA23889	Q232377	Carpus	A02.4.08.001
+FMA23899	Q724575	Os metacarpale I	
+FMA23902	Q724569	Os metacarpale IV	
+FMA23903	Q724563	Os metacarpale V	
+FMA24019	Q1759640	Istota gąbczasta	A02.0.00.004
+FMA242000	Q192560	Systema limbicum	
+FMA24476	Q178366	Tibia	A02.5.06.001
+FMA24479	Q302896	Fibula	A02.5.07.001
+FMA24485	Q229081	Patella	A02.5.05.001
+FMA24491	Q1059724	Tarsus	A02.5.09.001
+FMA24496	Q13075	Calcaneus	A02.5.11.001
+FMA24499	Q958194	Os naviculare	A02.5.12.001
+FMA24502	Q5454211	Os metatarsale I	
+FMA24505	Q5476258	Os metatarsale IV	
+FMA24506	Q5447591	Os metatarsale V	
+FMA24518	Q1884889	Cuneiforme mediale	A02.5.13.001
+FMA24519	Q3493614	Cuneiforme intermedium	A02.5.14.001
+FMA24520	Q615837	Cuneiforme laterale	A02.5.15.001
+FMA24527	Q658424	Os cuboideum	A02.5.16.001
+FMA24728	Q37017	facies	A01.1.00.006
+FMA24864	Q499	Axilla	A01.1.00.021
+FMA24878	Q24517852	brachium humanum	
+FMA24879	Q133105	crus	A01.1.00.031
+FMA24890	Q379859	brachium	A01.1.00.022
+FMA24901	Q42586	Cubitus	A01.1.00.023
+FMA24922	Q185706	Articulatio radiocarpea	A01.1.00.026
+FMA24938	Q83360	pollex	A01.1.00.053
+FMA24946	Q184848	Index (anatomia)	A01.1.00.054
+FMA24947	Q167131	Digitus medius	A01.1.00.055
+FMA24948	Q192298	Anularius	A01.1.00.056
+FMA24949	Q228027	Digitus minimus	A01.1.00.057
+FMA24964	Q193818	coxa	A01.1.00.034
+FMA24967	Q129757	femur	A01.1.00.035
+FMA24974	Q37425	genu	A01.1.00.036
+FMA24979	Q8265768	Crus	A01.1.00.038
+FMA24994	Q174647	Talus	A01.1.00.042
+FMA25000	Q876082	Subtel	A01.1.00.044
+FMA25046	Q154425	Digitus	A01.1.00.046
+FMA25047	Q763775	Hallux	A01.1.00.058
+FMA25202	Q16363	umerus	A01.1.00.020
+FMA25511	Q11884438	symphysis intervertebralis	
+FMA256135	Q170494	corpus	
+FMA260714	Q615697	Fasciculus arcuatus	A14.1.09.557
+FMA260761	Q15130814	Cingulum (cerebrum)	A05.1.03.044
+FMA265130	Q13400765	Apparatus respiratorius	
+FMA265239	Q452419	Tubulus renalis colligens	
+FMA272214	Q2635603	Arteriola glomerularis efferens capsulae renalis	A08.1.03.006
+FMA275020	Q48360	Hippocampus (cerebrum)	A14.1.09.321
+FMA284558	Q2200632	calix renalis	
+FMA292885	Q7643300	Ramus superficialis nervi radialis	A14.2.03.056
+FMA29711	Q4116887	Plexus venosus prostaticus	A12.3.10.013M
+FMA29713	Q3906673	Plexus venosus vaginalis	A12.3.10.017F
+FMA30316	Q7365	Musculus	
+FMA30319	Q39888	ligamentum	A03.0.00.034
+FMA30326	Q2663245	proximale	A01.0.00.035
+FMA30327	Q2764039	distale	A01.0.00.036
+FMA30332	Q2685072	lateralis	A01.0.00.010
+FMA311256	Q1640882	Pes anserinus	
+FMA31722	Q4866402	Basis ossis sacri	A02.2.05.002
+FMA321641	Q3443355	Venae intercostales	
+FMA321896	Q372409	venae cavae	
+FMA32519	Q755141	Musculus levator scapulae	A04.3.01.009
+FMA32521	Q130243	Musculus deltoideus	A04.6.02.002
+FMA32525	Q762258	Musculus rectus capitis posterior major	A04.2.02.004
+FMA32526	Q764361	Musculus rectus capitis posterior minor	A04.2.02.005
+FMA32527	Q1051407	Musculus obliquus capitis superior	A04.2.02.006
+FMA32528	Q1051430	Musculus obliquus capitis inferior	A04.2.02.007
+FMA32546	Q19087	Musculus infraspinatus	A04.6.02.008
+FMA32549	Q56658	Musculus teres major	A04.6.02.011
+FMA32550	Q74963	Musculus teres minor	A04.6.02.010
+FMA32826	Q6693939	Extremitas distalis humeri	
+FMA32844	Q12151385	Extremitas distalis ossis femoris	
+FMA32847	Q17081678	Corpus femoris	A02.5.04.012
+FMA32851	Q582849	Caput femoris	A02.5.04.002
+FMA32852	Q5600920	Trochanter major	A02.5.04.005
+FMA32853	Q6531656	Trochanter minor	A02.5.04.007
+FMA32858	Q6806029	Condylus medialis femoris	A02.5.04.021
+FMA32859	Q765152	Condylus lateralis femoris	A02.5.04.024
+FMA32864	Q6806042	Epicondylus medialis femoris	A02.5.04.022
+FMA32867	Q16976550	Epicondylus lateralis femoris	A02.5.04.025
+FMA32870	Q4681417	Tuberculum adductorium femoris	A02.5.04.023
+FMA33116	Q6693941	Extremitas distalis tibiae	
+FMA33125	Q4936948	Corpus tibiae	A02.5.06.011
+FMA33751	Q3331820	Caput ulnae	A02.4.06.015
+FMA33754	Q6693944	Extremitas distalis ulnae	
+FMA33760	Q4119889	Corpus ulnae	A02.4.06.007
+FMA33773	Q3331828	Caput radii	A02.4.05.002
+FMA34725	Q29015033	Trochlea fibularis	A02.5.11.014
+FMA35138	Q116312081	Sinus tarsi	A02.5.11.009
+FMA35175	Q62394131	Articulatio genus	A03.6.08.001
+FMA35178	Q2284469	Articulatio coxae	A03.6.07.001
+FMA35187	Q12636757	Membrana interossea cruris	A03.6.05.002
+FMA35195	Q10690310	Articulatio talocruralis	A03.6.10.002
+FMA35222	Q184490	iunctum metatarsophalangeale	A03.6.10.801
+FMA35445	Q6806032	Condylus medialis tibiae	A02.5.06.003
+FMA35448	Q3686401	Condylus lateralis tibiae	A02.5.06.004
+FMA35463	Q7850870	tuberositas tibiae	A02.5.06.012
+FMA35502	Q6578319	Malleoli	A02.5.07.014
+FMA37025	Q559526	Nervus suprascapularis	A14.2.03.014
+FMA37064	Q1758126	Nervus musculocutaneus	A14.2.03.024
+FMA37069	Q1365325	Nervus radialis	A14.2.03.049
+FMA37072	Q1547173	Nervus axillaris	A14.2.03.059
+FMA3734	Q101004	Aorta arteria maxima	A12.2.02.001
+FMA3736	Q2349469	Aorta ascendens	A12.2.03.001
+FMA37373	Q337824	Musculus abductor pollicis brevis	A04.6.02.054
+FMA37378	Q257609	Musculus flexor pollicis brevis	A04.6.02.055
+FMA37379	Q931622	Musculus opponens pollicis	A04.6.02.058
+FMA37380	Q1065866	Musculus adductor pollicis	A04.6.02.059
+FMA37381	Q955788	Musculus palmaris brevis	A04.6.02.053
+FMA37382	Q659744	Musculus abductor digiti minimi manus	A04.6.02.062
+FMA37383	Q238607	Musculus flexor digiti minimi brevis manus	A04.6.02.063
+FMA37384	Q1064676	Musculus opponens digiti minimi manus	A04.6.02.064
+FMA37385	Q1394547	Musculi lumbricales manus	A04.6.02.065
+FMA37418	Q11277687	Musculi interossei dorsales manus	A04.6.02.066
+FMA37419	Q2608511	Musculi interossei palmares	A04.6.02.067
+FMA37448	Q1475923	Musculus abductor hallucis	A04.7.02.056
+FMA37449	Q1719061	Musculus flexor hallucis brevis	A04.7.02.057
+FMA37450	Q1328793	Musculus flexor digitorum brevis	A04.7.02.067
+FMA37451	Q1089155	Musculus abductor digiti minimi pedis	A04.7.02.063
+FMA37452	Q1665277	Musculus quadratus plantae	A04.7.02.068
+FMA37453	Q44161	musculus lumbricalis pedis	A04.7.02.069
+FMA37454	Q1954102	Musculus adductor hallucis	A04.7.02.060
+FMA37455	Q476952	Musculus flexor digiti minimi brevis pedis	A04.7.02.066
+FMA37457	Q2359065	Musculi interossei dorsales pedis	A04.7.02.070
+FMA37458	Q2360339	Musculi interossei plantares	A04.7.02.071
+FMA37664	Q730359	Musculus coracobrachialis	A04.6.02.017
+FMA37667	Q752441	Musculus brachialis	A04.6.02.018
+FMA3768	Q616032	Arcus aortae	A12.2.04.001
+FMA37682	Q28792038	caput breve biceps brachii	A04.6.02.015
+FMA37683	Q28792036	caput longum biceps brachii	A04.6.02.014
+FMA37688	Q83379	Musculus triceps brachii	A04.6.02.019
+FMA37701	Q1179996	Musculus articularis cubiti.	A04.6.02.024
+FMA37704	Q526403	Musculus anconeus	A04.6.02.023
+FMA37784	Q4953276	Fascia brachii	A04.6.03.005
+FMA3784	Q3270170	Aorta descendens	A12.2.10.001
+FMA3786	Q615993	aorta thoracalis	A12.2.11.001
+FMA37886	Q6806058	Septum intermusculare brachii mediale	A04.6.03.006
+FMA37888	Q6495623	Septum intermusculare brachii laterale	A04.6.03.007
+FMA3789	Q2264329	Aorta abdominalis	A12.2.12.001
+FMA3795	Q4778754	Bifurcatio aortae	A12.2.13.001
+FMA3818	Q6382772	Ramus marginalis dexter arteriae coronariae dextrae	A12.2.03.106
+FMA3823	Q7525154	Ramus nodi sinuatrialis arteriae coronariae dextrae	A12.2.03.104
+FMA3840	Q6382778	Ramus interventricularis posterior arteriae coronariae dextrae	A12.2.03.108
+FMA38450	Q828232	Musculus pronator teres	A04.6.02.025
+FMA38453	Q840572	Musculus pronator quadratus	A04.6.02.038
+FMA38459	Q914475	Musculus flexor carpi radialis	A04.6.02.028
+FMA38462	Q672854	Musculus palmaris longus	A04.6.02.029
+FMA38465	Q279039	Musculus flexor carpi ulnaris	A04.6.02.030
+FMA38469	Q847112	Musculus flexor digitorum superficialis	A04.6.02.033
+FMA38478	Q840592	Musculus flexor digitorum profundus	A04.6.02.036
+FMA38481	Q901571	Musculus flexor pollicis longus	A04.6.02.037
+FMA38485	Q385484	Musculus brachioradialis	A04.6.02.039
+FMA38494	Q847092	Musculus extensor carpi radialis longus	A04.6.02.040
+FMA38497	Q847458	Musculus extensor carpi radialis brevis	A04.6.02.041
+FMA38500	Q901101	Musculus extensor digitorum	A04.6.02.042
+FMA38503	Q19030	Musculus extensor digiti minimi	A04.6.02.044
+FMA38506	Q527634	Musculus extensor carpi ulnaris	A04.6.02.045
+FMA3851	Q4817567	Ramus nodi atrioventricularis	A12.2.03.110
+FMA38512	Q524064	Musculus supinator	A04.6.02.048
+FMA38515	Q915948	Musculus abductor pollicis longus	A04.6.02.049
+FMA38518	Q901116	Musculus extensor pollicis brevis	A04.6.02.050
+FMA38521	Q574632	Musculus extensor pollicis longus	A04.6.02.051
+FMA38524	Q932883	Musculus extensor indicis	A04.6.02.052
+FMA3862	Q4771358	Ramus interventricularis anterior arteriae coronariae sinistrae	A12.2.03.202
+FMA3895	Q5121741	Ramus circumflexus arteriae coronariae sinistrae	A12.2.03.206
+FMA3902	Q6516977	Ramus marginalis sinister arteriae coronariae sinistrae	A12.2.03.209
+FMA39079	Q1278170	N Cutaneus antibrachii medialis	A14.2.03.028
+FMA39080	Q6495588	Nervus cutaneus antebrachii lateralis	A14.2.03.026
+FMA39145	Q7234190	Nervus cutaneus antebrachii posterior, nervus cutaneus antibrachii dorsalis	A14.2.03.052
+FMA3932	Q515917	Truncus brachiocephalicus	A12.2.04.004
+FMA3936	Q7799758	Arteria thyreoidea ima	A12.2.04.005
+FMA3939	Q214275	Arteria carotis communis	A12.2.04.006
+FMA3947	Q515848	Arteria carotis interna	A12.2.06.001
+FMA39484	Q861058	chorda obliqua membranae interosseae antebrachii	A03.5.06.003
+FMA3951	Q490059	Arteria subclavia	A12.2.08.001
+FMA3956	Q516546	arteria vertebralis	A12.2.08.002
+FMA3960	Q497563	Arteria thoracica interna	A12.2.08.029
+FMA3964	Q6321762	Arteria pericardiacophrenica	A12.2.08.034
+FMA39795	Q2536335	Olecranon	A02.4.06.002
+FMA3990	Q2456456	truncus thyrocervicalis	A12.2.08.042
+FMA39987	Q1425589	retinaculum musculorum extensorum manus	A04.6.03.010
+FMA39988	Q449457	retinaculum musculorum flexorum manus	A04.6.03.013
+FMA40001	Q5298800	Ligamentum radiocarpeum dorsale	A03.5.11.003
+FMA40004	Q7128153	ligagment ulnocarpale palmare	A03.5.11.006
+FMA4149	Q3660617	Arteriae oesophageae	
+FMA42329	Q1321480	Foveola radialis	
+FMA42352	Q1542748	Canalis carpi	A03.5.11.201
+FMA42385	Q4844892	Collum femoris	A02.5.04.004
+FMA42435	Q1524395	aponeurosis palmaris	A04.6.03.012
+FMA43533	Q16972973	Ramus ischiopubicus	A02.5.01.007
+FMA43581	Q29073097	Bursa subcutanea trochanterica	A04.8.05.002
+FMA43709	Q7268348	Tuberculum quadratum	A02.5.04.011
+FMA43724	Q7158835	Linea pectinea	A02.5.04.016
+FMA43882	Q1428669	Musculus gracilis	A04.7.02.030
+FMA43885	Q4681420	Musculus adductor minimus	A04.7.02.029
+FMA43888	Q8205398	Arteria inferior lateralis genus	A12.2.16.038
+FMA43889	Q2865986	Arteria inferior medialis genus	A12.2.16.039
+FMA43894	Q707651	Arteria tibialis anterior	A12.2.16.042
+FMA43895	Q707659	Arteria tibialis posterior	A12.2.16.055
+FMA43902	Q4771410	Arteria recurrens tibialis anterior	A12.2.16.043
+FMA43903	Q16938916	Arteria recurrens tibialis posterior	A12.2.16.044
+FMA43904	Q4771363	Arteria malleolaris anterior lateralis	A12.2.16.045
+FMA43905	Q2888640	Arteria malleolaris anterior medialis	A12.2.16.046
+FMA43915	Q2865983	Arteria dorsalis pedis	A12.2.16.048
+FMA43918	Q5121743	Ramus circumflexus fibularis arteriae tibialis posterioris	A12.2.16.056
+FMA43921	Q3444008	Arteria fibularis arteria peronaea	A12.2.16.071
+FMA43925	Q1134588	Arteria plantaris medialis	A12.2.16.061
+FMA43926	Q707450	Arteria plantaris lateralis	A12.2.16.064
+FMA43942	Q39075360	Arcus plantaris profundus	A12.2.16.065
+FMA44083	Q3829591	ligamentum talofibulare anterius	A03.6.10.009
+FMA44089	Q5018678	ligamentum calcaneofibulare	A03.6.10.011
+FMA44234	Q5018675	ligamentum calcaneocuboideum	A03.6.10.513
+FMA44318	Q7643313	Vena epigastrica superficialis	A12.3.11.006
+FMA44320	Q4771318	Vena saphena magna accessoria anterior	A12.3.11.007
+FMA44327	Q2746562	Vena poplitea	A12.3.11.028
+FMA44331	Q3448908	Vena tibialis anterior (singular)	A12.3.11.031
+FMA44332	Q3448931	Venae tibiales posteriores	A12.3.11.032
+FMA44333	Q2736974	Vena saphena parva	A12.3.11.010
+FMA44356	Q5298813	Arcus venosus dorsalis pedis	A12.3.11.012
+FMA44359	Q16976792	Vena marginalis lateralis pedis	A12.3.11.020
+FMA44420	Q6806063	Vena marginalis medialis pedis	A12.3.11.021
+FMA44489	Q7201592	Arcus venosus plantaris	A12.3.11.016
+FMA44490	Q7835443	ligamentum metatarsale transversum	A03.6.10.804
+FMA44581	Q1172095	Ligamentum patellae	A03.6.08.015
+FMA44594	Q4787730	Arteria arcuata pedis	A12.2.16.051
+FMA44595	Q6495719	Arteria tarsalis lateralis	A12.2.16.049
+FMA44614	Q611127	Ligamentum cruciatum anterius	A03.6.08.007
+FMA44617	Q735353	Ligamentum decussatum posterius	A03.6.08.008
+FMA44647	Q5454158	Arteria dorsalis hallucis	
+FMA44677	Q7144431	Rete patellare anastomosis patellaris rete articulare genus	A12.2.16.041
+FMA44687	Q6806087	Nervus cutaneus surae medialis	A14.2.07.061
+FMA44688	Q6135922	Nervus suralis	A14.2.07.062
+FMA44694	Q16947406	Nervus cutaneus dorsalis lateralis	A14.2.07.063
+FMA44695	Q16965031	Rami calcanei laterales nervi suralis	A14.2.07.064
+FMA44697	Q1475438	Nervus cutaneus surae lateralis	A14.2.07.048
+FMA44699	Q3088602	\"Nervus fibularis superficialis,	A14.2.07.050
+FMA44710	Q6806024	Rami calcanei mediales nervi tibialis	A14.2.07.065
+FMA44716	Q604987	Nervus plantaris medialis	A14.2.07.066
+FMA44724	Q6495668	Nervus plantaris lateralis	A14.2.07.069
+FMA44763	Q7643297	Ramus superficialis nervi plantaris lateralis	A14.2.07.070
+FMA44764	Q5250368	Ramus profundus nervi plantaris lateralis	A14.2.07.073
+FMA44771	Q3088530	Nervus fibularis profundus	A14.2.07.055
+FMA44809	Q16999361	Nervus cutaneus dorsalis medialis	A14.2.07.052
+FMA44810	Q17067224	Nervus cutaneus dorsalis intermedius	A14.2.07.053
+FMA44822	Q4771357	Nervus interosseus antebrachii anterior	A14.2.03.034
+FMA44836	Q7128135	Ramus palmaris nervi mediani	A14.2.03.036
+FMA44840	Q5153588	Nervi digitales palmares communes nervi mediani	A14.2.03.038
+FMA44874	Q6940380	Rami musculares nervi ulnaris	A14.2.03.041
+FMA44875	Q5298765	Ramus dorsalis nervi ulnaris	A14.2.03.042
+FMA44876	Q7643302	Ramus superficialis nervi ulnaris	A14.2.03.045
+FMA44877	Q5250374	Ramus profundus nervi ulnaris	A14.2.03.048
+FMA44878	Q7128136	Ramus palmaris nervi ulnaris	A14.2.03.044
+FMA44948	Q7234189	Nervus cutaneus brachii posterior	A14.2.03.050
+FMA44949	Q6029350	Nervus cutaneus brachii lateralis inferior	A14.2.03.051
+FMA44954	Q6940379	Rami musculares nervi radialis	A14.2.03.053
+FMA45063	Q29072888	Bursa trochanterica musculi glutei maximi	A04.8.05.003
+FMA45066	Q29072974	Bursa trochanterica musculi glutei minimi	A04.8.05.005
+FMA45072	Q29072956	Bursa trochanterica musculi glutei medii	A04.8.05.004
+FMA45163	Q4771334	Compartimentum cruris anterius	A04.7.01.005
+FMA45235	Q596725	Fasciculus lateralis plexus brachialis	A14.2.03.021
+FMA45236	Q596803	Fasciculus medialis plexus brachialis	A14.2.03.022
+FMA45237	Q597179	Fasciculus posterior plexus brachialis	A14.2.03.023
+FMA45250	Q4771342	Rami cutanei anteriores nervi femoralis	A14.2.07.022
+FMA45262	Q1978117	Nervus saphenus	A14.2.07.023
+FMA45306	Q4771326	Ramus anterior nervi obturatorii	A14.2.07.013
+FMA45307	Q7234170	Ramus posterior nervi obturatorii	A14.2.07.016
+FMA45312	Q5196689	Ramus cutaneus nervi obturatorii	A14.2.07.014
+FMA45325	Q6031461	Ramus infrapatellaris nervi sapheni	A14.2.07.024
+FMA45328	Q6806033	Rami cutanei cruris mediales nervi sapheni	A14.2.07.025
+FMA45331	Q5196689	Ramus cutaneus nervi obturatorii	A14.2.07.014
+FMA45337	Q1477923	Nervus cutaneus femoris posterior	A14.2.07.033
+FMA45356	Q597392	Plexus coccygeus	A14.2.07.044
+FMA45567	Q2564865	Epithelium simplex columnare	
+FMA45732	Q270524	Parenchyma	
+FMA45738	Q841422	Platysma	A04.2.01.001
+FMA45769	Q6047943	Musculus sphincter urethrae internus	A09.2.03.009
+FMA45887	Q66536143	caput longum biceps femoris	A04.7.02.033
+FMA45890	Q66536147	caput breve biceps femoris	A04.7.02.034
+FMA45956	Q66536176	caput mediale musculi gastrocnemii	
+FMA45959	Q66536179	caput laterale musculi gastrocnemii	
+FMA4613	Q5645489	Arteria subcostalis	A12.2.11.020
+FMA46291	Q645694	Musculus digastricus	A04.2.03.002
+FMA46308	Q1055786	Musculus longus capitis	A04.2.01.003
+FMA46312	Q371122	Musculus rectus capitis anterior	A04.2.02.002
+FMA46316	Q579641	Musculus rectus capitis lateralis	A04.2.02.003
+FMA46320	Q927901	Musculus mylohyoideus	A04.2.03.006
+FMA46325	Q1072007	Musculus geniohyoideus	A04.2.03.007
+FMA46417	Q261411	Musculus cricothyreoideus	A06.2.08.001
+FMA46450	Q243999	Tempora	A01.1.00.004
+FMA46472	Q2673594	Nasus humanum	A01.1.00.009
+FMA46476	Q47038	mala	A01.1.00.008
+FMA46484	Q1425673	Vertex	A02.1.00.033
+FMA46495	Q82714	Mentum	A01.1.00.011
+FMA46576	Q379007	Musculus cricoarytaenoideus posterior	A06.2.08.004
+FMA46579	Q730870	Musculus cricoarytaenoideus lateralis	A06.2.08.006
+FMA46582	Q717887	Musculus arytenoideus	A06.2.08.012
+FMA46583	Q3867495	Musculus arytenoideus obliquus	A06.2.08.010
+FMA46588	Q932571	Musculus thyroarytenoideus	A06.2.08.008
+FMA46591	Q1180067	Musculus vocalis	A06.2.08.007
+FMA46594	Q612033	Pars thyreoepiglottica musculi thyreoarytaenoidei	A06.2.08.009
+FMA46602	Q385089	Musculus aryepiglotticus	A06.2.08.011
+FMA46621	Q537486	Musculus constrictor pharyngis superior	A05.3.01.103
+FMA46622	Q254855	Musculus constrictor pharyngis medius	A05.3.01.108
+FMA46623	Q569097	Musculus constrictor pharyngis inferior	A05.3.01.111
+FMA46664	Q579449	Musculus stylopharyngeus	A05.3.01.114
+FMA46665	Q1075747	Musculus salpingopharyngeus	A05.3.01.115
+FMA46666	Q932609	Musculus palatopharyngeus	A05.2.01.105
+FMA46688	Q174778	pharynx	A05.3.01.001
+FMA46690	Q580326	Musculus genioglossus	A05.1.04.101
+FMA46691	Q247359	Musculus hyoglossus	A05.1.04.102
+FMA46692	Q932621	Musculus styloglossus	A05.1.04.105
+FMA46693	Q1048134	Musculus longitudinalis superior linguae	A05.1.04.106
+FMA46694	Q147912	Musculus longitudinalis inferior linguae	A05.1.04.107
+FMA46695	Q1180072	Musculus transversus linguae	A05.1.04.108
+FMA46696	Q266980	Musculus verticalis linguae	A05.1.04.109
+FMA46697	Q748180	Musculus palatoglossus	A05.1.04.110
+FMA46700	Q1180005	Musculus chondroglossus	A05.1.04.103
+FMA46727	Q1091321	Musculus levator veli palatini	A05.2.01.102
+FMA46730	Q1073869	Musculus tensor veli palatini	A05.2.01.103
+FMA46753	Q1033231	Musculus temporoparietalis	A04.1.03.006
+FMA46757	Q614557	Venter frontalis musculi occipitofrontalis	A04.1.03.004
+FMA46758	Q339861	venter occipitalis Musculi occipitofrontalis	A04.1.03.005
+FMA46769	Q636624	Musculus procerus	A04.1.03.008
+FMA46770	Q597112	Musculus nasalis	A04.1.03.009
+FMA46777	Q1091300	Musculus depressor septi nasi	A04.1.03.012
+FMA46779	Q530279	Musculus orbicularis oculi	A04.1.03.013
+FMA46787	Q209704	Nervus olfactorius	A14.2.01.004
+FMA46794	Q545030	Musculus corrugator supercilii	A04.1.03.018
+FMA46798	Q979143	Musculus depressor supercilii	A04.1.03.019
+FMA46802	Q301876	Musculus levator labii superioris alaequae nasi	A04.1.03.032
+FMA46805	Q932587	Musculus levator labii superioris	A04.1.03.031
+FMA46810	Q612325	Musculus zygomaticus major	A04.1.03.029
+FMA46811	Q1073843	Musculus zygomaticus minor	A04.1.03.030
+FMA46816	Q663261	Musculus depressor labii inferioris	A04.1.03.033
+FMA46822	Q913958	Musculus levator anguli oris	A04.1.03.034
+FMA46825	Q1051688	Musculus mentalis	A04.1.03.037
+FMA46828	Q589085	Musculus depressor anguli oris	A04.1.03.026
+FMA46834	Q846480	Musculus buccinator	A04.1.03.036
+FMA46838	Q841536	Musculus risorius	A04.1.03.028
+FMA46841	Q302950	Musculus orbicularis oris	A04.1.03.023
+FMA46850	Q1180017	musculus incisivus inferior	
+FMA46855	Q923875	Musculus auricularis superior	A04.1.03.021
+FMA46856	Q665030	Musculus auricularis anterior	A04.1.03.020
+FMA46857	Q926216	Musculus auricularis posterior	A04.1.03.022
+FMA4706	Q629460	Sinus coronarius	A12.3.01.002
+FMA4707	Q2886255	Vena cordis magna	A12.3.01.003
+FMA4708	Q6516978	Vena marginalis sinistra	A12.3.01.005
+FMA4712	Q7234258	Vena ventriculi sinistri posterior	A12.3.01.006
+FMA4713	Q6841662	Vena cardiaca media	A12.3.01.009
+FMA4714	Q7543026	Vena cardiaca parva	A12.3.01.010
+FMA4715	Q7075181	Vena obliqua atrii sinistri	A12.3.01.007
+FMA4716	Q7333621	Vena marginalis dextra	A12.3.01.011
+FMA4720	Q736995	vena cava superior	A12.3.03.001
+FMA4723	Q2341350	Vena brachiocephalica vena anonyma	A12.3.04.001
+FMA4724	Q540598	Vena jugularis interna	A12.3.05.001
+FMA4725	Q493430	Vena subclavia	A12.3.08.002
+FMA4727	Q5306004	Vena vertebralis	A12.3.04.012
+FMA4728	Q11312041	Venae thyreoideae inferiores	A12.3.04.002
+FMA4729	Q3509884	Vena thoracica interna	A12.3.04.018
+FMA4744	Q7645117	Vena intercostalis suprema	A12.3.04.023
+FMA4746	Q4115298	Vena cervicalis profunda	A12.3.04.017
+FMA4767	Q7920194	plexus venosus	A12.0.00.011
+FMA4838	Q591137	Vena azygos	A12.3.07.001
+FMA4881	Q6047950	Plexus venosi vertebrales interni	
+FMA48968	Q1180012	Musculus helicis major	A15.3.01.037
+FMA48971	Q1180013	Musculus helicis minor	A15.3.01.038
+FMA48974	Q1180066	Musculus tragicus	A15.3.01.039
+FMA48980	Q1179995	Musculus antitragicus	A15.3.01.042
+FMA48983	Q968958	Musculus transversus auriculae	A15.3.01.043
+FMA48986	Q1180045	Musculus obliquus auriculae	A15.3.01.044
+FMA48996	Q725408	Musculus masseter	A04.1.04.002
+FMA49006	Q599406	Musculus temporalis	A04.1.04.005
+FMA49011	Q643928	Musculus pterygoideus medialis	A04.1.04.009
+FMA49015	Q977221	Musculus pterygoideus lateralis	A04.1.04.006
+FMA49027	Q507538	Musculus stapedius	A15.3.02.062
+FMA49028	Q254643	Musculus tensor tympani	A15.3.02.061
+FMA49033	Q533979	Musculi externi bulbi oculi	A04.1.01.001
+FMA49034	Q6592857	Musculus orbitalis	A15.2.07.009
+FMA49035	Q1090548	Musculus rectus superior bulbi	A15.2.07.010
+FMA49036	Q1090267	Musculus rectus inferior bulbi	A15.2.07.011
+FMA49037	Q1090541	Musculus rectus medialis bulbi	A15.2.07.012
+FMA49038	Q1051835	Musculus pterygoideus externus\"	A15.2.07.013
+FMA49039	Q913366	Musculus obliquus superior bulbi	A15.2.07.016
+FMA49040	Q1051437	Musculus obliquus inferior bulbi	A15.2.07.019
+FMA49041	Q932908	Musculus levator palpebrae superioris	A15.2.07.020
+FMA49058	Q671943	Musculus tarsalis superior	A15.2.07.045
+FMA49080	Q2976828	Musculus transversus menti	A04.1.03.027
+FMA49151	Q239972	Musculus ciliaris	A15.2.03.014
+FMA49157	Q1073818	Musculus sphincter pupillae	A15.2.03.029
+FMA49158	Q638147	Musculus dilatator pupillae	A15.2.03.030
+FMA49182	Q13052415	Cavum oris proprium	
+FMA49183	Q6769276	vestibulum oralis	A05.1.01.003
+FMA49184	Q9635	os	A05.1.00.001
+FMA49187	Q3321315	occiput	A01.1.00.003
+FMA49372	Q5459037	retinaculum musculorum flexorum	A04.7.03.026
+FMA49381	Q19922625	extensor retinaculum	
+FMA49384	Q17044312	retinaculum superius musculorum extensorum	A04.7.03.025
+FMA49385	Q6029317	Retinaculum extensorum inferius pedis	A04.7.03.027
+FMA4944	Q2214048	Vena hemiazygos	A12.3.07.004
+FMA49465	Q4771403	Spina iliaca anterior superior	A02.5.01.111
+FMA49468	Q7234246	Spina iliaca posterior superior	A02.5.01.113
+FMA49472	Q499316	Arteria thyreoidea superior	A12.2.05.002
+FMA49497	Q486797	Arteria pharyngea ascendens	A12.2.05.010
+FMA49503	Q485130	Arteria meningea posterior	A12.2.05.011
+FMA49506	Q4381851	Arteria tympanica inferior	A12.2.05.013
+FMA49526	Q497582	Arteria lingualis	A12.2.05.015
+FMA49549	Q282371	Arteria facialis	A12.2.05.020
+FMA49555	Q487467	Arteria palatina ascendens	A12.2.05.021
+FMA49558	Q7821673	Ramus tonsillaris arteriae facialis	A12.2.05.022
+FMA49561	Q488907	Arteria submentalis	A12.2.05.023
+FMA49567	Q484813	Ramus labialis inferior arteriae facialis arteria labialis inferior	A12.2.05.025
+FMA49570	Q484819	Ramus labialis superior arteriae facialis arteria labialis superior	A12.2.05.026
+FMA49580	Q6495641	Ramus lateralis nasi arteriae facialis	A12.2.05.028
+FMA49583	Q489189	Arteria angularis	A12.2.05.029
+FMA49586	Q491726	Arteria occipitalis	A12.2.05.030
+FMA49590	Q977144	Rami sternocleidomastoidei arteriae occipitalis	A12.2.05.033
+FMA49602	Q4822343	Ramus auricularis arteriae occipitalis	A12.2.05.032
+FMA49605	Q7075695	Rami occipitales arteriae occipitalis	A12.2.05.034
+FMA49608	Q5263718	Ramus descendens arteriae occipitalis	A12.2.05.036
+FMA49618	Q6817075	Ramus meningeus arteriae occipitalis	A12.2.05.035
+FMA49624	Q489947	Arteria auricularis posterior	A12.2.05.037
+FMA49628	Q6125157	Arteria stylomastoidea	A12.2.05.038
+FMA49638	Q7600354	Ramus stapedius arteriae auricularis posterioris	A12.2.05.041
+FMA49641	Q4822344	Ramus auricularis arteriae auricularis posterioris	A12.2.05.042
+FMA49644	Q11488371	Ramus occipitalis arteriae auricularis posterioris	A12.2.05.043
+FMA49650	Q494694	Arteria temporalis superficialis	A12.2.05.045
+FMA49657	Q486752	Arteria transversa faciei	A12.2.05.047
+FMA49663	Q4381683	Arteria zygomaticoorbitalis	A12.2.05.049
+FMA49666	Q6122610	Arteria temporalis media	A12.2.05.050
+FMA49669	Q5505906	Ramus frontalis arteriae temporalis superficialis	A12.2.05.051
+FMA49670	Q7137055	Ramus parietalis arteriae temporalis superficialis	A12.2.05.052
+FMA49675	Q498171	Arteria maxillaris	A12.2.05.053
+FMA49689	Q487887	Arteria auricularis profunda	A12.2.05.054
+FMA49692	Q489179	Arteria tympanica anterior	A12.2.05.055
+FMA49695	Q486774	Arteria alveolaris inferior	A12.2.05.056
+FMA49701	Q2919618	Ramus mentalis arteriae alveolaris inferioris	A12.2.05.059
+FMA49702	Q6947745	Ramus mylohyoideus arteriae alveolaris inferioris	A12.2.05.060
+FMA49711	Q500563	Arteria meningea media	A12.2.05.061
+FMA49715	Q50194	Ramus accessorius arteriae meningeae mediae	A12.2.05.062
+FMA49720	Q4381818	Arteria tympanica superior	A12.2.05.067
+FMA49739	Q487078	Arteria masseterica	A12.2.05.070
+FMA49742	Q264834	Arteria temporalis profunda anterior arteria temporalis profunda posterior	
+FMA49754	Q488932	arteria buccalis	A12.2.05.074
+FMA49757	Q485350	Arteria alveolaris superior posterior	A12.2.05.075
+FMA49767	Q486809	Arteria infraorbitalis	A12.2.05.078
+FMA49791	Q487474	Arteria palatina descendens	A12.2.05.084
+FMA49795	Q5600889	Arteria palatina major	A12.2.05.085
+FMA49804	Q488936	Arteria sphenopalatina	A12.2.05.088
+FMA49815	Q5065343	Pars cervicalis arteriae carotidis internae	A12.2.06.002
+FMA49816	Q7179125	Pars petrosa arteriae carotidis internae	A12.2.06.004
+FMA49846	Q4319460	Arteria hypophysialis inferior	A12.2.06.012
+FMA49849	Q23929	Arteria hypophysialis superior arteria hypophyseos superior	A12.2.06.017
+FMA49868	Q497574	Arteria ophthalmica	A12.2.06.016
+FMA49879	Q489722	Arteria centralis retinae	A12.2.06.024
+FMA49893	Q18361829	Arteriae coronariae	
+FMA49927	Q485355	Arteria lacrimalis	A12.2.06.027
+FMA49962	Q4771332	Arteriae ciliares anteriores	A12.2.06.034
+FMA49973	Q707595	Arteria supraorbitalis	A12.2.06.037
+FMA49986	Q3270899	arteria ethmoidalis anterior	A12.2.06.039
+FMA49989	Q3278179	Arteria ethmoidalis posterior	A12.2.06.043
+FMA50000	Q3270735	Arteria dorsalis nasi	A12.2.06.049
+FMA50025	Q4381076	Arteria supratrochlearis arteria frontalis	A12.2.06.048
+FMA50028	Q498935	Arteria cerebri anterior	A12.2.07.022
+FMA50039	Q429285	arteria coronaria dextra	A12.2.03.101
+FMA50040	Q744391	arteria coronaria sinistra	A12.2.03.201
+FMA50079	Q498179	Arteria cerebri media	A12.2.07.046
+FMA50084	Q185438	Arteria cerebri communicans posterior	A12.2.06.018
+FMA50087	Q518616	Arteria chorioidea anterior	A12.2.06.019
+FMA5011	Q4672537	Vena hemiazygos accessoria	A12.3.07.005
+FMA50169	Q598769	Arteria communicans anterior	A12.2.07.029
+FMA5018	Q265868	os	A02.0.00.000
+FMA5022	Q7365	Musculus	
+FMA5031	Q1263629	Ductus thoracicus	A12.4.01.007
+FMA5034	Q170758	nodus lymphaticus	A13.2.03.001
+FMA50454	Q487595	Circulus arteriosus cerebri	A12.2.07.080
+FMA50518	Q488727	Arteria cerebelli inferior posterior	A12.2.08.012
+FMA50522	Q631471	Arteria spinalis posterior	
+FMA50531	Q490172	Arteria spinalis anterior	A12.2.08.016
+FMA50542	Q500339	arteria basilaris	A12.2.07.081
+FMA50544	Q707277	Arteria cerebelli inferior anterior	A12.2.08.019
+FMA50548	Q656328	Arteria labyrinthi arteria auditiva interna	A12.2.08.020
+FMA50573	Q707592	Arteria cerebelli superior	A12.2.08.025
+FMA50583	Q492482	Arteria cerebri posterior	A12.2.07.082
+FMA50596	Q44946	punctum	
+FMA50629	Q7709513	Arteria thalamogeniculata	A12.2.07.090
+FMA50720	Q9655	arteria	A12.0.00.003
+FMA50723	Q9609	Vena	A12.0.00.030
+FMA50735	Q464543	vena portae hepatis	A12.3.12.001
+FMA50737	Q519368	truncus coeliacus	A12.2.12.012
+FMA50763	Q5860395	Sinus transversus durae matris	A12.3.05.102
+FMA50767	Q4115976	Sinus sagittalis superior	A12.3.05.109
+FMA50768	Q12764815	Sinus sagittalis inferior	A12.3.05.111
+FMA50769	Q7621088	Sinus rectus	A12.3.05.112
+FMA50770	Q6029401	Sinus petrosus inferior	A12.3.05.113
+FMA50771	Q7643664	Sinus petrosus superior	A12.3.05.115
+FMA50772	Q1457751	Sinus cavernosus	A12.3.05.116
+FMA50773	Q10369486	Sini intercavernosi	A12.3.05.117
+FMA50776	Q7576658	Sinus sphenoparietalis	A12.3.05.119
+FMA50777	Q7179117	Sinus petrosquamosus	A12.3.05.107
+FMA50781	Q10369487	Sinus occipitalis	A12.3.05.105
+FMA50782	Q9292294	Sinus sigmoideus	A12.3.05.108
+FMA50783	Q4867299	Plexus basilaris	A12.3.05.106
+FMA50784	Q4845565	Confluens sinuum torcula herophili	A12.3.05.103
+FMA50785	Q4175733	Venae diploicae	A12.3.05.201
+FMA50790	Q5372627	Vena emissaria	A12.0.00.033
+FMA50793	Q5159426	Vena emissaria condylaris	A12.3.05.304
+FMA50794	Q7075696	Vena emissaria occipitalis	A12.3.05.305
+FMA50800	Q6029344	Vena laryngea inferior	A12.3.04.004
+FMA50801	Q492038	Encephalon humanum	A14.1.03.001
+FMA50802	Q7075707	Venae encephali occipitales	A12.3.04.013
+FMA50803	Q7631741	Plexus venosus suboccipitalis	A12.3.04.016
+FMA50822	Q7180888	Plexus pharyngeus	A12.3.05.006
+FMA50830	Q5250408	Vena profunda linguae	A12.3.05.013
+FMA50836	Q7631535	Vena sublingualis	A12.3.05.012
+FMA50851	Q588981	Vena auricularis posterior	A12.3.05.046
+FMA50855	Q745516	Arcus venosus jugularis	A12.3.05.048
+FMA50863	Q186029	Nervus opticus	A14.2.01.006
+FMA50864	Q223903	Nervus oculomotorius	A14.2.01.007
+FMA50865	Q319584	Nervus trochlearis	A14.2.01.011
+FMA50866	Q189763	Nervus trigeminus	A14.2.01.012
+FMA50867	Q318773	Nervus abducens	A14.2.01.098
+FMA50868	Q242160	Nervus facialis	A14.2.01.099
+FMA50869	Q319317	Nervus vestibulocochlearis	A14.2.01.121
+FMA50870	Q334143	nervus glossopharyngeus	A14.2.01.135
+FMA50871	Q319577	Nervus hypoglossus	A14.2.01.191
+FMA50872	Q2917413	Arteria pulmonalis dextra	A12.2.01.101
+FMA50873	Q8205462	Arteria pulmonalis sinistra	A12.2.01.201
+FMA50874	Q3555260	Vena facialis anterior	A12.3.05.018
+FMA50893	Q1631914	Vena angularis	A12.3.05.019
+FMA50904	Q7644733	Vena supraorbitalis	A12.3.05.021
+FMA50916	Q5250383	Vena profunda faciei	A12.3.05.027
+FMA50928	Q6125961	Vena retromandibularis	A12.3.05.031
+FMA50944	Q7257007	Plexus venosus pterygoideus	A12.3.05.036
+FMA50978	Q5934112	Venae cerebri superiores	A12.3.06.003
+FMA50983	Q7643320	Vena media superficialis cerebri	A12.3.06.009
+FMA50990	Q4866185	Vena basalis	A12.3.06.018
+FMA50993	Q585980	Vena magna cerebri	A12.3.06.027
+FMA50997	Q7643678	Vena thalamostriata superior	A12.3.06.030
+FMA51041	Q6641978	vena profunda femoris	A12.3.11.024
+FMA51048	Q2447635	Tractus iliotibialis	A04.7.03.003
+FMA51062	Q431282	Musculus triceps surae	A04.7.02.043
+FMA51071	Q1892025	Musculus flexor digitorum longus	A04.7.02.052
+FMA51099	Q1551145	Musculus tibialis posterior	A04.7.02.051
+FMA51118	Q66540455	Retinaculum fibulare inferius	A04.7.03.029
+FMA51140	Q1688555	Musculus extensor digitorum brevis pedis	A04.7.02.055
+FMA51141	Q1330812	Musculus extensor hallucis brevis	A04.7.02.054
+FMA51246	Q4117816	Vena ophthalmica superior	A12.3.06.102
+FMA51247	Q6029380	Vena ophthalmica inferior	A12.3.06.117
+FMA51309	Q5250417	Vena media profunda cerebri	A12.3.06.020
+FMA51729	Q6967224	Vena nasofrontalis	A12.3.06.103
+FMA51799	Q5062148	Vena centralis retinae	A12.3.06.111
+FMA52386	Q5573344	Venae labyrinthi	A12.3.05.114
+FMA52538	Q7643634	Vena labialis superior	A12.3.05.025
+FMA52578	Q7136067	Ramus parasympathica ganglii ciliaris	A14.2.01.010
+FMA52618	Q776972	ganglion trigeminale	A14.2.01.014
+FMA52621	Q1420571	N Ophthalmicus	A14.2.01.016
+FMA52628	Q3270318	Nervus lacrimalis	A14.2.01.018
+FMA52638	Q3271563	Nervus frontalis	A14.2.01.020
+FMA52642	Q4306347	Nervus supratrochlearis	A14.2.01.024
+FMA52655	Q7644726	Nervus supraorbitalis	A14.2.01.021
+FMA52668	Q918513	Nervus nasociliaris	A14.2.01.025
+FMA52672	Q7451140	Ramus sensoria ganglii ciliaris	A14.2.01.026
+FMA52675	Q1217108	Nervus ethmoidalis anterior	A14.2.01.030
+FMA52688	Q1245818	Rami nasales externi nervi infraorbitalis	A14.2.01.034
+FMA52691	Q6673454	Nervi ciliares longi	A14.2.01.027
+FMA52693	Q6031619	Nervus infratrochlearis	A14.2.01.035
+FMA52714	Q780801	Nervus ethmoidalis posterior	A14.2.01.028
+FMA52724	Q1897537	Nervus maxillaris	A14.2.01.037
+FMA52728	Q6841671	Nervus meningeus medius	A14.2.01.038
+FMA52731	Q6123223	Nervi pterygopalatini, nervi sphenopalatini	A14.2.01.039
+FMA52734	Q16295	Os frontale	A02.1.03.001
+FMA52735	Q16317	Os occipitale	A02.1.04.001
+FMA52736	Q16321	Os sphenoidale	A02.1.05.001
+FMA52737	Q16313	Ossa temporalia	A02.1.06.001
+FMA52740	Q16331	Os ethmoidale	A02.1.07.001
+FMA52741	Q212721	Os lacrimale	A02.1.09.001
+FMA52745	Q38155	Os nasale	A02.1.10.001
+FMA52746	Q237632	Os palatinum	A02.1.13.001
+FMA52747	Q186102	os zygomaticum	A02.1.14.001
+FMA52748	Q5283631	Mandibula	A02.1.15.001
+FMA52749	Q16332	Os hyoideum	A02.1.16.001
+FMA52750	Q816052	Ossicula auditus,	A02.1.17.001
+FMA52751	Q499897	Stapes	A15.3.02.033
+FMA52752	Q497385	Incus	A15.3.02.038
+FMA52753	Q319636	Malleus	A15.3.02.043
+FMA52780	Q7362	auris	A01.1.00.005
+FMA52781	Q609753	Musculi auriculares	A15.3.01.001
+FMA52797	Q6967245	Nervus nasopalatinus	A14.2.01.043
+FMA52800	Q613203	Calvaria	A02.1.00.032
+FMA52801	Q1423729	Basis cranii	A02.1.00.044
+FMA52802	Q5600891	Nervus palatinus major, nervus palatinus anterior	A14.2.01.045
+FMA52805	Q6531621	Nervi palatini minores	A14.2.01.047
+FMA52823	Q6029398	Rami nasales posteriores inferiores nervi palatini majoris	A14.2.01.046
+FMA52827	Q17081695	Corpus mandibulae	A02.1.15.002
+FMA52833	Q1414441	Processus coronoideus mandibulae	A02.1.15.032
+FMA52836	Q718041	Processus condylaris mandibulae	A02.1.15.035
+FMA52846	Q869202	Corpus maxillae	A02.1.12.002
+FMA52848	Q7581930	Squama frontalis	A02.1.03.002
+FMA52851	Q1075671	Glabella	A02.1.03.006
+FMA52852	Q898014	T frontale, e frontalis	A02.1.03.004
+FMA52858	Q718207	Pars basilaris ossis occipitalis	A02.1.04.005
+FMA52859	Q6495661	Pars lateralis ossis occipitalis	A02.1.04.009
+FMA52867	Q4115977	Corpus ossis sphenoidalis	A02.1.05.002
+FMA52868	Q4116731	Ala major ossis sphenoidalis	A02.1.05.024
+FMA52869	Q4116732	Ala minor ossis sphenoidalis,	A02.1.05.020
+FMA52871	Q1404198	Pars petrosa ossis temporalis	A02.1.06.002
+FMA52872	Q845740	Processus mastoideus ossis temporalis	A02.1.06.004
+FMA52883	Q4175787	Squama temporalis	A02.1.06.061
+FMA52886	Q4918599	processus zygomaticus ossis temporalis	A02.1.06.067
+FMA52890	Q1084533	Lamina cribrosa ossis ethmoidalis	A02.1.07.002
+FMA52891	Q7169520	Lamina perpendicularis ossis ethmoidalis	A02.1.07.006
+FMA52894	Q15243378	Processus frontalis maxillae	A02.1.12.024
+FMA52896	Q7126822	Processus palatinus maxillae	A02.1.12.029
+FMA52897	Q448692	processus alveolaris	A02.1.12.035
+FMA52899	Q7169521	Lamina perpendicularis ossis palatini,	A02.1.13.002
+FMA52900	Q7263305	Processus pyramidalis ossis palatini	A02.1.13.007
+FMA52901	Q5903589	Pars horizontalis	A02.1.13.013
+FMA52928	Q775497	sutura coronalis	A03.1.02.002
+FMA52932	Q11360524	Ramus alveolaris superior medius nervi maxillaris	A14.2.01.051
+FMA52933	Q259368	Sutura lambdoidea	A03.1.02.004
+FMA52935	Q4771396	Rami alveolares superiores anteriores nervi maxillaris, ramus alveolaris superior anteriores	A14.2.01.052
+FMA52945	Q943251	Sutura sphenoparietalis	A03.1.02.009
+FMA52967	Q918518	Nervus zygomaticus	A14.2.01.056
+FMA52972	Q8075877	Ramus zygomaticotemporalis nervi zygomatici	A14.2.01.057
+FMA52973	Q8075875	Ramus zygomaticofacialis nervi zygomatici	A14.2.01.058
+FMA52978	Q1613890	Nervus infraorbitalis	A14.2.01.059
+FMA52983	Q16939254	Rami palpebrales inferiores nervi infraorbitalis	A14.2.01.060
+FMA52985	Q6047900	Rami nasales interni nervi infraorbitalis	A14.2.01.062
+FMA52986	Q7643630	Rami labiales superiores nervi infraorbitalis	A14.2.01.063
+FMA52989	Q832528	Sutura frontalis	A02.1.03.007
+FMA52996	Q385981	Nervus mandibularis	A14.2.01.064
+FMA53000	Q587430	Nervus auriculotemporalis	A14.2.01.074
+FMA53047	Q6817077	Ramus meningeus nervi mandibularis	A14.2.01.065
+FMA53056	Q718283	\"n Pterygoideus internus	A14.2.01.066
+FMA53066	Q3338317	Nervus buccalis	A14.2.01.073
+FMA53074	Q156075	Orbita	A01.2.01.010
+FMA53075	Q4675817	Nervus musculi tensoris veli palatini	A14.2.01.068
+FMA53103	Q5977887	Nervus massetericus	A14.2.01.070
+FMA53106	Q63709217	linea nuchalis suprema	A02.1.04.024
+FMA53107	Q259485	\"n Pterygoideus externus	A14.2.01.072
+FMA53108	Q63708969	linea nuchalis superior	A02.1.04.025
+FMA53119	Q6947744	Linea mylohyoidea mandibulae	A02.1.15.012
+FMA53135	Q767067	Foramen ethmoidale anterius	A02.1.00.079
+FMA53136	Q1002789	Foramen ethmoidale posterius	A02.1.00.080
+FMA53145	Q832547	Foramen parietale	A02.1.02.019
+FMA53154	Q1851435	Foramen rotundum ossis sphenoidalis	A02.1.05.035
+FMA53155	Q1270222	Foramen ovale ossis sphenoidalis	A02.1.05.036
+FMA53156	Q1436603	Foramen spinosum	A02.1.05.038
+FMA53159	Q1002794	Foramen mastoideum	A02.1.06.008
+FMA53163	Q1518719	Meatus acusticus internus	A02.1.06.033
+FMA53171	Q833871	Foramen mentale	A02.1.15.007
+FMA53172	Q1436583	Foramen mandibulae	A02.1.15.028
+FMA53187	Q5250448	Nervi temporales profundi	A14.2.01.071
+FMA53218	Q1817831	Nervus lingualis	A14.2.01.081
+FMA53228	Q1076379	Chorda tympani	A14.2.01.084
+FMA53243	Q1538474	Nervus alveolaris inferior	A14.2.01.089
+FMA53247	Q6947748	Nervus mylohyoideus	A14.2.01.090
+FMA53250	Q3338329	Nervus mentalis	A14.2.01.094
+FMA53263	Q6029299	Plexus dentalis inferior	A14.2.01.091
+FMA53275	Q581682	Nervus stapedius	A14.2.01.101
+FMA53278	Q725413	N Auricularis posterior	A14.2.01.102
+FMA53288	Q1245807	Ramus digastricus nervi facialis	A14.2.01.105
+FMA53291	Q1245822	Rami temporales nervi facialis	A14.2.01.109
+FMA53298	Q746817	Ramus stylohyoideus nervi facialis	A14.2.01.106
+FMA53307	Q283395	Rami zygomatici nervi facialis	A14.2.01.110
+FMA53310	Q388926	Rami buccales nervi facialis	A14.2.01.111
+FMA53365	Q633960	Ramus marginalis mandibularis nervi facialis	A14.2.01.113
+FMA53396	Q1245816	Ramus colli nervi facialis	A14.2.01.114
+FMA53401	Q2146063	Nervus vestibularis	A14.2.01.122
+FMA53414	Q530934	Frenulum labii inferioris	A14.2.01.116
+FMA53417	Q1753760	Nervus petrosus major	A14.2.01.117
+FMA53431	Q2519137	Nervus cochlearis	A14.2.01.133
+FMA53435	Q7430500	\"ganglion vestibulare	A14.2.01.123
+FMA53467	Q7396635	Nervus saccularis	A14.2.01.132
+FMA53474	Q7643614	Ganglion superius nervi glossopharyngei	A14.2.01.136
+FMA53475	Q17045130	Ganglion inferius nervi glossopharyngei, ganglion petrosum	A14.2.01.137
+FMA53480	Q1127928	Nervus tympanicus	A14.2.01.138
+FMA53486	Q7180877	Rami pharyngei nervi glossopharyngei	A14.2.01.144
+FMA53487	Q7629706	Ramus musculi stylopharyngei nervi glossopharyngei	A14.2.01.145
+FMA53488	Q4956395	Ramus sinus carotici nervi glossopharyngei	A14.2.01.146
+FMA53489	Q7821671	Rami tonsillares nervi glossopharyngei	A14.2.01.048
+FMA53490	Q6553986	Rami linguales nervi glossopharyngei	A14.2.01.148
+FMA53491	Q638308	Nervus petrosus minor	A14.2.01.149
+FMA53667	Q28472	pilus	A16.0.00.014
+FMA53669	Q160108	ciliae	A15.2.07.037
+FMA53672	Q1148039	Neurocranium	A02.1.00.007
+FMA54237	Q43748	supercilium	A15.2.07.023
+FMA54240	Q42804	barbam	A16.0.00.018
+FMA54326	Q36864	unguis	A16.0.01.001
+FMA54327	Q26233777	unguis manus	
+FMA54328	Q71539152	unguis pedis	
+FMA54370	Q614892	Canalis nasolacrimalis	A02.1.00.085
+FMA54375	Q500634	Septum nasi	A06.1.02.004
+FMA54376	Q4319750	Clivus	A02.1.00.051
+FMA54378	Q156104	cavum nasi	A06.1.02.001
+FMA54389	Q718587	processus zygomaticus ossis frontalis	A02.1.03.014
+FMA54390	Q5473394	Fossa sacci lacrimalis	A02.1.00.082
+FMA54437	Q48228	palpebra	A15.2.07.024
+FMA54448	Q430024	oculus humanum	A01.1.00.007
+FMA54527	Q43054	Neuronum	A14.0.00.002
+FMA54536	Q177105	Cellula glialis	A14.0.00.005
+FMA54537	Q502961	Astrocytus	
+FMA54539	Q1622829	Cellula microglialis	
+FMA54540	Q916698	Oligodendrocytus	
+FMA54541	Q177105	Cellula glialis	A14.0.00.005
+FMA54549	Q172605	Palatum	A05.1.01.102
+FMA54565	Q7577476	Nucleus spinalis nervi trigemini	A14.1.04.211
+FMA54621	Q4771335	nucleus cochlearis anterior	A14.1.04.249
+FMA54640	Q9614	Lingua	A05.1.04.001
+FMA54659	Q502133	Frenulum linguae	A05.1.04.012
+FMA54682	Q4115394	Processus pterygoideus ossis sphenoidalis	A02.1.05.042
+FMA54687	Q6495673	Lamina lateralis processus pterygoidei	A02.1.05.043
+FMA54690	Q6806077	Lamina medialis processus pterygoidei	A02.1.05.044
+FMA54693	Q1240479	Processus clinoideus anterior	A02.1.05.022
+FMA54696	Q7234180	Processus clinoideus posterior	A02.1.05.011
+FMA54700	Q221406	Processus clinoideus medius	A02.1.05.008
+FMA54709	Q1772886	Sella turcica	A02.1.05.006
+FMA54718	Q5298990	Dorsum sellae, dorsum sella turcica	A02.1.05.010
+FMA54722	Q4180189	Hamulus pterygoideus	A02.1.05.051
+FMA54736	Q552439	Concha nasalis inferior	A02.1.08.001
+FMA54741	Q1240492	Processus maxillaris conchae nasalis inferioris	A02.1.08.003
+FMA54753	Q430715	Sulcus caroticus ossis sphenoidalis	A02.1.05.012
+FMA54774	Q615895	Canalis opticus, foramen opticum ossis sphenoidalis	A02.1.05.021
+FMA54793	Q6031621	Crista infratemporalis	A02.1.05.028
+FMA54825	Q862867	Caliculus gustatorius	A15.4.00.002
+FMA54839	Q1407120	Membrana interossea	A03.0.00.007
+FMA54878	Q552082	Pars nasalis pharyngis	A05.3.01.003
+FMA54879	Q645450	Pars oralis pharyngis	A05.3.01.019
+FMA54880	Q9628	pars laryngea pharyngis	A05.3.01.023
+FMA54964	Q13147	Calva	
+FMA55006	Q277357	Isthmus faucium	A05.2.01.002
+FMA55021	Q1056395	palatum molle	A05.1.01.104
+FMA55023	Q1345983	palatum durum	A05.1.01.103
+FMA55093	Q579886	Glandula submandibularis	A05.1.02.011
+FMA55097	Q9637	larynx	A06.2.01.001
+FMA55109	Q1545154	Cartilagines arytaenoideae	A06.2.04.001
+FMA55130	Q235378	Epiglottis	A06.2.07.001
+FMA55142	Q568799	Ansa cervicalis, ansa hypoglossi	A14.2.02.013
+FMA55145	Q7643674	Radix superior ansae cervicalis, descendens hypoglossi	A14.2.02.014
+FMA55146	Q6029414	Radix inferior ansae cervicalis, descendens cervicalis	A14.2.02.015
+FMA55264	Q10683558	sulcus intermammarius	A16.0.02.002
+FMA55304	Q352045	prominentia laryngea	A06.2.02.003
+FMA55406	Q7923461	vestibulum laryngis	A06.2.09.007
+FMA55414	Q374418	Glottis	A06.2.09.012
+FMA55416	Q238956	Tuberculum articulare ossis temporalis	A02.1.06.073
+FMA55457	Q215558	Plica vocalis	A06.2.09.013
+FMA55463	Q1421005	Fissura petrotympanica	A02.1.06.074
+FMA55466	Q1234069	Fissura petrosquamosa	A02.1.06.075
+FMA55661	Q28846467	organum parenchymatum	
+FMA55662	Q28846466	organum lobulare	
+FMA55670	Q28846468	organum solidum	
+FMA55675	Q47273	Systema nervosum centrale	A14.1.00.001
+FMA55711	Q5367024	Antrum mastoideum	A15.3.02.028
+FMA55805	Q857942	Canalis caroticus	A02.1.06.013
+FMA56088	Q3543924	Pars mastoidea ossis temporalis	
+FMA56429	Q6304968	Fossa jugularis ossis temporalis	A02.1.06.041
+FMA56445	Q972835	Hiatus canalis nervi petrosi majoris,	A02.1.06.024
+FMA56454	Q584922	aquaeductus cochleae	A02.1.06.042
+FMA56459	Q378352	Canaliculus mastoideus	A02.1.06.044
+FMA56460	Q686571	Canaliculus tympanicus	A02.1.06.049
+FMA56665	Q540092	fibra periodontalis	
+FMA56762	Q1003175	Fossa canina	A02.1.12.009
+FMA56797	Q4683049	aditus antri mastoidei	A15.3.02.021
+FMA56932	Q263574	fenestra cochleae	A15.3.02.015
+FMA57080	Q4115124	Tuber parietale, eminentia parietalis	A02.1.02.010
+FMA57100	Q5610330	Sulcus sinus sigmoidei ossis parietalis	A02.1.02.003
+FMA57122	Q5610330	Sulcus sinus sigmoidei ossis parietalis	A02.1.02.003
+FMA5731	Q190140	Nervus vagus	A14.2.01.153
+FMA57388	Q4116537	Incisura ethmoidalis ossis frontalis	A02.1.03.028
+FMA57396	Q718591	Fossa glandulae lacrimalis	A02.1.03.026
+FMA57415	Q4115130	Crista frontalis	A02.1.03.016
+FMA57442	Q833567	Crista galli	A02.1.07.004
+FMA57443	Q579657	Foramen caecum ossis frontalis	A02.1.03.018
+FMA57448	Q4116637	Labyrinthus ethmoidalis	A02.1.07.007
+FMA57456	Q11216176	concha nasalis	
+FMA57457	Q19883309	Concha nasi suprema	A06.1.02.012
+FMA57459	Q718595	Concha media	A02.1.07.014
+FMA57609	Q7234209	Crista lacrimalis posterior	A02.1.09.002
+FMA57613	Q6468852	Sulcus lacrimalis maxillae	A02.1.09.003
+FMA57718	Q899158	Foramen infraorbitale	A02.1.12.008
+FMA57731	Q6795555	Tuber maxillae	A02.1.12.016
+FMA57737	Q6014713	Fossa incisiva	A02.1.00.060
+FMA57743	Q857926	Canales alveolares maxillae	A02.1.12.015
+FMA57746	Q6031465	Sulcus infraorbitalis maxillae	A02.1.12.005
+FMA57777	Q4771409	Regio cervicalis anterior	A01.2.02.002
+FMA57793	Q7649251	Ligamentum suspensorium glandulae thyroideae	A04.2.05.005
+FMA57875	Q28843416	Fissura	
+FMA58103	Q278859	Uvea (oculus)	A15.2.03.001
+FMA58235	Q178748	Iris (anatomia)	A15.2.03.020
+FMA58238	Q168291	Cornea	A15.2.02.012
+FMA58241	Q146701	lens	A15.2.05.001
+FMA58252	Q173318	pupilla	A15.2.03.028
+FMA58269	Q193107	sclirotica	A15.2.02.002
+FMA58295	Q1048080	corpus ciliare	A15.2.03.009
+FMA58298	Q271762	choroidea	A15.2.03.002
+FMA58301	Q169342	Retina	A15.2.04.002
+FMA5858	Q937076	Nervus spinalis	A14.2.00.027
+FMA5861	Q6703062	Nervi lumbales	A14.2.05.001
+FMA58637	Q747023	macula lutea	A15.2.04.021
+FMA5865	Q180454	Nervi craniales	A14.2.00.038
+FMA58658	Q865103	fovea centralis	A15.2.04.022
+FMA5867	Q2422765	Nervus motorius	
+FMA5868	Q2635510	Nervus sensorius	A14.2.00.022
+FMA5874	Q11909937	Ramus communicans nervorum spinalium	A12.2.16.073
+FMA58827	Q326710	Corpus vitreum	A15.2.06.008
+FMA5889	Q788151	Ganglion autonomicum	A14.2.00.008
+FMA5891	Q7136260	Ganglia trunci sympathici	
+FMA5901	Q750130	plexus nervosus	
+FMA5904	Q921815	Plexus cervicalis	A14.2.02.012
+FMA5906	Q846961	Plexus brachialis	A14.2.03.001
+FMA5907	Q13566427	Plexus lumbosacralis	A14.2.07.001
+FMA5908	Q559439	\"Plexus lumbalis''	A14.2.07.002
+FMA59086	Q47997	tarsus	A15.2.07.038
+FMA5909	Q2099513	Plexus sacralis	A14.2.07.027
+FMA59107	Q1032735	Canales incisivi	A02.1.00.061
+FMA59143	Q7100091	Processus orbitalis	A02.1.13.011
+FMA59152	Q243784	Glandula sudorifera	A16.0.00.029
+FMA59226	Q7100089	Facies orbitalis ossis zygomatici	A02.1.14.004
+FMA59448	Q17114092	Sulcus mylohyoideus mandibulae	A02.1.15.031
+FMA59459	Q268021	angulus mandibulae	A02.1.15.025
+FMA59473	Q1032740	Canalis mandibulae	A02.1.15.030
+FMA59478	Q7256998	Fovea pterygoidea	A02.1.15.038
+FMA59481	Q1469743	Incisura mandibulae	A02.1.15.008
+FMA59487	Q448692	processus alveolaris	A02.1.12.035
+FMA59495	Q4936938	Corpus ossis hyoidei	A02.1.16.002
+FMA59496	Q66555932	cornu maius	A02.1.16.004
+FMA59499	Q66555935	cornu minus	A02.1.16.003
+FMA59518	Q28654064	apex nasi	A06.1.01.004
+FMA59519	Q4705111	ala nasi	A06.1.01.005
+FMA59652	Q15179	Barba labri superioris	
+FMA59762	Q104280	gingiva	A03.1.03.003
+FMA59766	Q516280	Agger nasi	A06.1.02.021
+FMA59790	Q691653	Glandula parotidea	A05.1.02.003
+FMA59791	Q692200	Glandula sublingualis	A05.1.02.008
+FMA59816	Q15173	labrum	A05.1.01.005
+FMA59818	Q6693954	Labium Inferius Oris	A05.1.01.009
+FMA59819	Q152092	Philtrum	A05.1.01.007
+FMA5982	Q4771388	Ramus anterior nervi spinalis	A14.2.00.034
+FMA5983	Q7234230	Ramus posterior nervi spinalis	A14.2.00.035
+FMA59862	Q155925	Saliva	
+FMA60183	Q3279041	vestibulum labyrinthi	A15.3.03.004
+FMA60201	Q317857	Cochlea	A15.3.03.025
+FMA6037	Q7796120	Nervus thoracalis 1 (homo)	
+FMA60984	Q1778517	lobulus auriculae	A15.3.01.003
+FMA60995	Q4774862	Anthelix auriculae	A15.3.01.009
+FMA61119	Q843875	ductus cochlearis	A15.3.03.092
+FMA61269	Q617973	scala vestibuli	A15.3.03.043
+FMA61520	Q530315	Eminentia thenaris	A01.2.07.023
+FMA61523	Q1089522	Eminentia hypothenaris	A01.2.07.024
+FMA61584	Q43801	Umbilicus	A01.2.04.005
+FMA6167	Q7796123	Nervus thoracalis 12 (homo)	
+FMA61681	Q1293405	Lumbus	A01.2.05.008
+FMA6169	Q7796126	Nervus thoracalis 2 (homo)	
+FMA6171	Q7796125	Nervus thoracalis 3 (homo)	
+FMA6172	Q46938167	Nervus lumbalis 1 (homo)	
+FMA6176	Q46938168	Nervus lumbalis 2 (homo)	
+FMA61789	Q180623	acetylcholinum	
+FMA61791	Q271663	Catecholaminum	
+FMA61799	Q186242	Noradrenalinum	
+FMA61824	Q749520	Lobus frontalis	A14.1.09.110
+FMA61830	Q75839	Cortex cerebri	A14.1.09.003
+FMA61833	Q1132309	Nucleus caudatus	A14.1.09.502
+FMA61841	Q338924	Corpus amygdaloideum	A14.1.09.402
+FMA61879	Q17027490	Nucleus septalis medialis	A14.1.09.269
+FMA61887	Q1813830	Nucleus basalis telencephali	A14.1.09.418
+FMA61889	Q1476178	Nucleus accumbens	A14.1.09.440
+FMA6191	Q737313	Nervus phrenicus	A14.2.02.028
+FMA61973	Q5270363	Stria diagonalis	A14.1.09.422
+FMA61974	Q3122152	Stria terminalis	A14.1.09.275
+FMA61992	Q507027	Prosencephalon	A14.1.03.006
+FMA61993	Q185080	Mesencephalon	A14.1.03.005
+FMA62000	Q75855	Telencephalon	A14.1.03.008
+FMA62001	Q192419	Diencephalon	A14.1.03.007
+FMA62007	Q184215	Thalamus	A14.1.08.101
+FMA62008	Q164386	Hypothalamus	A14.1.08.401
+FMA62009	Q849277	Epithalamus	A14.1.08.002
+FMA62021	Q2004154	Nuclei intralaminares thalami	A14.1.08.615
+FMA62032	Q267641	Habenula	A14.1.08.003
+FMA62033	Q198654	Glandula pinealis	A11.2.00.001
+FMA62035	Q2270424	nucleus subthalamicus	A14.1.08.702
+FMA62100	Q8495	lac	
+FMA62121	Q465621	Cellula Schwannia	
+FMA62153	Q7068290	Nucleus reuniens	A14.1.08.632
+FMA62156	Q6806039	Nucleus mediodorsalis thalami	A14.1.08.622
+FMA62165	Q1233644	Nucleus centromedianus	A14.1.08.618
+FMA6225	Q5398638	Plexus oesophageus	A14.2.01.173
+FMA6226	Q4771416	Truncus vagalis anterior	A14.2.01.174
+FMA6227	Q7234252	Truncus vagalis posterior	A14.2.01.179
+FMA6229	Q7643626	Ganglion superius nervi vagi, ganglion jugulare	A14.2.01.154
+FMA62293	Q43041	Haemoglobinum	
+FMA6230	Q6029330	\"Ganglion nodosum,	A14.2.01.157
+FMA6231	Q6817080	Ramus meningeus nervi vagi	A14.2.01.155
+FMA62313	Q7240592	Area preoptica	A14.1.08.407
+FMA62317	Q492272	Nucleus supraopticus	A14.1.08.912
+FMA6232	Q4822345	Ramus auricularis nervi vagi	A14.2.01.156
+FMA62320	Q444192	Nucleus paraventricularis	A14.1.08.909
+FMA62329	Q253246	Nucleus arcuatus	A14.1.08.923
+FMA62332	Q7920337	Nucleus ventromedialis hypothalami	A14.1.08.928
+FMA62335	Q7850864	Nucleus tuberomammillaris	A14.1.08.932
+FMA6234	Q7180875	Ramus pharyngeus nervi vagi	A14.2.01.158
+FMA6236	Q7180889	Plexus pharyngeus nervi vagi	A14.2.01.159
+FMA6239	Q965012	Nervus laryngeus superior	A14.2.01.160
+FMA6240	Q6047879	Ramus internus nervi laryngei superioris	A14.2.01.162
+FMA62407	Q1751717	nucleus ruber	A14.1.06.323
+FMA62429	Q726562	neocortex	A14.1.09.304
+FMA6243	Q5422038	Ramus externus nervi laryngei superioris	A14.2.01.161
+FMA6244	Q7643592	Rami cardiaci cervicales superiores nervi vagi	A14.2.01.164
+FMA6245	Q6029277	Rami cardiaci cervicales inferiores nervi vagi	A14.2.01.165
+FMA6246	Q740541	Nervus laryngeus recurrens	A14.2.01.166
+FMA62484	Q2019583	Cortex piriformis	
+FMA62517	Q1725675	Lamina propria	
+FMA6258	Q1545875	Truncus sympathicus	A14.3.01.002
+FMA62845	Q37187	Erythrocytus	
+FMA62851	Q101026	Thrombocytus	
+FMA62852	Q42395	Leucocytus	
+FMA62863	Q715347	Lymphocytus	
+FMA62864	Q107244	Monocytus	
+FMA62869	Q188930	Lymphocytus B	
+FMA6287	Q6703073	Nervi splanchnici lumbales	A14.3.01.034
+FMA62870	Q193529	Lymphocytus T	
+FMA62871	Q66559285	immuniglobulinum	
+FMA62872	Q79448	Immunoglobulinum G	
+FMA6288	Q7396927	Nervi splanchnici sacrales	A14.3.01.036
+FMA6290	Q7796129	Nervus thoracalis 4 (homo)	
+FMA62918	Q809756	Lamina basalis	A15.2.03.007
+FMA62925	Q187126	glycoproteinum	
+FMA6293	Q7796128	Nervus thoracalis 5 (homo)	
+FMA62955	Q27043950	entitas anatomica	
+FMA6296	Q7796130	Nervus thoracalis 6 (homo)	
+FMA62967	Q9715	Eiaculatum	
+FMA62970	Q79749	Plasma sanguineum	
+FMA62973	Q863089	Sucus pancreaticus	
+FMA62977	Q105790271	Myelinum	
+FMA6299	Q7796131	Nervus thoracalis 7 (homo)	
+FMA62999	Q853338	Odontoblastus	
+FMA63014	Q337231	acidum hyaluronicum	
+FMA6302	Q7796132	Nervus thoracalis 8 (homo)	
+FMA6306	Q7796133	Nervus thoracalis 9 (homo)	
+FMA6309	Q7796122	Nervus thoracalis 10 (homo)	
+FMA6312	Q7796124	Nervus thoracalis 11 (homo)	
+FMA63182	Q501908	Arteriola	A12.0.00.005
+FMA63183	Q988343	vas sanguineum	A12.0.00.001
+FMA63194	Q103142	Capillare	A12.0.00.025
+FMA63261	Q184204	macrophagus	
+FMA63368	Q48196	Cellula praecursoria	
+FMA63568	Q16949074	Facies articularis clavicularis	A02.4.01.010
+FMA63614	Q1653896	Spina iliaca anterior inferior	A02.5.01.112
+FMA63615	Q7234200	Spina iliaca posterior inferior	A02.5.01.114
+FMA63832	Q45948	Organellum	
+FMA63834	Q154626	Cytosceletus	
+FMA63835	Q39572	Mitochondrium	
+FMA63836	Q83330	Lysosoma	
+FMA63839	Q178355	centriolum	
+FMA63840	Q40260	nucleus cellulae	
+FMA63841	Q29548	Membrana cellulae	
+FMA63842	Q79927	reticulum endoplasmaticum	
+FMA63843	Q83181	apparatus Golgianus	
+FMA63849	Q189933	Microtubulus	
+FMA63864	Q41055	sinciput	A01.1.00.002
+FMA63877	Q463418	Fibroblastus	
+FMA63887	Q66560214	macromoleculum biologicum	
+FMA63891	Q26868	Collagenum	
+FMA63916	Q111140	Endothelium	
+FMA63919	Q26513	fetus humanus	
+FMA6414	Q46938171	Nervus lumbalis 3 (homo)	
+FMA64183	Q496	faeces	
+FMA6440	Q5065350	Nervus cervicalis 1 (homo)	
+FMA6443	Q5065351	Nervus cervicalis 2 (homo)	
+FMA6444	Q5065352	Nervus cervicalis 3 (homo)	
+FMA6445	Q5065353	Nervus cervicalis 4 (homo)	
+FMA6446	Q5065354	Nervus cervicalis 5 (homo)	
+FMA6447	Q5065355	Nervus cervicalis 6 (homo)	
+FMA6448	Q5065356	Nervus cervicalis 7 (homo)	
+FMA6449	Q5065357	Nervus cervicalis 8 (homo)	
+FMA6467	Q1493493	Ganglion cervicale superius	A14.3.01.009
+FMA6468	Q1252081	Ganglion cervicale medium	A14.3.01.016
+FMA6469	Q1493503	Ganglion cervicothoracicum, ganglion stellatum	A14.3.01.020
+FMA64827	Q1109827	Musculus scalenus minimus	A04.2.01.007
+FMA64829	Q141615	Musculi scaleni	
+FMA64918	Q2083654	Musculus iliopsoas	A04.7.02.002
+FMA65132	Q9620	Nervus	A14.2.00.013
+FMA65216	Q7899054	Truncus superior plexus brachialis	A14.2.03.004
+FMA65243	Q6806080	Radix medialis nervi mediani	A14.2.03.032
+FMA65244	Q6495694	Radix lateralis nervi mediani	A14.2.03.033
+FMA65246	Q1978134	Nervus cutaneus brachii medialis	A14.2.03.027
+FMA65275	Q1890743	Nervus thoracicus longus	A14.2.03.012
+FMA65279	Q1740177	Nervus dorsalis scapulae	A14.2.03.011
+FMA65280	Q1781342	Nervus subclavius	A14.2.03.013
+FMA65290	Q143633	Nervus thoracodorsalis	A14.2.03.016
+FMA65293	Q1978103	Nervus pectoralis medialis	A14.2.03.017
+FMA65296	Q2575284	N Pectoralis lateralis	A14.2.03.018
+FMA65303	Q7643637	Nervus cutaneus brachii lateralis superior	A14.2.03.061
+FMA65304	Q623377	Nervus subscapularis superior	
+FMA65414	Q912037	Nervi supraclaviculares	A14.2.02.024
+FMA65443	Q498798	Nervus occipitalis major	A14.2.02.008
+FMA65515	Q7259523	Rami bronchiales nervi vagi	A14.2.01.171
+FMA65535	Q6703140	Truncus lumbosacralis	A14.2.07.026
+FMA65567	Q7630977	Nervus subcostalis	A14.2.04.016
+FMA65608	Q7785073	Nervus occipitalis tertius	A14.2.02.009
+FMA66204	Q17000144	Area intercondylaris	
+FMA6628	Q5038337	Plexus cardiacus	A14.3.03.013
+FMA6629	Q7259537	Plexus pulmonalis	A14.2.01.172
+FMA6630	Q612258	Plexus coeliacus	A14.3.03.021
+FMA6632	Q5731676	Plexus hepaticus	A14.3.03.022
+FMA66320	Q707638	Arteria thoracodorsalis	A12.2.09.014
+FMA66326	Q206280	Truncus pulmonalis arteria pulmonalis	
+FMA6634	Q7578546	Plexus splenicus	A14.3.03.023
+FMA6635	Q7644743	Plexus suprarenalis	A14.3.03.026
+FMA6636	Q7312500	Plexus renalis	A14.3.03.032
+FMA6637	Q7576380	Plexus testicularis, plexus spermaticus	A14.3.03.035M
+FMA6638	Q7113250	Plexus ovaricus	A14.3.03.035F
+FMA6639	Q7643656	Plexus mesentericus superior	A14.3.03.029
+FMA6640	Q4665114	Plexus aorticus abdominalis	A14.3.03.019
+FMA6641	Q6029373	Plexus mesentericus inferior	A14.3.03.036
+FMA6642	Q952595	Plexus hypogastricus superior, nervus presacralis	A14.3.03.046
+FMA6643	Q1586543	Plexus hypogastricus inferior	A14.3.03.048
+FMA6645	Q16968854	Plexus rectalis medius	A14.3.03.049
+FMA6646	Q7923211	Plexus vesicalis	A14.3.03.055
+FMA6647	Q17057227	Plexus prostaticus	A14.3.03.052M
+FMA6648	Q2099449	Plexus uterovaginalis	A14.3.03.052F
+FMA66643	Q535352	Venae pulmonales	A12.3.02.001
+FMA6666	Q16941572	Rami hepatici trunci vagalis anterioris	A14.2.01.177
+FMA6670	Q7312482	Rami renales nervi vagi	A14.2.01.183
+FMA66762	Q575064	Membrana synovialis	A03.0.00.028
+FMA66781	Q828410	osteoclastus	
+FMA66835	Q79899	Cytoplasma	
+FMA66848	Q30869	Nucleolus	
+FMA66866	Q66562899	organellum cytoplasmaticum immembranosum	
+FMA66867	Q42244	ribosoma	
+FMA66938	Q3649349	Mucus	
+FMA67093	Q37748	chromosoma	
+FMA67095	Q11053	acidum ribonucleicum	
+FMA67125	Q2643251	Synapsis chemica	
+FMA67169	Q7180883	Musculi pharyngis	A04.2.06.001
+FMA6718	Q4771346	Rami gastrici anteriores trunci vagalis anterioris	A14.2.01.175
+FMA67184	Q1187783	Receptorium neurotransmissoris	
+FMA6719	Q7234194	Rami gastrici posteriores trunci vagalis posterioris	A14.2.01.180
+FMA6720	Q271987	Nervus accessorius	A14.1.02.112
+FMA67238	Q170304	dopaminum	
+FMA67241	Q842429	Perikaryon	A14.0.00.003
+FMA67243	Q132621	adrenalinum	
+FMA67253	Q410568	Receptorium adrenergicum	
+FMA67257	Q8054	proteinum	
+FMA67302	Q189474	Ceratinum	
+FMA67308	Q178999	axon	
+FMA67314	Q12821248	Dendritum	
+FMA67325	Q848340	Lobus occipitalis	A14.1.09.132
+FMA67328	Q428914	Myocytus	
+FMA67329	Q1422654	insula	A12.2.07.053
+FMA67343	Q1321695	Ovum	
+FMA67372	Q238516	Receptorium serotonini	
+FMA67388	Q326710	Corpus vitreum	A15.2.06.008
+FMA67397	Q1053832	Zonula occludens	
+FMA67400	Q45173	zonula adherens	
+FMA67412	Q846957	Macula adherens	
+FMA67423	Q232438	macula communicans	
+FMA67440	Q429036	Claustrum	A14.1.09.421
+FMA67472	Q189998	Flagellum	
+FMA67498	Q712378	viscus	
+FMA67504	Q42349081	subdivisio partis corporis cardinalis	
+FMA67533	Q6047791	Plexus caroticus internus	A14.3.03.004
+FMA67548	Q7661373	Ramus sympathetica ganglii ciliaris	A14.3.02.004
+FMA67549	Q1978114	Nervus petrosus profundus	A14.3.02.008
+FMA67562	Q5045538	Nervi caroticotympanici	A14.2.01.142
+FMA67563	Q5055060	Plexus cavernosus	A14.3.03.006
+FMA67584	Q776331	N Canalis pterygoidei	A14.3.02.007
+FMA67611	Q4008403	Valva (conchae)	
+FMA67771	Q188641	Mamilla	A16.0.02.004
+FMA67883	Q1156516	Nucleus suprachiasmaticus	A14.1.08.911
+FMA67944	Q130983	cerebellum	A14.1.07.001
+FMA67947	Q753278	Substantia nigra	A14.1.06.111
+FMA67977	Q3324393	Rete venosum dorsale manus	A12.3.08.023
+FMA68018	Q568055	Musculus detrusor vesicae urinariae	A08.3.01.014
+FMA68068	Q605523	Venae phrenicae inferiores	A12.3.09.002
+FMA68109	Q927103	Arteriae bronchiales	A12.2.11.002
+FMA68600	Q4973089	Area Brodmanniana 4	
+FMA686465	Q7868	cellula	
+FMA6871	Q441704	Nervus occipitalis minor	A14.2.02.017
+FMA6872	Q661721	Nervus auricularis magnus	A14.2.02.018
+FMA6873	Q241865	Nervus transversus colli	A14.2.02.021
+FMA69264	Q2865999	Arteria suprarenalis inferior	A12.2.12.077
+FMA69460	Q7168172	Arteriae perforantes	A12.2.16.031
+FMA69513	Q5250428	Arteria plantaris profunda	A12.2.16.054
+FMA6961	Q6029289	Ganglion cervicale inferius	A14.3.01.019
+FMA6964	Q1493507	Ganglion ciliare	A14.3.02.003
+FMA6965	Q1493509	Ganglion pterygopalatinum	A14.3.02.006
+FMA6966	Q1493504	Ganglion submandibulare	A14.3.02.009
+FMA6967	Q1493508	Ganglion oticum	A14.3.02.014
+FMA70108	Q7113256	Ramus ovaricus arteriae uterinae	A12.2.15.033F
+FMA70192	Q4115390	Arteria cremasterica	A12.2.16.007M
+FMA70195	Q4117177	Arteria ligamenti teretis uteri	A12.2.16.007F
+FMA70248	Q707174	Arteria femoralis	A12.2.16.010
+FMA70317	Q1232438	Vena umbilicalis	A12.3.12.010
+FMA70323	Q505531	Dermis	A16.0.00.010
+FMA70431	Q5398622	Rami oesophageales arteriae gastricae sinistrae	A12.2.12.014
+FMA70437	Q707443	Arteria pancreaticoduodenalis superior	
+FMA70438	Q7644682	Arteria supraduodenalis	A12.2.12.017
+FMA70494	Q6449769	Arteriae renis	
+FMA70496	Q2784806	Arteriae interlobares renis	A08.1.03.002
+FMA70497	Q3822829	Arteriae arcuatae renis	A08.1.03.003
+FMA70498	Q3822866	Arteriae interlobulares renis	A05.8.01.057
+FMA7054	Q1978139	Nervus suboccipitalis	A14.2.02.007
+FMA70550	Q28646122	Cellula ependymalis	
+FMA70563	Q2927095	Neuroblastus	
+FMA70596	Q212743	Epidermis	A16.0.00.009
+FMA70660	Q866324	folliculus pili	A16.0.00.023
+FMA70773	Q39888	ligamentum	A03.0.00.034
+FMA70777	Q7502066	Arteriae ciliares posteriores breves	A12.2.06.031
+FMA70778	Q741750	Arteriae ciliares posteriores longae	A12.2.06.032
+FMA70781	Q6495654	Arteriae palpebrales laterales	A12.2.06.029
+FMA70782	Q4771332	Arteriae ciliares anteriores	A12.2.06.034
+FMA70785	Q5659844	Arteriae palpebrales mediales	A12.2.06.044
+FMA70796	Q7228291	arteriae ad pontem	A12.2.08.021
+FMA70800	Q3328736	Arteriae metacarpales dorsales	A12.2.09.034
+FMA70801	Q5298777	Arteriae digitales dorsales pedis	A12.2.16.053
+FMA70802	Q7128148	Arteriae metacarpales palmares	A12.2.09.039
+FMA70804	Q6577825	Arteriae digitales palmares propriae	A12.2.09.058
+FMA70805	Q8205488	Arteria phrenica superior	A12.2.11.006
+FMA70807	Q707334	Arteriae lumbares''Arteriae lumbales	A12.2.12.004
+FMA70808	Q707703	Arteriae gastricae breves	A12.2.12.050
+FMA70809	Q368208	Arteriae jejunales	A12.2.12.057
+FMA70810	Q4117834	Arteriae ileales	A12.2.12.058
+FMA70812	Q610806	Arteriae sacrales laterales	A12.2.15.006
+FMA70818	Q8205486	Arteriae tarsales mediales	A12.2.16.050
+FMA70819	Q5298790	Arteriae metatarsales dorsales	A12.2.16.052
+FMA70820	Q7201587	Arteriae metatarsales plantares	A12.2.16.066
+FMA70821	Q5153594	Arteriae digitales plantares communes	A12.2.16.068
+FMA70828	Q7799621	Venae thymicae	A12.3.04.005
+FMA70830	Q966089	Venae pericardiacophrenicae	A12.3.04.007
+FMA70832	Q4973820	Venae bronchiales	
+FMA70834	Q4115376	Venae oesophageales	
+FMA70836	Q7643609	Venae epigastricae superiores	A12.3.04.019
+FMA70839	Q4771354	Venae intercostales anteriores	A12.3.04.022
+FMA70840	Q7180894	Venae pharyngeae	A12.3.05.007
+FMA70842	Q5298787	Venae dorsales linguae	A12.3.05.010
+FMA70843	Q6841702	Vena thyreoidea media	A12.3.05.015
+FMA70848	Q6029346	Venae labiales inferiores	A12.3.05.026
+FMA70849	Q5947899	Venae temporales superficiales	A12.3.05.032
+FMA7085	Q546191	Viscera	
+FMA70850	Q3241280	Venae maxillares	A12.3.05.035
+FMA70853	Q3241351	Venae auriculares anteriores	A12.3.05.040
+FMA70856	Q5971384	Venae transversae cervicis	A12.3.05.050
+FMA70858	Q4175733	Venae diploicae	A12.3.05.201
+FMA70861	Q5064104	Venae encephali venae cerebri	A12.3.06.001
+FMA70862	Q7643304	Venae superficiales cerebri	A12.3.06.002
+FMA70863	Q5934112	Venae cerebri superiores	A12.3.06.003
+FMA70865	Q5505915	Venae frontales	A12.3.06.005
+FMA70869	Q4391932	Venae inferiores cerebri	A12.3.06.013
+FMA70871	Q5250375	Venae profundae cerebri	A12.3.06.017
+FMA70876	Q6047801	Venae internae cerebri	A12.3.06.028
+FMA70879	Q5064079	Venae cerebelli	A12.3.06.056
+FMA7088	Q2419844	cor humanus	A12.1.00.001
+FMA70880	Q7941948	Venae vorticosae	A12.3.06.106
+FMA70881	Q5404139	Venae ethmoidales	A12.3.06.104
+FMA70888	Q7643666	Vena phrenica superior	A12.3.07.010
+FMA70889	Q4117097	Venae lumbales	A12.3.07.012
+FMA70890	Q7234203	Venae intercostales posteriores	A12.3.07.014
+FMA70891	Q9092880	Venae basivertebrales	A12.3.07.022
+FMA70892	Q4771394	Venae spinales anteriores	A12.3.07.024
+FMA70893	Q7234239	Venae spinales posteriores	A12.3.07.025
+FMA70895	Q3324276	Venae digitales palmares	A12.3.08.027
+FMA70897	Q2310633	Vena ulnaris	A12.3.08.030
+FMA70898	Q3316775	Venae radiales	A12.3.08.031
+FMA70903	Q629643	Venae metacarpales palmares	A12.3.08.035
+FMA70907	Q432126	Venae glutaeae superiores	A12.3.10.005
+FMA70908	Q6029342	Venae glutaeae inferiores	A12.3.10.006
+FMA70909	Q7075573	Venae obturatoriae	A12.3.10.007
+FMA70910	Q6495699	Venae sacrales laterales	A12.3.10.008
+FMA70911	Q4117091	Venae vesicales	A12.3.10.011
+FMA70912	Q4117071	Venae rectales mediae	A12.3.10.018
+FMA70913	Q4115553	Venae rectales inferiores	A12.3.10.021
+FMA70915	Q5422044	Venae pudendae externae	A12.3.11.004
+FMA70916	Q5298793	Venae metatarsales dorsales	A12.3.11.013
+FMA70917	Q5298783	Venae digitales dorsales pedis	A12.3.11.014
+FMA70918	Q7201590	Venae metatarsales plantares	A12.3.11.017
+FMA70919	Q29405	Venae digitales plantares	A12.3.11.018
+FMA70922	Q2512709	Vena perforans	A12.3.11.027
+FMA70925	Q3448908	Vena tibialis anterior (singular)	A12.3.11.031
+FMA70927	Q4116715	Venae jejunales	A12.3.12.019
+FMA70928	Q4116713	Venae ileales	A12.3.12.020
+FMA70929	Q4116851	Venae pancreaticae	A12.3.12.029
+FMA70930	Q7130422	Venae pancreaticoduodenales	A12.3.12.023
+FMA70931	Q4116843	Venae gastricae breves	A12.3.12.030
+FMA70940	Q3324363	Venae metacarpales dorsales	A12.3.08.025
+FMA7095	Q3368336	Cavitates cordis	
+FMA70967	Q138912	podocytus	
+FMA7099	Q1074839	Atria cordis	A12.1.00.017
+FMA7100	Q2002035	ventriculus cordis	A12.1.00.012
+FMA71013	Q66568864	crista cutis	
+FMA7110	Q215620	Valvae cordis	
+FMA71210	Q1311339	Vena thoracica lateralis	A12.3.08.011
+FMA71248	Q7841674	Nuclei trigemini	
+FMA71288	Q2341604	Musculi faciei	A04.1.03.001
+FMA71298	Q1954084	Musculi infrahyoidei	A04.2.04.001
+FMA71301	Q2254233	Musculi suprahyoidei	A04.2.03.001
+FMA71302	Q774933	Musculus erector spinae	A04.3.02.002
+FMA71304	Q2606107	Musculi transversospinales	A04.3.02.201
+FMA71306	Q726832	Musculi interspinales	A04.3.02.301
+FMA7131	Q173710	Oesophagus	A05.4.01.001
+FMA71312	Q531506	Musculi levatores costarum	A04.4.01.009
+FMA71315	Q900610	Musculus subcostalis	A04.4.01.015
+FMA7133	Q2397680	Septum interventriculare	A12.1.00.013
+FMA71340	Q320524	Metatarsus	A02.5.17.001
+FMA71356	Q184490	iunctum metatarsophalangeale	A03.6.10.801
+FMA71439	Q6149477	Musculi suboccipitales	A04.2.02.001
+FMA7144	Q1135563	Mesenterium	A10.1.02.007
+FMA71440	Q125161709	transversus nuchae	A04.3.01.005
+FMA71478	Q707697	Arteriae centrales anterolaterales	A12.2.07.048
+FMA7148	Q1029907	stomachus	A05.5.01.001
+FMA71506	Q6817082	Rami meningei arteriae vertebralis	A12.2.08.011
+FMA71514	Q7799615	Rami thymici arteriae thoracicae internae	A12.2.08.031
+FMA71519	Q7168171	Rami perforantes arteria thoracicae internae	A12.2.08.036
+FMA7152	Q9649	Apparatus digestorius humanum	A05.0.00.000
+FMA71536	Q927103	Arteriae bronchiales	A12.2.11.002
+FMA71537	Q9066221	Rami oesophageales partis thoracicae aortae	A12.2.11.003
+FMA71539	Q6806157	Rami mediastinales partis thoracicae aortae	A12.2.11.005
+FMA7154	Q23640	caput	A01.1.00.001
+FMA7155	Q9633	collum	A01.1.00.012
+FMA71551	Q7130403	Rami pancreatici arteriae splenicae	A12.2.12.041
+FMA71556	Q7900420	Rami ureterici arteriae renalis	A12.2.12.085
+FMA71564	Q545208	Arteriae digitales plantares propriae	A12.2.16.069
+FMA71567	Q590556	Venae cardiacae anteriores	A12.3.01.012
+FMA71568	Q7543650	Venae cardiacae minimae	A12.3.01.013
+FMA7157	Q9404	systema nervosum	A14.0.00.000
+FMA7158	Q7891	Systema respiratorium	A06.0.00.000
+FMA71583	Q3321279	Venae intercapitulares manus	A12.3.08.024
+FMA7159	Q181100	Systema urinarium	A08.0.00.000
+FMA71591	Q4116714	Venae paraumbilicales	A12.3.12.013
+FMA7160	Q20645683	Systemata genitalia	A09.0.00.000
+FMA7161	Q11068	systema cardiovasculare	
+FMA7162	Q712604	systema lymphoideum	A13.0.00.000
+FMA71629	Q4115357	Venae centrales hepatis	A05.8.01.059
+FMA7163	Q5259911	Cutis humanum	A16.0.00.002
+FMA71631	Q2784691	Venae interlobares renis	A08.1.04.002
+FMA71632	Q2889124	Venae arcuatae renis	A08.1.04.003
+FMA71633	Q5253372	Venae interlobulares renis	A08.1.04.004
+FMA71635	Q5251486	Venae stellatae renis	A08.1.04.006
+FMA71668	Q4817542	Rami atriales arteriae coronariae dextrae	A12.2.03.105
+FMA71675	Q4306444	Rami glandulares arteriae facialis	A12.2.05.024
+FMA71679	Q4771323	Rami auriculares anteriores arteriae temporalis superficialis	A12.2.05.048
+FMA71685	Q4771401	Arteriae alveolares superiores anteriores	A12.2.05.079
+FMA71688	Q6531618	Arteriae palatinae minores	A12.2.05.086
+FMA71689	Q7234213	Arteriae nasales posteriores laterales	A12.2.05.089
+FMA71690	Q7234238	Rami septales posteriores arteriae sphenopalatinae	A12.2.05.090
+FMA71691	Q4428834	Arteriae caroticotympanicae ramus caroticotympanicus	A12.2.06.005
+FMA7181	Q160695	Truncus	A01.1.00.013
+FMA7182	Q190780	membrum	
+FMA7183	Q841423	membrum superius	A01.1.00.019
+FMA7184	Q6027402	Crus humanum	
+FMA7190	Q1054094	Systema olfactorium	
+FMA7191	Q558363	systema visuale	
+FMA71925	Q6077718	plana horizontalia	A01.2.00.002
+FMA7196	Q9371	lien	A13.2.01.001
+FMA7197	Q9368	iecur	A05.8.01.001
+FMA7198	Q9618	Pancreas	A05.9.01.001
+FMA7200	Q11090	Intestinum tenue	A05.6.01.001
+FMA72006	Q4384578	Arteriolae rectae renis	A08.1.03.008
+FMA72007	Q7621106	Venulae rectae renis	A08.1.04.005
+FMA7201	Q11083	Intestinum crassum	A05.7.01.001
+FMA7202	Q64386	Vesica biliaris	A05.8.02.001
+FMA7203	Q9377	ren	A08.1.01.001
+FMA7206	Q134955	Duodenum	A05.6.02.001
+FMA7208	Q233345	Ileum	A05.6.04.001
+FMA7209	Q9631	Ovarium	A09.1.01.001
+FMA7210	Q9384	testis	A09.3.01.001
+FMA72291	Q5560024	spermatogonium	
+FMA72297	Q636846	Cellulae Leydig	
+FMA7234	Q1344255	Valva atrioventricularis dextra	A12.1.02.003
+FMA7235	Q369939	Valva atrioventricularis sinistra	A12.1.04.003
+FMA7236	Q616071	Valva aortae	A12.1.04.012
+FMA72395	Q170145	Zygotum	
+FMA7246	Q1552748	Valva trunci pulmonalis	A12.1.02.010
+FMA72478	Q1470452	Locus caeruleus	A14.1.05.436
+FMA72551	Q882097	Blastomerus	
+FMA72634	Q968731	Tractus pyramidalis	A14.1.04.102
+FMA72638	Q7088218	Tractus olivocerebellaris	A14.1.04.118
+FMA7280	Q721856	Endocardium	A12.1.05.001
+FMA72954	Q7060553	Musculi	A04.0.00.000
+FMA72979	Q483213	Systema integumentarium	A16.0.00.001
+FMA7318	Q191341	Alveolus pulmonis	
+FMA73915	Q11731939	Nucleus intermediolateralis	A14.1.02.133
+FMA7394	Q175449	Trachea	A06.3.01.001
+FMA74060	Q286978	Musculi masticatorii	A04.1.04.001
+FMA74084	Q834781	Musculi intercostales externi	A04.4.01.012
+FMA74085	Q1954132	Musculi intercostales interni	A04.4.01.013
+FMA74086	Q727342	Musculus intercostalis intimus	A04.4.01.014
+FMA7409	Q181602	bronchus	A06.3.01.008
+FMA74412	Q7430	acidum desoxyribonucleicum	
+FMA74534	Q3429717	ventralis	A01.0.00.013
+FMA74538	Q1951981	cranialis	A01.0.00.019
+FMA74551	Q66571846	profundus	A01.0.00.034
+FMA74565	Q1237109	Planum occipitale	A02.1.04.027
+FMA74567	Q16919652	Planum interspinale	A01.2.00.011
+FMA74587	Q6057216	Linea intertrochanterica	A02.5.04.009
+FMA74594	Q712604	systema lymphoideum	A13.0.00.000
+FMA74627	Q356002	Lobus anterior hypophysis	A11.1.00.002
+FMA74644	Q180912	Melatoninum	
+FMA7466	Q1321584	Musculus trachealis	A06.3.01.005
+FMA7474	Q1512017	Os longum	A02.0.00.011
+FMA7476	Q928150	Os planum	A02.0.00.013
+FMA7477	Q2672189	Os irregulare	A02.0.00.014
+FMA7482	Q726543	Systema musculosceletalis humanum	
+FMA7485	Q8481	Sternum	A02.3.03.001
+FMA74868	Q5636702	trigonum habenulae	A14.1.08.005
+FMA74877	Q499802	Corpus mammillare	A14.1.08.402
+FMA7488	Q16359	Processus xiphoideus	A02.3.03.007
+FMA7490	Q9644	Juncturae	A03.0.00.000
+FMA7491	Q2865763	synarthrosis	A03.0.00.003
+FMA7493	Q17148674	Sutura	A03.0.00.008
+FMA7496	Q2865752	junctura cartilaginea	A03.0.00.015
+FMA75020	Q31841286	Regio sternocleidomastoidea	A01.2.02.007
+FMA75043	Q4115125	Crista occipitalis interna	A02.1.04.030
+FMA75045	Q6031621	Crista infratemporalis	A02.1.05.028
+FMA75059	Q869654	Crista lacrimalis anterior	A02.1.12.025
+FMA75076	Q1130212	Crista supracondylaris medialis	A02.4.04.016
+FMA75078	Q786698	Crista supracondylaris lateralis	A02.4.04.019
+FMA75088	Q2918521	Linea arcuata ossis ilium	A02.5.01.105
+FMA75100	Q17111598	Crista intertrochanterica	A02.5.04.010
+FMA75101	Q3240164	Linea aspera	A02.5.04.013
+FMA75259	Q3355930	Organa sensuum	A15.0.00.000
+FMA75292	Q66572467	articulatio composita	A03.0.00.042
+FMA75305	Q6014713	Fossa incisiva	A02.1.00.060
+FMA75306	Q426139	Foramen magnum	A02.1.04.002
+FMA75309	Q780355	Fossa pterygopalatina	A02.1.00.025
+FMA75310	Q4115123	Fossa condylaris	A02.1.04.017
+FMA75313	Q4115114	Fossa mandibularis	A02.1.06.071
+FMA75316	Q5997960	Fossa iliaca	A02.5.01.115
+FMA75335	Q16917723	Sulcus sinus transversi	A02.1.04.031
+FMA75346	Q608206	Foramen intervertebrale (pl foramina intervertebralia)	A02.2.01.008
+FMA75356	Q979384	foramina sacralia posteriora	A02.2.05.015
+FMA75369	Q834816	Canalis condylaris	A02.1.04.015
+FMA75370	Q4115128	Canalis nervi hypoglossi	A02.1.04.016
+FMA75394	Q1165173	Vena uterina	A12.3.10.015F
+FMA75395	Q4116899	Venae labiales posteriores	A12.3.10.022F
+FMA75396	Q4116896	Venae scrotales posteriores	A12.3.10.022M
+FMA75397	Q949634	Venae dorsales superficiales clitoridis	A12.3.11.008F
+FMA75398	Q2759368	Vena dorsalis profunda penis	A12.3.11.008M
+FMA75410	Q12716	Arteriae helicinae penis	A09.4.01.024M
+FMA75428	Q619671	processus	A02.0.00.028
+FMA75434	Q978198	Condylus	A02.0.00.029
+FMA75435	Q1788932	Epicondylus	A02.0.00.030
+FMA75449	Q3338368	Nervi vasorum or nervi vascularorum	A14.2.00.045
+FMA75467	Q1515961	Nervi intercostales	A14.2.04.006
+FMA75468	Q7643595	Nervi clunium superiores	A14.2.05.006
+FMA75469	Q1623349	\"Nervi anales inferiores,	A14.2.07.038
+FMA75470	Q6029292	Nervi clunium inferiores	A14.2.07.034
+FMA75474	Q7502021	Nervi ciliares breves	A14.3.02.005
+FMA75478	Q4771359	Nervi labiales anteriores	A14.2.07.007
+FMA75479	Q4771389	Nervi scrotales anteriores	A14.2.07.007
+FMA75486	Q6045954	Nervi intercostobrachiales	A14.2.04.012
+FMA75489	Q6806026	Nervi clunium medii	A14.2.06.006
+FMA75490	Q5298780	Nervi digitales dorsales nervi radialis	A14.2.03.058
+FMA75491	Q5298779	Nervi digitales dorsales pedis	A14.2.07.054
+FMA75492	Q5153596	Nervi digitales plantares communes nervi plantaris lateralis	A14.2.07.071
+FMA75493	Q7250183	Nervi digitales plantares proprii nervi plantaris medialis	A14.2.07.068
+FMA75496	Q5526791	\"Plexus gastrici,	A14.3.03.024
+FMA75501	Q6940380	Rami musculares nervi ulnaris	A14.2.03.041
+FMA75518	Q5058035	Rami coeliaci nervi vagi	A14.2.01.182
+FMA75545	Q769415	Rami alveolares superiores posteriores nervi maxillaris	A14.2.01.050
+FMA75572	Q20645683	Systemata genitalia	A09.0.00.000
+FMA75579	Q4787737	Rami helicini uterinae	A12.2.15.030F
+FMA75582	Q7908497	Rami vaginales arteriae uterinae	A12.2.15.031F
+FMA75585	Q7234235	Rami scrotales posteriores arteriae pudendae internae	A12.2.15.041M
+FMA7565	Q994554	Cavitas thoracis	A01.1.00.049
+FMA7574	Q196672	costa	A02.3.01.001
+FMA75746	Q581944	Tuberculum pharyngeum	A02.1.04.007
+FMA75749	Q833561	Tuberculum jugulare ossis occipitalis	A02.1.04.018
+FMA75750	Q834909	Processus jugularis ossis occipitalis	A02.1.04.020
+FMA75751	Q12738587	Processus intrajugularis	A02.1.04.021
+FMA75752	Q3307119	Protuberantia occipitalis externa	A02.1.04.022
+FMA75754	Q4115129	Eminentia cruciformis	A02.1.04.028
+FMA75755	Q833576	Protuberantia occipitalis interna	A02.1.04.029
+FMA75760	Q1292303	Sulcus praechiasmaticus,	A02.1.05.005
+FMA75770	Q957133	sinus maxillaris	A02.1.12.011
+FMA75776	Q1290815	Spina nasalis posterior ossis palatini	A02.1.13.017
+FMA75811	Q1324752	Impressio ligamenti costoclavicularis, tuberositas costalis claviculae	A02.4.02.009
+FMA76446	Q42165	Nates	A01.1.00.033
+FMA7647	Q9606	Medulla spinalis	A14.1.02.001
+FMA76481	Q547019	appendices omentales	A05.7.03.010
+FMA76568	Q3756509	Neurofibrae preganglionicae	A14.2.00.009
+FMA76569	Q7234279	Neurofibrae postganglionicae	A14.2.00.010
+FMA76570	Q382417	Neurofibrae afferentes	A14.2.00.017
+FMA76571	Q1758513	Neurofibrae efferentes	A14.2.00.018
+FMA76585	Q860971	Apertura nasalis posterior	A02.1.00.096
+FMA76590	Q1322802	Sinus durae matris	A12.3.05.101
+FMA76718	Q430892	Vena profunda	A12.0.00.035
+FMA76719	Q2006950	Vena superficialis	A12.0.00.036
+FMA76728	Q1756808	Rete mirabile	A12.0.00.013
+FMA76738	Q5509192	Funiculus	A14.1.00.010
+FMA76749	Q592726	Nervus terminalis	A14.2.01.002
+FMA76848	Q66574312	lig. sacrococcygeum posterius superficiale	A03.2.08.002
+FMA77035	Q4771417	Commissura alba anterior medullae spinalis	A14.1.02.305
+FMA77043	Q2635603	Arteriola glomerularis efferens capsulae renalis	A08.1.03.006
+FMA77144	Q6056249	Arteria interossea recurrens	A12.2.09.052
+FMA77155	Q707468	Arteria poplitea	A12.2.16.033
+FMA77168	Q4116983	Vena sacralis mediana	A12.3.10.002
+FMA77177	Q646925	Musculus iliocostalis	A04.3.02.005
+FMA77178	Q1085907	Musculus longissimus	A04.3.02.010
+FMA77179	Q1088104	Musculus spinalis	A04.3.02.015
+FMA77231	Q244969	Os incisivum	A02.1.12.031
+FMA77232	Q2212442	os centrale carpi	A02.4.08.002
+FMA77276	Q1410742	Fibrae obliquae	A05.5.01.025
+FMA77302	Q445203	frenulum	A05.1.01.010
+FMA77433	Q2915951	Vasa vasorum	A12.0.00.028
+FMA77444	Q4672703	Arteria comitans nervi ischiadici	A12.2.15.019
+FMA77504	Q4115295	Vena dorsalis profunda clitoridis	A12.3.10.014F
+FMA77510	Q4115335	Vena bulbi penis	A12.3.10.023M
+FMA77524	Q7180885	Nervus pharyngeus	A14.2.01.044
+FMA77528	Q7643602	Plexus dentalis superior	A14.2.01.053
+FMA77530	Q1237446	Plexus parotideus	A14.2.01.108
+FMA77533	Q7860413	Plexus tympanicus	A14.2.01.140
+FMA77543	Q5182129	Radix cranialis nervi accessorii, pars vagalis nervi accessorii	A14.2.01.185
+FMA77559	Q7234204	Nervus interosseus antebrachii posterior	A14.2.03.055
+FMA77563	Q6495552	Ramus cutaneus lateralis abdominalis nervi intercostalis	A14.2.04.011
+FMA77570	Q897760	Ganglia coeliaca	A14.3.03.027
+FMA77574	Q16911145	Plexus aorticus thoracicus	A14.3.03.012
+FMA77577	Q7796112	Ganglia thoracica	A14.3.01.024
+FMA77578	Q16935119	\"Ganglia lumbalia	A14.3.01.033
+FMA77579	Q7396917	Ganglia sacralia	A14.3.01.035
+FMA77584	Q897760	Ganglia coeliaca	A14.3.03.027
+FMA77585	Q4778770	Ganglia aorticorenalia	A14.3.03.028
+FMA77589	Q1493499	Ganglion mesentericum superius	A14.3.03.030
+FMA77590	Q6029368	Ganglion mesentericum inferius	A14.3.03.037
+FMA77596	Q1352024	Nervus hypogastricus	A14.3.03.047
+FMA77602	Q7645360	Ramus communicans fibularis nervi fibularis communis	A14.2.07.049
+FMA77624	Q644945	Bulbus olfactorius	A14.1.09.429
+FMA77670	Q1851279	Arteria hyaloidea	A15.2.06.009
+FMA77700	Q3407681	Pars basalis telencephali	A14.1.09.401
+FMA77710	Q7107435	Lamina spiralis ossea	A15.3.03.029
+FMA77823	Q66575467	spatium endolymphaticum	A15.3.03.060
+FMA78440	Q160184	peditum	
+FMA78454	Q662322	Ventriculus tertius	A14.1.08.410
+FMA78477	Q16544814	fastigium	A14.1.05.714
+FMA78499	Q11101	Systema sensorium	
+FMA78550	Q936531	Fascia	A04.0.00.031
+FMA78705	Q597400	Nervus musculi quadrati femoris	A14.2.07.030
+FMA78711	Q2241227	Nervus musculi obturatorii interni	A14.2.07.028
+FMA79467	Q50194	Ramus accessorius arteriae meningeae mediae	A12.2.05.062
+FMA7951	Q4800963	articulatio capitis costae	A03.3.04.002
+FMA7952	Q2476958	articulatio costotransversaria	A03.3.04.005
+FMA79646	Q3562150	Ductus biliaris	
+FMA79789	Q843875	ductus cochlearis	A15.3.03.092
+FMA79869	Q76418	cerumen	
+FMA79871	Q1163923	Ductus arteriosus	
+FMA82553	Q66589362	ventriculus	
+FMA82737	Q11358	Carbohydratum	
+FMA82738	Q61476	Unctoacidum	
+FMA82739	Q8066	acidum aminicum	
+FMA82740	Q28745	nucleotidum	
+FMA82743	Q37525	glucosum	
+FMA82744	Q173600	Disaccharides	
+FMA82747	Q174936	Glycogenum	
+FMA82748	Q80294	Cellulosa	
+FMA82749	Q218642	Alaninum	
+FMA82751	Q186474	Cysteinum	
+FMA82752	Q181619	Glutaminum	
+FMA82753	Q620730	glycinum	
+FMA82757	Q483745	Leucinum	
+FMA82762	Q181136	acidum glutamicum	
+FMA82767	Q181003	Tryptophanum	
+FMA82769	Q422597	acidum capronicum	
+FMA82773	Q207722	Pyrimidinum	
+FMA82775	Q169313	Guaninum	
+FMA82779	Q186915	Phospholipidum	
+FMA82780	Q422882	glycolipida	
+FMA82801	Q10809118	mannosa	
+FMA83029	Q1889778	Trophoblastus	
+FMA83040	Q2745412	Syncytiotrophoblastus	
+FMA83041	Q227717	blastocystis	
+FMA83348	Q315860	Calcitoninum	
+FMA83358	Q66590068	Prolactinum	
+FMA83364	Q185690	Hormonum adrenocorticotropinum	
+FMA83602	Q1548876	Corpusculum Ruffinianum	
+FMA83604	Q673321	Corpusculus Pacinianus	
+FMA83605	Q1755764	Corpusculum Meissnerianum	
+FMA83665	Q916698	Oligodendrocytus	
+FMA83675	Q2070480	Lemniscus medialis	A14.1.04.111
+FMA83721	Q5122306	Cisterna magna	A14.1.01.208
+FMA83867	Q4738008	Alveus hippocampi	A14.1.09.333
+FMA84013	Q464210	Nuclei basales	A14.1.09.501
+FMA84017	Q2061493	Nuclei raphes	A14.1.04.257
+FMA84049	Q3486515	spermatocyta	
+FMA84050	Q212354	Cytokinum	
+FMA84055	Q61333	Chromosoma X	
+FMA84065	Q715347	Lymphocytus	
+FMA84079	Q423163	complexus histocompatibilitatis maior	
+FMA84115	Q256356	Cellulae ethmoidales,	A06.1.03.005
+FMA84120	Q373027	exon	
+FMA84786	Q210021	Acidum γ-aminobutyricum	
+FMA84970	Q4180183	Fossa pterygoidea ossis sphenoidalis	A02.1.05.046
+FMA85521	Q243469	Chorda dorsalis	
+FMA85528	Q3271220	Arteria canalis pterygoidei	A12.2.05.082
+FMA85554	Q423042	proteinum membranale	
+FMA85813	Q11438	solidum	
+FMA85816	Q11432	gas	
+FMA86033	Q1954136	Musculus opponens digiti minimi pedis	A04.7.02.065
+FMA86140	Q27162539	segmentum organi	
+FMA86454	Q5058355	componens cellularis	
+FMA86464	Q223851	Corpus callosum	A14.1.09.241
+FMA86557	Q1335221	Massa cellularis interior	
+FMA87180	Q369887	Vesicula umbilicalis	
+FMA8961	Q7280322	ligamentum capitis costae radiatum	A03.3.04.003
+FMA9139	Q578786	vertebrae thoracicae	A02.2.03.001
+FMA9146	Q1003242	Fovea costalis inferior	A02.2.03.003
+FMA9462	Q84133	Myocardium	A12.1.06.001
+FMA9477	Q286020	Nodus sinuatrialis	A12.1.06.003
+FMA9478	Q509053	Nodus atrioventricularis	A12.1.06.004
+FMA9576	Q9645	Pectus	A01.1.00.014
+FMA9577	Q9597	Abdomen	A01.1.00.016
+FMA9579	Q105499	Perineum	A09.5.00.001
+FMA9580	Q655501	Omentum maius	A10.1.02.201
+FMA9581	Q1364005	Tunica serosa	
+FMA9584	Q9629	peritoneum	A10.1.02.002
+FMA9587	Q2142447	Vagina musculi recti abdominis	A04.5.01.003
+FMA9590	Q1647118	pia mater	A14.1.01.301
+FMA9592	Q1394389	Dura mater	A14.1.01.002
+FMA9595	Q173801	Tympanum	A15.3.01.052
+FMA9597	Q134938	Glandulae salivariae	A05.1.02.002
+FMA95971	Q134938	Glandulae salivariae	A05.1.02.002
+FMA9600	Q9625	Prostata	A09.3.08.001
+FMA9602	Q324663	Glandulae endocrinae	A11.0.00.000
+FMA9603	Q16399	glandula thyreoeidea	A11.3.00.001
+FMA9604	Q712294	glandula adrenalis	A11.5.00.001
+FMA9607	Q163987	thymus	A13.1.02.001
+FMA9608	Q546523	Medulla ossium	A13.1.01.001
+FMA9609	Q180569	tonsilla palatina	A05.2.01.011
+FMA9611	Q176503	Os femoris	A02.5.04.001
+FMA9612	Q237229	Metacarpus	A02.4.09.001
+FMA9613	Q16298	Os parietale	A02.1.02.001
+FMA9624	Q932557	Musculus occipitofrontalis	A04.1.03.003
+FMA9625	Q899783	Musculus stylohyoideus	A04.2.03.005
+FMA9626	Q204113	Musculus trapezius	A04.3.01.001
+FMA9627	Q532798	Musculus pectoralis major	A04.4.01.002
+FMA9628	Q275150	Musculus rectus abdominis	A04.5.01.001
+FMA9629	Q74959	Musculus supraspinatus	A04.6.02.006
+FMA9637	Q40397	textum biologicum	
+FMA9639	Q41301	Textus epithelialis	
+FMA96404	Q25615	Textus conexivus	
+FMA9663	Q228537	antebrachium	A01.1.00.024
+FMA9664	Q15807	pes	A01.1.00.040
+FMA9668	Q11078	systema endocrinum	
+FMA9670	Q7873	sanguis	A12.0.00.009
+FMA9671	Q179422	Lympha	A12.0.00.043
+FMA9680	Q781983	canalis vertebralis	A02.2.00.009
+FMA9692	Q1431311	Bursa synovialis	A03.0.00.039
+FMA9704	Q9385	Ureter	A08.2.01.001
+FMA9705	Q320561	Tuba auditiva Eustachii	A15.3.02.073
+FMA9707	Q8124	Penis hominis	A09.4.01.001
+FMA9708	Q13100	astragalus	A02.5.10.001
+FMA9710	Q193527	Vomer (anatomia)	A02.1.11.001
+FMA9711	Q182895	Maxilla	A02.1.12.001
+FMA9712	Q33767	manus	A01.1.00.025
+FMA9715	Q2023302	Omentum minus	A10.1.02.101
+FMA9717	Q750625	Musculus sternalis	A04.4.01.001
+FMA9721	Q232358	tendo	
+FMA9757	Q1954132	Musculi intercostales interni	A04.4.01.013
+FMA9760	Q936699	Musculus transversus thoracis	A04.4.01.016
+FMA9825	Q1059	systema immunitatis	
+FMA9826	Q337247	Mediastinum	A07.1.02.101
+FMA9869	Q193302	Pericardium	A12.1.08.001
+FMA9905	Q171064	Systema nervosum autonomicum	A14.3.00.001
+FMA9909	Q873072	Clitoris	A09.2.02.001
+FMA9914	Q180323	Vertebra	A02.2.01.001
+FMA9915	Q900457	Vertebrae cervicales	A02.2.02.001
+FMA9921	Q405478	Vertebrae lumbales	A02.2.04.001

@@ -7,7 +7,8 @@
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 3016",
-    "build": "vite build",
+    "atlas": "node scripts/build-atlas.mjs && node scripts/validate-atlas.mjs",
+    "build": "npm run atlas && vite build",
     "check": "tsc --noEmit"
   },
   "dependencies": {
@@ -27,6 +28,9 @@
   },
   "devDependencies": {
     "@capacitor/cli": "8.5.3",
+    "@gltf-transform/core": "^4.5.1",
+    "@gltf-transform/extensions": "^4.5.1",
+    "@gltf-transform/functions": "^4.5.1",
     "@tailwindcss/postcss": "4.2.1",
     "@types/node": "22.19.19",
     "@types/react": "19.2.14",

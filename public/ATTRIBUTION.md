@@ -15,6 +15,12 @@ Source OBJ comments mention an older CC BY-SA 2.1 Japan license. The official cu
 
 BodyParts3D represents an adult male reference anatomy based on TARO MRI and anatomical illustration refinements. It is not a complete model of every possible human anatomical structure or variation. This interface is educational and is not a clinical tool.
 
+## Body Explorer adaptations and additional sources
+
+- Hierarchy: BodyParts3D 4.0 IS-A and PART-OF inclusion tables (`isa_inclusion_relation_list.txt`, `partof_inclusion_relation_list.txt` and related tables), same source and CC BY 4.0 license as above: https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html
+- Latin anatomical terms: Wikidata (https://www.wikidata.org), Latin labels of items linked by Foundational Model of Anatomy ID (P1402). Wikidata structured data is CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/
+- Further adaptations: meshes merged into one mesh per display system with a per-vertex structure index; positions quantized to 14 bits and normals to 10 bits; geometry compressed with meshoptimizer (EXT_meshopt_compression). Every one of the 2,234 source meshes remains individually represented.
+
 ## Historical assets (not included in the current release)
 
 Earlier repository revisions included female reference anatomy: Kristen Browne and Heidi Schlehlein, Human Reference Atlas / HuBMAP, *3D Reference Organ Set for Female v1.5* (2023). CC BY 4.0. Geometry adapted for this viewer.

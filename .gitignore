@@ -37,3 +37,13 @@ next-env.d.ts
 /outputs/
 /work/
 *.tsbuildinfo
+
+# signing secrets — never commit
+*.p8
+*.p12
+*.mobileprovision
+*.cer
+.codemagic-token
+
+# asset pipeline output (scripts/build-atlas.mjs)
+/public/atlas/

@@ -2,6 +2,27 @@
 
 Offline iOS 3D anatomy atlas (iPhone + iPad), built on a fork of [human-atlas](https://github.com/ashemag/human-atlas). See [ARCHITECTURE.md](ARCHITECTURE.md).
 
+## Build
+
+```sh
+nvm use && npm ci
+npm run build && npx cap sync ios     # build runs the asset pipeline first
+```
+
+iOS builds and TestFlight uploads run on Codemagic (`codemagic.yaml`); no Xcode or CocoaPods is needed locally.
+
+## Asset pipeline
+
+`npm run atlas` regenerates `public/atlas/` (gitignored) from the committed inputs in `data/`:
+
+1. `scripts/build-atlas.mjs` merges the 2,234 BodyParts3D meshes into one mesh per anatomical system (15 draw calls),
+   writes a per-vertex `_MESHID` attribute so every structure stays individually addressable, quantizes and
+   meshopt-compresses each system to `.glb`, and writes `atlas.json` (names, Latin terms, hierarchy).
+2. `scripts/validate-atlas.mjs` decodes every `.glb` and checks it against the source vertex by vertex.
+
+`node scripts/fetch-metadata.mjs` refreshes the committed metadata (DBCLS IS-A/PART-OF tables, Wikidata Latin labels).
+It's the only step that uses the network, and it never runs in CI. Details: [ARCHITECTURE.md](ARCHITECTURE.md#asset-pipeline).
+
 ## Upstream: Human Atlas
 
 An interactive 3D anatomy explorer built with React, Three.js, and shadcn/ui. Take the BodyParts3D adult male reference apart into **2,234 individually selectable meshes**, explore **15 anatomical systems**, and search **3,432 named concepts**.
