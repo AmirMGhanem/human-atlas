@@ -24,9 +24,9 @@ npm run build && npx cap sync ios
 `xcode-project use-profiles` → `xcode-project build-ipa` → publish to TestFlight.
 
 - Signing: `ios_signing` (`app_store`) picks identities from Codemagic → Team settings → codemagic.yaml settings →
-  Code signing identities: certificate "Apple Distribution: Amir Ghanem (P99B8PPLB7)" (.p12) and profile
-  "Body Explorer App Store", both expiring 2027-10-16. Renew both before then. Publishing uses the App Store
-  Connect API key integration `body-explorer-asc`. No Xcode on the dev machine.
+  Code signing identities: certificate "Apple Distribution: Amir Ghanem (P99B8PPLB7)" (.p12) and its app_store profile for
+  com.burrowcode.bodyexplorer, both expiring 2027-10-16. Renew both before then. Publishing uses the App Store
+  Connect API key integration `burrowcode` (key X47F4HH3N7). No Xcode on the dev machine.
 - Build number: latest TestFlight build + 1, passed as `CURRENT_PROJECT_VERSION` at archive time.
 - `APP_STORE_APPLE_ID` = 6823626044 (App Store Connect app record "Body Explorer: 3D Anatomy", SKU bodyexplorer).
 
