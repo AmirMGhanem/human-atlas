@@ -12,9 +12,9 @@ const PANELS=[
  {id:'01-hero',title:'See inside\nthe human body.',sub:'More than 2,000 structures in 3D. Turn it, zoom in, take it apart.'},
  {id:'02-tap',shot:'heart',title:'Tap any part\nto learn it.',sub:'Names, Latin terms and what each structure does.'},
  {id:'03-layers',shot:'layers',title:'Peel back the body,\nlayer by layer.',sub:'Fade skin, muscle or bone to see what lies beneath.'},
- {id:'04-female',shot:'female',title:'Male and\nfemale anatomy.',sub:'Switch bodies any time in Settings.'},
- {id:'05-brain',shot:'brain',title:'From whole systems\nto single parts.',sub:'Step in and out of the anatomy, region by region.'},
- {id:'06-isolate',shot:'skeleton',title:'One system\nat a time.',sub:'Long-press a layer to see it on its own.'},
+ {id:'04-explore',shot:'skull',title:'From systems\nto single parts.',sub:'Step in and out of the anatomy, region by region.'},
+ {id:'05-isolate',shot:'skeleton',title:'One system\nat a time.',sub:'Long-press a layer to see it on its own.'},
+ {id:'06-hebrew',shot:'hebrew',title:'English.\nעברית.',sub:"The whole app switches to Hebrew, right to left, and follows your device's language."},
  {id:'07-offline',shot:'vessels',title:'Offline\nand private.',sub:'No account, no ads, nothing collected. Works anywhere.'},
 ];
 

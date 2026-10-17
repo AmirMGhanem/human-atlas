@@ -7,9 +7,9 @@ export async function launch(){
 }
 
 /** Opens the app at a device size and resolves once all systems are loaded. */
-export async function openApp(browser,{w,h,dpr,url='http://localhost:3099/',transparent=false,hideUi=false,body='male'}){
+export async function openApp(browser,{w,h,dpr,url='http://localhost:3099/',transparent=false,hideUi=false,body='male',language='en'}){
  const page=await browser.newPage();
- await page.evaluateOnNewDocument(b=>localStorage.setItem('body-explorer.settings',JSON.stringify({state:{settings:{body:b}},version:1})),body);
+ await page.evaluateOnNewDocument((body,language)=>localStorage.setItem('body-explorer.settings',JSON.stringify({state:{settings:{body,language}},version:1})),body,language);
  await page.setViewport({width:w,height:h,deviceScaleFactor:dpr,isMobile:true,hasTouch:true});
  const ready=new Promise(res=>page.on('console',m=>{if(m.text().startsWith('[ready]'))res();}));
  page.on('pageerror',e=>console.error('pageerror',e.message));

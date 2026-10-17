@@ -8,18 +8,19 @@ Tap any part to see its name, its Latin term, the systems it belongs to and a sh
 PEEL BACK THE LAYERS
 Skin, muscles, arteries, veins, nerves, bones, ligaments and organs each have their own layer. Fade any of them to glass to see what lies beneath, or long-press a layer to see that system on its own.
 
-MALE AND FEMALE ANATOMY
-Switch between a male and a female model in Settings. Intimate anatomy is hidden by default and can be turned on when you need it.
+ENGLISH AND HEBREW
+The whole app is available in English and Hebrew, with a right-to-left layout and Hebrew anatomy names. It follows your device's language and can be switched any time in Settings.
 
 MADE FOR STUDYING
 • Frame any structure in one tap
 • Latin terms alongside English names
 • Smooth on iPhone and iPad, with a battery-saving graphics mode
 • Respects Reduce Motion
+• Intimate anatomy is hidden by default and can be turned on in Settings
 
 OFFLINE AND PRIVATE
 Everything runs on your device. No account, no ads, no tracking, and nothing is collected. It works on a plane, in a lecture hall or anywhere without a signal.
 
-Built on open scientific data: BodyParts3D (© The Database Center for Life Science, CC BY 4.0) and the Human Reference Atlas 3D Reference Organ Set for Female (HuBMAP, CC BY 4.0). Full credits are in Settings.
+Built on open scientific data: BodyParts3D (© The Database Center for Life Science, CC BY 4.0). Full credits are in Settings.
 
 Body Explorer is for education and general reference. It is not medical advice.

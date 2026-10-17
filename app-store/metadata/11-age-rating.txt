@@ -1,8 +1,8 @@
 Set in App Store Connect on 2026-10-17 (via the API). Resulting rating: 13+.
 
 Sexual content or nudity ..................... Infrequent
-  Apple's definitions have no exemption for educational anatomy. Both bodies
-  include external genitalia (untextured models, hidden by default behind
+  Apple's definitions have no exemption for educational anatomy. The model
+  includes external genitalia (untextured models, hidden by default behind
   Settings → Show intimate anatomy). This matches the category: Human Anatomy
   Atlas, Essential Anatomy, Visible Body, BioDigital and Anatomy 3D Atlas all
   declare Infrequent/Mild Sexual Content and Nudity.

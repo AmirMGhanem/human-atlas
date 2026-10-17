@@ -17,9 +17,9 @@ const shots={
   await openPanel(p);
   await scene(p,{layers:{...ALL_ON,muscular:'faded'},frame:[.5,1],yaw:.4,zoom:pad?.62:.5,shift:[pad?-.1:-.08,-.02,0]});
  }},
- female:{body:'female',run:async p=>{
-  await scene(p,{layers:{...ALL_ON,muscular:'off',integumentary:'faded'},alpha:{integumentary:.22},tint:{integumentary:'#4DD0E1'},frame:[.45,1],yaw:-.45,zoom:pad?.62:.52});
- }},
+ // Hebrew UI (right-to-left), with a structure selected.
+ hebrew:{language:'he',run:p=>select(p,'FMA50801')},
+ skull:{run:p=>select(p,'FMA53672')},
  skeleton:{run:async p=>{
   await store(p,m=>m.useAtlas.getState().isolateLayer('bones'));
   await openPanel(p);
@@ -32,7 +32,7 @@ const shots={
 const b=await launch();
 for(const [name,shot] of Object.entries(shots)){
  if(only&&!only.split(',').includes(name))continue;
- const p=await openApp(b,{...DEV,body:shot.body??'male'});
+ const p=await openApp(b,{...DEV,language:shot.language??'en'});
  await shot.run(p);await settle(p,900);
  await p.screenshot({path:`${out}/${device}-${name}.jpg`,quality:92});
  await p.close();
