@@ -158,7 +158,7 @@ export class Viewer {
   this.view=view;const d=this.stateData,sel=view.selected,flags=new Map<SystemId,{opaque:boolean;ghost:boolean;pickable:boolean}>();
   this.uniforms.modesty.value=view.showIntimate?0:1;
   // An opaque skin hides everything inside it, so with skin on and nothing selected only the body surface is drawn.
-  // Saves most of the GPU work, and hides any internal geometry that pokes through the skin (the female model's
+  // Saves most of the GPU work, and hides any internal geometry that pokes through the skin (e.g. the disabled female model's
   // borrowed male muscles are bulkier than her body). A selection fades the skin and brings the inside back.
   const skinSolid=!sel&&view.layer('integumentary')==='on';
   this.atlas.parts.forEach((p,i)=>{

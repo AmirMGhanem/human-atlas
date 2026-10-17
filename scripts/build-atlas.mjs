@@ -433,9 +433,10 @@ async function writeBody(body){
 }
 
 fs.rmSync(at('public/atlas/'),{recursive:true,force:true});
-const male=bodyParts3D(),female=hraFemale();
-console.log('female: borrowed from male',JSON.stringify(borrowIntoFemale(female,male)));
-const bodies=[male,female];
+// The female model (HRA female v1.5 + borrowed male skeleton/muscles) is switched off: it doesn't ship. Set
+// BUILD_FEMALE=1 to build it anyway (it isn't wired into the app's settings).
+const male=bodyParts3D(),bodies=[male];
+if(process.env.BUILD_FEMALE==='1'){const female=hraFemale();console.log('female: borrowed from male',JSON.stringify(borrowIntoFemale(female,male)));bodies.push(female);}
 for(const body of bodies)await writeBody(body);
 // Index of bodies for the app's model switcher.
 fs.writeFileSync(at('public/atlas/bodies.json'),JSON.stringify(bodies.map(b=>({id:b.id,file:`atlas/${b.id}/atlas.json`,source:b.source}))));

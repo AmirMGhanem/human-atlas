@@ -14,7 +14,7 @@ await MeshoptDecoder.ready;
 // Source of each body, in the same part order build-atlas.mjs emits (index = meshId).
 const SOURCES={male:{dir:'data/bp3d/mesh/',keep:()=>true},female:{dir:'data/hra/mesh/',keep:p=>p.system!=='pregnancy'}};
 const bodies=JSON.parse(fs.readFileSync(at('public/atlas/bodies.json'),'utf8'));
-assert.deepEqual(bodies.map(b=>b.id).sort(),Object.keys(SOURCES).sort());
+for(const b of bodies)assert.ok(SOURCES[b.id],`no source for body ${b.id}`);
 for(const b of bodies){
 const src=SOURCES[b.id];
 const raw=JSON.parse(fs.readFileSync(at(src.dir+'manifest.json'),'utf8'));

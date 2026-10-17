@@ -18,24 +18,9 @@ BodyParts3D represents an adult male reference anatomy based on TARO MRI and ana
 ## Body Explorer adaptations and additional sources
 
 - Hierarchy: BodyParts3D 4.0 IS-A and PART-OF inclusion tables (`isa_inclusion_relation_list.txt`, `partof_inclusion_relation_list.txt` and related tables), same source and CC BY 4.0 license as above: https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html
-- Latin anatomical terms: Wikidata (https://www.wikidata.org), Latin labels of items linked by Foundational Model of Anatomy ID (P1402). Wikidata structured data is CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/
+- Latin and Hebrew anatomical terms: Wikidata (https://www.wikidata.org), Latin and Hebrew labels of items linked by Foundational Model of Anatomy ID (P1402). Wikidata structured data is CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/
 - Further adaptations: meshes merged into one mesh per display system with a per-vertex structure index; positions quantized to 14 bits and normals to 10 bits; geometry compressed with meshoptimizer (EXT_meshopt_compression). Every one of the 2,234 source meshes remains individually represented.
 
-## Female reference anatomy (included)
+## Modesty adaptation
 
-The female model is: Kristen Browne and Heidi Schlehlein, Human Reference Atlas / HuBMAP, *3D Reference Organ Set for Female v1.5* (2023). CC BY 4.0. Geometry adapted for this app.
-
-- Source DOI: https://doi.org/10.48539/HBM352.BTSQ.586
-- Dataset: https://lod.humanatlas.io/ref-organ/united-female/v1.5
-- Original GLB: https://cdn.humanatlas.io/digital-objects/ref-organ/united-female/v1.5/assets/3d-vh-f-united.glb
-- License: https://creativecommons.org/licenses/by/4.0/
-
-Adaptations: translated native meter/Y-up coordinates onto the stage; coincident vertices welded and source normals averaged; geometry simplified with a 0.2% per-structure relative error bound (plus a lighter motion level of detail); normals quantized; merged per display system with a per-vertex structure index; quantized and compressed with meshoptimizer. Colors and display systems are curated for this app. 880 of the 888 source meshes are represented. The eight placenta and umbilical structures (pregnancy reference) are not included. Unnamed source meshes are labelled from their source identifiers. This is a reference assembly with partial skeleton and muscle coverage, not a single-person scan.
-
-## Female model: structures borrowed from BodyParts3D
-
-The HRA female set has no skull, ribs, sternum, shoulder girdle, arm, hand or foot bones, almost no muscles and no ligaments. In the female model these 688 structures are taken from BodyParts3D 4.0 (male, CC BY 4.0, credited above) and fitted to the female body with a thin-plate-spline warp anchored on structures both models share (vertebrae, pelvis, leg bones, organs, skin outline), plus a rotation of each arm to her pose. The female dataset's own spine, pelvis, legs, organs and nervous system are kept. Borrowed structures are labelled in the app. Their shape is male anatomy and is an approximation in this body.
-
-## Modesty adaptation (both models)
-
-By default the app hides external genitalia. For this, the skin mesh of each model is split: the external-genital region becomes its own structure, and a smooth generated surface spanning the opening is shown in its place. The original geometry is kept unchanged and shown when the user turns on "Show intimate anatomy".
+By default the app hides external genitalia. For this, the skin mesh is split: the external-genital region becomes its own structure, and a smooth generated surface spanning the opening is shown in its place. The original geometry is kept unchanged and shown when the user turns on "Show intimate anatomy".

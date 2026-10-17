@@ -25,7 +25,7 @@ export interface Atlas {body:'male'|'female';version:string;source:string;triang
 export interface LoadedSystem {geometry:T.BufferGeometry;matrix:T.Matrix4}
 
 // Bundled with the app; served from capacitor://localhost, never the network.
-export async function loadAtlas(body:'male'|'female'):Promise<Atlas>{
+export async function loadAtlas(body:string):Promise<Atlas>{
  const r=await fetch(`atlas/${body}/atlas.json`);if(!r.ok)throw new Error('Anatomy index missing from the app bundle.');
  return r.json();
 }

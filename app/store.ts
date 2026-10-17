@@ -25,7 +25,8 @@ export const groupOfSystem=(s:SystemId)=>LAYER_GROUPS.find(g=>g.systems.includes
 const DEFAULT_LAYERS:Record<LayerGroupId,LayerState>={skin:'off',muscles:'on',arteries:'on',veins:'on',nerves:'on',bones:'on',joints:'on',organs:'on'};
 
 // ---------- settings (persisted on the device) ----------
-export type BodyId='male'|'female';
+/** Only the male model ships. The female pipeline exists but is disabled (see ARCHITECTURE.md → Female hybrid). */
+export type BodyId='male';
 /** high: device pixel ratio up to 3 · balanced: 2 · battery: 1.5 and the lighter LOD always. */
 export type Quality='high'|'balanced'|'battery';
 /** system follows iOS "Reduce Motion"; reduce = instant camera moves, no momentum; full = always animate. */
@@ -42,7 +43,9 @@ export interface Settings {
  quality:Quality;
  language:Language;
 }
-export const DEFAULT_SETTINGS:Settings={body:'male',showIntimate:false,showLatin:true,haptics:true,motion:'system',quality:'balanced',language:'en'};
+// First launch follows the device language (WKWebView reports Hebrew on Hebrew devices; Info.plist declares en + he).
+const deviceLanguage=():Language=>typeof navigator!=='undefined'&&navigator.language?.toLowerCase().startsWith('he')?'he':'en';
+export const DEFAULT_SETTINGS:Settings={body:'male',showIntimate:false,showLatin:true,haptics:true,motion:'system',quality:'balanced',language:deviceLanguage()};
 
 /** Selected concept plus the hierarchy path it was reached by (root 'body' → concept). */
 export interface Selection {concept:string;path:string[]}
@@ -109,10 +112,12 @@ export const useAtlas=create<State>()(persist((set,get)=>({
  sheet:null,
  openSheet:sheet=>set({sheet}),
 }),{
- name:'body-explorer.settings',version:1,
+ name:'body-explorer.settings',version:2,
  // Only preferences persist; anatomy state starts fresh each launch.
  partialize:s=>({settings:s.settings}),
- merge:(saved,current)=>({...current,settings:{...DEFAULT_SETTINGS,...(saved as {settings?:Partial<Settings>})?.settings}}),
+ // v1 could store body 'female', which no longer exists: always male.
+ merge:(saved,current)=>({...current,settings:{...DEFAULT_SETTINGS,...(saved as {settings?:Partial<Settings>})?.settings,body:'male'}}),
+ migrate:state=>state as never,
 }));
 
 /** Parts (mesh indices) of the current selection, or null. */

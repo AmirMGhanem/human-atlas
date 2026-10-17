@@ -1,6 +1,6 @@
 import {useEffect, useId, useRef, type ReactNode} from 'react';
 import {ChevronRight, Settings, X} from 'lucide-react';
-import {useAtlas, type BodyId, type Language, type MotionPref, type Quality} from '../store';
+import {useAtlas, type Language, type MotionPref, type Quality} from '../store';
 import {translate, useT} from '../i18n';
 import {haptic} from './haptics';
 import './settings.css';
@@ -107,7 +107,6 @@ export default function SettingsSheet(){
  const gearRef=useRef<HTMLButtonElement>(null);
  const sheetRef=useRef<HTMLDivElement>(null);
 
- const bodyOptions:{value:BodyId;label:string}[]=[{value:'male',label:t('settings.male')},{value:'female',label:t('settings.female')}];
  const motionOptions:{value:MotionPref;label:string}[]=[
   {value:'system',label:t('settings.motion.system')},{value:'reduce',label:t('settings.motion.reduce')},{value:'full',label:t('settings.motion.full')},
  ];
@@ -160,16 +159,6 @@ export default function SettingsSheet(){
           onChange={v=>setSetting('language',v)}
          />
         </div>
-       </Section>
-
-       <Section title={t('settings.body')}>
-        <SegmentedRow
-         label={t('settings.model')}
-         value={settings.body}
-         options={bodyOptions}
-         help={settings.body==='female'?t('settings.femaleHelp'):undefined}
-         onChange={v=>setSetting('body',v)}
-        />
        </Section>
 
        <Section title={t('settings.anatomy')}>
