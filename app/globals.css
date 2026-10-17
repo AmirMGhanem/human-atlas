@@ -11,13 +11,12 @@
 }
 html,body,#root{margin:0;height:100%;overflow:hidden;background:var(--bg-base);overscroll-behavior:none}
 
-/* Checkpoint-2 bare build */
-.bare{position:fixed;inset:0}
-.viewport{position:absolute;inset:0}
-.bare-status{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:var(--text-muted);font-size:14px}
-.bare-tools{position:absolute;right:calc(env(safe-area-inset-right) + 8px);top:calc(env(safe-area-inset-top) + 8px);display:flex;gap:6px}
-.bare-tools button{font:600 12px/1 inherit;color:var(--text-primary);background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:10px 12px;min-height:44px}
-.bare-pick{position:absolute;left:calc(env(safe-area-inset-left) + 12px);right:calc(env(safe-area-inset-right) + 12px);bottom:calc(env(safe-area-inset-bottom) + 12px);padding:10px 12px;background:rgba(38,38,38,.85);border:1px solid var(--border);border-radius:12px;pointer-events:none}
-.bare-pick .name{font-weight:600;font-size:16px;color:var(--accent)}
-.bare-pick .latin{font-size:14px;color:var(--text-primary);margin-top:2px}
-.bare-pick .meta{font-size:12px;color:var(--text-muted);margin-top:3px}
+/* App shell */
+.app{position:fixed;inset:0}
+/* Viewport: subtle vertical gradient plus a faint radial lift behind the body, so it reads as lit from the front. */
+.viewport{position:absolute;inset:0;background:
+ radial-gradient(ellipse 55% 60% at 50% 45%,rgba(255,255,255,.055),rgba(255,255,255,0) 70%),
+ linear-gradient(180deg,#242424 0%,var(--bg-base) 52%,#131313 100%)}
+.app-status{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:var(--text-muted);font-size:14px;pointer-events:none}
+.dev-tools{position:absolute;left:calc(env(safe-area-inset-left) + 8px);top:calc(env(safe-area-inset-top) + 8px);display:flex;gap:6px;z-index:11}
+.dev-tools button{font:600 12px/1 inherit;color:var(--text-primary);background:rgba(50,50,50,.8);border:1px solid var(--border);border-radius:8px;padding:0 10px;min-height:36px}

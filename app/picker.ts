@@ -5,23 +5,22 @@ import * as T from 'three';
 // Encoding: id = meshId + 1 in R (low byte) and G (high byte); 0 = nothing.
 const RADIUS=4,SIZE=RADIUS*2+1;
 
-export const PICK_VERTEX=`
+const PICK_VERTEX=`
 attribute float _meshid;
 uniform sampler2D partState;
 uniform float stateWidth;
 varying float vId;
-varying float vVisible;
+varying float vPickable;
 void main(){
  vId=_meshid;
- vVisible=texture2D(partState,vec2((_meshid+.5)/stateWidth,.5)).r;
+ vPickable=texture2D(partState,vec2((_meshid+.5)/stateWidth,.5)).a;
  gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);
 }`;
 const PICK_FRAGMENT=`
 varying float vId;
-varying float vVisible;
-uniform float pickThreshold;
+varying float vPickable;
 void main(){
- if(vVisible<pickThreshold)discard;
+ if(vPickable<.5)discard;
  float id=floor(vId+.5)+1.;
  gl_FragColor=vec4(mod(id,256.)/255.,floor(id/256.)/255.,0.,1.);
 }`;
@@ -32,21 +31,23 @@ export class Picker {
  private pixels=new Uint8Array(SIZE*SIZE*4);
  readonly material:T.ShaderMaterial;
  constructor(partState:T.Texture,stateWidth:number){
-  // Parts with visibility below 0.5 (hidden or faded layers) are not pickable.
-  this.material=new T.ShaderMaterial({vertexShader:PICK_VERTEX,fragmentShader:PICK_FRAGMENT,side:T.DoubleSide,uniforms:{partState:{value:partState},stateWidth:{value:stateWidth},pickThreshold:{value:.5}}});
-  this.scene.background=new T.Color(0,0,0);
+  // Only parts whose state alpha channel marks them pickable are drawn: faded layers let taps through.
+  this.material=new T.ShaderMaterial({vertexShader:PICK_VERTEX,fragmentShader:PICK_FRAGMENT,side:T.DoubleSide,uniforms:{partState:{value:partState},stateWidth:{value:stateWidth}}});
  }
  add(geometry:T.BufferGeometry,matrix:T.Matrix4){
   const m=new T.Mesh(geometry,this.material);m.matrixAutoUpdate=false;m.matrix.copy(matrix);m.matrixWorldNeedsUpdate=true;m.frustumCulled=false;this.scene.add(m);return m;
  }
  /** x,y in CSS pixels relative to the canvas. Returns the meshId nearest the touch point, or -1. */
  pick(renderer:T.WebGLRenderer,camera:T.PerspectiveCamera,x:number,y:number,width:number,height:number):number{
-  const prevTarget=renderer.getRenderTarget(),prevView=camera.view?{...camera.view}:null;
-  camera.setViewOffset(width,height,x-RADIUS,y-RADIUS,SIZE,SIZE);
+  const prevTarget=renderer.getRenderTarget(),prev=camera.view?.enabled?{...camera.view}:null,clear=renderer.getClearColor(new T.Color()),clearAlpha=renderer.getClearAlpha();
+  // Compose with any existing view offset (UI insets shift the projection centre).
+  const ox=prev?prev.offsetX:0,oy=prev?prev.offsetY:0;
+  camera.setViewOffset(width,height,ox+x-RADIUS,oy+y-RADIUS,SIZE,SIZE);camera.updateProjectionMatrix();
   renderer.setRenderTarget(this.target);renderer.setClearColor(0x000000,0);renderer.clear();renderer.render(this.scene,camera);
   renderer.readRenderTargetPixels(this.target,0,0,SIZE,SIZE,this.pixels);
-  renderer.setRenderTarget(prevTarget);
-  if(prevView?.enabled)camera.setViewOffset(prevView.fullWidth,prevView.fullHeight,prevView.offsetX,prevView.offsetY,prevView.width,prevView.height);else camera.clearViewOffset();
+  renderer.setRenderTarget(prevTarget);renderer.setClearColor(clear,clearAlpha);
+  if(prev)camera.setViewOffset(prev.fullWidth,prev.fullHeight,prev.offsetX,prev.offsetY,prev.width,prev.height);else camera.clearViewOffset();
+  camera.updateProjectionMatrix();
   // Fat-finger tolerance: nearest non-empty pixel to the centre of the patch.
   let best=-1,bestD=Infinity;
   for(let py=0;py<SIZE;py++)for(let px=0;px<SIZE;px++){

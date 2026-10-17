@@ -82,6 +82,34 @@ public/atlas/          <system>.glb ×15 + atlas.json  generated, gitignored, bu
   (fat-finger tolerance). No CPU raycasting. Measured in desktop Chrome: ~4 ms including readback.
 - Rendering is on demand (dirty flag), except while spinning.
 
+## Selection, dimming and layers
+
+- **State** (`app/store.ts`, Zustand): layer state per group (`on` | `faded` | `off`), isolated group, selection
+  (`concept` + the hierarchy `path` it was reached by), UI insets, and frame/reset nonces. `app/page.tsx` pushes the store
+  into the viewer; the viewer never reads the store.
+- **Layer groups** (peel order): Skin, Muscles, Arteries, Veins, Nerves, Bones, Ligaments & cartilage, Organs (8 organ systems).
+  Tap: on ↔ faded (14% opacity, not tappable, so taps reach what's behind it). Long-press: isolate (others off). Skin starts off.
+- **Part state texture** channels: R visible · G selected · B opacity · A pickable.
+- **Selecting** a structure selects its concept (all its meshes). Everything else visible drops to 35% opacity but stays tappable,
+  so you can hop between neighbours. The selection turns cyan (`--accent`) with a cyan Fresnel rim.
+- **Translucency without sorting**: per system, opaque parts draw in the normal pass (discarding translucent ones). Translucent
+  parts draw twice on LOD 1: a depth-only pre-pass, then colour with `depthFunc: LessEqual`, so only the nearest translucent
+  surface blends once. Merged meshes can't be depth-sorted, and this avoids the smeared look of unsorted transparency. A system with
+  nothing in a pass skips it (draw calls range from 14 at rest to about 29 with a selection).
+- **Hierarchy navigation**: the breadcrumb, "Part of", "Includes", "Step out" and two-finger double-tap all select a concept
+  along the path. Selecting the root resets the view.
+
+## Camera (`app/camera-rig.ts`)
+
+Replaces OrbitControls. Pose = target + yaw/pitch/distance.
+- Touch: 1 finger orbits (with momentum), 2 fingers pan + pinch-zoom about the fingers, tap selects, double-tap resets,
+  two-finger double-tap steps out one hierarchy level.
+- Mouse: drag orbits, right/shift-drag pans, wheel zooms at the cursor. Trackpad: two-finger scroll pans, pinch zooms
+  (ctrl+wheel; Safari `gesture*` events).
+- Limits (pitch ±83°, distance, target box = body bounds + 15 cm) are rubber-banded: resisted past the edge, then sprung back.
+- `flyTo`: 450 ms ease-out cubic, distance interpolated in log space. `fit` frames a bounding sphere inside the area not covered
+  by panels, and `setViewOffset` shifts the projection centre into that area (the picker composes with that offset).
+
 ## Stats overlay (dev builds)
 
 On by default; `VITE_STATS=0` removes it for release. It shows fps (rendered frames per second), frame-time p50/p95 from rAF
