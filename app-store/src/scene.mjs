@@ -1,6 +1,6 @@
 // In-page scene control: layers per system, selection, camera framing, ghost tints.
-export async function scene(page,{layers={},fallback='off',selected=null,frame=null,yaw=.35,pitch=.05,zoom=1,shift=[0,0,0],tint={},clear=null,alpha={},emissive={},color={}}){
- await page.evaluate(({layers,fallback,selected,frame,yaw,pitch,zoom,shift,tint,clear,alpha,emissive,color})=>{
+export async function scene(page,{layers={},fallback='off',selected=null,frame=null,yaw=.35,pitch=.05,zoom=1,shift=[0,0,0],tint={},clear=null,alpha={},emissive={},color={},rim={}}){
+ await page.evaluate(({layers,fallback,selected,frame,yaw,pitch,zoom,shift,tint,clear,alpha,emissive,color,rim})=>{
   const v=window.__viewer,T=v.camera.constructor;
   for(const [sys,hex] of Object.entries(tint))v.systems.get(sys).ghostColor.material.uniforms.color.value.set(hex);
   if(clear)v.renderer.setClearColor(clear,1);
@@ -12,6 +12,18 @@ export async function scene(page,{layers={},fallback='off',selected=null,frame=n
   v.stateTexture.needsUpdate=true;
   for(const [sys,[hex,k]] of Object.entries(emissive)){const m=v.systems.get(sys).full.material;m.emissive.set(hex);m.emissiveIntensity=k;}
   for(const [sys,hex] of Object.entries(color))v.systems.get(sys).full.material.color.set(hex);
+  // rim: draw a faded system as a pure light outline (fresnel only, dark interior). [hex, strength, falloff]
+  for(const [sys,[hex,k,pw]] of Object.entries(rim)){
+   const m=v.systems.get(sys).ghostColor.material;m.uniforms.color.value.set(hex);
+   m.fragmentShader=`varying vec4 vPart;varying vec3 vNormalV;varying vec3 vViewPos;uniform vec3 color;
+void main(){
+ if(vPart.r<.5||vPart.b>.996)discard;
+ float f=pow(1.-abs(dot(normalize(vNormalV),normalize(vViewPos))),${pw.toFixed(2)});
+ gl_FragColor=vec4(color*(.05+${k.toFixed(2)}*f),clamp(.04+f*1.15,0.,1.));
+ #include <tonemapping_fragment>
+ #include <colorspace_fragment>
+}`;m.needsUpdate=true;
+  }
   v.dirty=true;
   if(frame){
    // frame = [lo,hi]: the slice of the body's height to fit (0 = feet, 1 = top of head).
@@ -19,7 +31,7 @@ export async function scene(page,{layers={},fallback='off',selected=null,frame=n
    const pose=v.rig.fit(box,yaw,pitch);pose.distance*=zoom;pose.target.x+=shift[0];pose.target.y+=shift[1];pose.target.z+=shift[2];
    v.rig.flyTo(pose,1);
   }
- },{layers,fallback,selected,frame,yaw,pitch,zoom,shift,tint,clear,alpha,emissive,color});
+ },{layers,fallback,selected,frame,yaw,pitch,zoom,shift,tint,clear,alpha,emissive,color,rim});
  await new Promise(r=>setTimeout(r,700));
 }
 
