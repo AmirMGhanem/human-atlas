@@ -1,4 +1,5 @@
 import {create} from 'zustand';
+import {persist} from 'zustand/middleware';
 import type {SystemId} from './anatomy';
 import type {AtlasIndex} from './atlas-index';
 
@@ -22,6 +23,23 @@ export const LAYER_GROUPS:LayerGroup[]=[
 ];
 export const groupOfSystem=(s:SystemId)=>LAYER_GROUPS.find(g=>g.systems.includes(s))!.id;
 const DEFAULT_LAYERS:Record<LayerGroupId,LayerState>={skin:'off',muscles:'on',arteries:'on',veins:'on',nerves:'on',bones:'on',joints:'on',organs:'on'};
+
+// ---------- settings (persisted on the device) ----------
+export type BodyId='male'|'female';
+/** high: device pixel ratio up to 3 · balanced: 2 · battery: 1.5 and the lighter LOD always. */
+export type Quality='high'|'balanced'|'battery';
+/** system follows iOS "Reduce Motion"; reduce = instant camera moves, no momentum; full = always animate. */
+export type MotionPref='system'|'reduce'|'full';
+export interface Settings {
+ body:BodyId;
+ /** External genitalia (and, on the female model, nipples/areolae) are hidden unless this is on. */
+ showIntimate:boolean;
+ showLatin:boolean;
+ haptics:boolean;
+ motion:MotionPref;
+ quality:Quality;
+}
+export const DEFAULT_SETTINGS:Settings={body:'male',showIntimate:false,showLatin:true,haptics:true,motion:'system',quality:'balanced'};
 
 /** Selected concept plus the hierarchy path it was reached by (root 'body' → concept). */
 export interface Selection {concept:string;path:string[]}
@@ -50,9 +68,16 @@ interface State {
  setInsets:(insets:Partial<Insets>)=>void;
  frame:()=>void;
  resetView:()=>void;
+
+ settings:Settings;
+ setSetting:<K extends keyof Settings>(key:K,value:Settings[K])=>void;
+ resetSettings:()=>void;
+ /** Which full-screen sheet is open over the viewer, if any. */
+ sheet:'settings'|'credits'|null;
+ openSheet:(sheet:'settings'|'credits'|null)=>void;
 }
 
-export const useAtlas=create<State>((set,get)=>({
+export const useAtlas=create<State>()(persist((set,get)=>({
  index:null,layers:{...DEFAULT_LAYERS},isolated:null,selection:null,insets:{right:0,bottom:0,left:0},frameNonce:0,resetNonce:0,
 
  setIndex:index=>set({index}),
@@ -71,6 +96,20 @@ export const useAtlas=create<State>((set,get)=>({
  setInsets:insets=>set(s=>{const next={...s.insets,...insets};return next.right===s.insets.right&&next.bottom===s.insets.bottom&&next.left===s.insets.left?s:{insets:next};}),
  frame:()=>set(s=>({frameNonce:s.frameNonce+1})),
  resetView:()=>set(s=>({resetNonce:s.resetNonce+1})),
+
+ settings:{...DEFAULT_SETTINGS},
+ // Switching body invalidates the index and selection; page.tsx reloads the atlas for the new body.
+ setSetting:(key,value)=>set(s=>key==='body'&&value!==s.settings.body
+  ?{settings:{...s.settings,[key]:value},index:null,selection:null,isolated:null,layers:{...DEFAULT_LAYERS}}
+  :{settings:{...s.settings,[key]:value}}),
+ resetSettings:()=>set(s=>s.settings.body===DEFAULT_SETTINGS.body?{settings:{...DEFAULT_SETTINGS}}:{settings:{...DEFAULT_SETTINGS},index:null,selection:null,isolated:null,layers:{...DEFAULT_LAYERS}}),
+ sheet:null,
+ openSheet:sheet=>set({sheet}),
+}),{
+ name:'body-explorer.settings',version:1,
+ // Only preferences persist; anatomy state starts fresh each launch.
+ partialize:s=>({settings:s.settings}),
+ merge:(saved,current)=>({...current,settings:{...DEFAULT_SETTINGS,...(saved as {settings?:Partial<Settings>})?.settings}}),
 }));
 
 /** Parts (mesh indices) of the current selection, or null. */
