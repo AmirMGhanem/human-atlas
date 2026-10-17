@@ -30,6 +30,8 @@ export type BodyId='male'|'female';
 export type Quality='high'|'balanced'|'battery';
 /** system follows iOS "Reduce Motion"; reduce = instant camera moves, no momentum; full = always animate. */
 export type MotionPref='system'|'reduce'|'full';
+/** UI language. Hebrew switches the layout to right-to-left. Anatomy names fall back to English where no Hebrew term exists. */
+export type Language='en'|'he';
 export interface Settings {
  body:BodyId;
  /** External genitalia are hidden (and the skin covered over) unless this is on. */
@@ -38,8 +40,9 @@ export interface Settings {
  haptics:boolean;
  motion:MotionPref;
  quality:Quality;
+ language:Language;
 }
-export const DEFAULT_SETTINGS:Settings={body:'male',showIntimate:false,showLatin:true,haptics:true,motion:'system',quality:'balanced'};
+export const DEFAULT_SETTINGS:Settings={body:'male',showIntimate:false,showLatin:true,haptics:true,motion:'system',quality:'balanced',language:'en'};
 
 /** Selected concept plus the hierarchy path it was reached by (root 'body' → concept). */
 export interface Selection {concept:string;path:string[]}

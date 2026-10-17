@@ -12,7 +12,9 @@ export interface AtlasPart {id:string;name:string;concept:string;system:SystemId
  intimate?:'hide'|'mask'|'cover';
  /** Geometry was changed by the pipeline (modesty split), so it isn't a verbatim copy of a source mesh. */
  derived?:boolean}
-export interface AtlasConcept {id:string;name:string;latin?:string;parts:number[]}
+export interface AtlasConcept {id:string;name:string;latin?:string;
+ /** Hebrew name (Wikidata `he` label), when one exists. */
+ he?:string;parts:number[]}
 export interface Atlas {body:'male'|'female';version:string;source:string;triangles:number;systems:AtlasSystem[];parts:AtlasPart[];concepts:AtlasConcept[];
  modesty:{boxes:[number[],number[]][]};
  /** Systems the source data covers only partly (female: skeleton, muscles). */
