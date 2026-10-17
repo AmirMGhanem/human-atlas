@@ -48,6 +48,7 @@
 .lp-row[data-state="off"] .lp-dot{opacity:.25}
 .lp-name{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lp-name-short{display:none}
+.lp-partial{margin-left:auto;padding-left:8px;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted);opacity:.8}
 .lp-show-all{
  margin-top:4px;min-height:44px;width:100%;border:0;border-top:1px solid var(--border);
  background:transparent;color:var(--text-primary);font-size:13px;font-weight:600;border-radius:0 0 10px 10px;

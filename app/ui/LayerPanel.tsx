@@ -7,9 +7,9 @@ import './ui.css';
 const LONG_PRESS_MS=450;
 const MOVE_TOLERANCE_PX=10;
 
-interface RowProps {group:LayerGroup;state:LayerState;isolated:boolean}
+interface RowProps {group:LayerGroup;state:LayerState;isolated:boolean;partial:boolean}
 
-function LayerRow({group,state,isolated}:RowProps){
+function LayerRow({group,state,isolated,partial}:RowProps){
  const toggleLayer=useAtlas(s=>s.toggleLayer);
  const isolateLayer=useAtlas(s=>s.isolateLayer);
  const timer=useRef<number|undefined>(undefined);
@@ -54,7 +54,7 @@ function LayerRow({group,state,isolated}:RowProps){
    style={style}
    data-state={state}
    aria-pressed={state==='on'}
-   aria-label={group.name}
+   aria-label={partial?`${group.name} (partial in this model)`:group.name}
    title="Tap to show or hide · long-press to isolate"
    onPointerDown={onPointerDown}
    onPointerMove={onPointerMove}
@@ -66,6 +66,7 @@ function LayerRow({group,state,isolated}:RowProps){
    <span className="lp-dot" aria-hidden="true"/>
    <span className="lp-name lp-name-full">{group.name}</span>
    <span className="lp-name lp-name-short" aria-hidden="true">{short}</span>
+   {partial&&<span className="lp-partial" aria-hidden="true">partial</span>}
   </button>
  );
 }
@@ -75,6 +76,11 @@ const isWideViewport=()=>typeof window!=='undefined'&&window.innerWidth>=768;
 export default function LayerPanel(){
  const layers=useAtlas(s=>s.layers);
  const isolated=useAtlas(s=>s.isolated);
+ const atlas=useAtlas(s=>s.index?.atlas);
+ // Only offer layers this body has; flag the ones its source data covers partly.
+ const present=new Set(atlas?.parts.map(p=>p.system));
+ const groups=LAYER_GROUPS.filter(g=>g.systems.some(s=>present.has(s)));
+ const isPartial=(g:LayerGroup)=>g.systems.some(s=>atlas?.partial.includes(s));
  const showAllLayers=useAtlas(s=>s.showAllLayers);
  const [open,setOpen]=useState(isWideViewport);
  const listId=useId();
@@ -93,8 +99,8 @@ export default function LayerPanel(){
    </button>
    {open&&(
     <div id={listId} className="lp-stack lp-glass" role="group" aria-label="Anatomical layers">
-     {LAYER_GROUPS.map(g=>(
-      <LayerRow key={g.id} group={g} state={layers[g.id]} isolated={isolated===g.id}/>
+     {groups.map(g=>(
+      <LayerRow key={g.id} group={g} state={layers[g.id]} isolated={isolated===g.id} partial={isPartial(g)}/>
      ))}
      {isolated!==null&&(
       <button type="button" className="lp-show-all" onClick={showAllLayers}>Show all</button>

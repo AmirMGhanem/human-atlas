@@ -104,6 +104,9 @@ function hraFemale(){
  const latinFor=id=>{const src=sourceLatin.get(id);if(!src)return;return src.startsWith('UBERON:')?latinByUberon.get(src):src.startsWith('FMA')?latinByFma.get(src.replace(':','')):undefined;};
  return {
   id:'female',version:manifest.version,
+  // Verified against the source: no skull, ribs, sternum, arm or hand bones; muscles = 12 extra-ocular + both rectus
+  // femoris (+ tendons); no connective tissue at all. The UI labels these layers as partial (empty layers are hidden).
+  partial:['skeletal','muscular'],
   source:'Kristen Browne and Heidi Schlehlein, Human Reference Atlas / HuBMAP, 3D Reference Organ Set for Female v1.5 (2023). CC BY 4.0.',
   parts,concepts,paths,latinFor,
   modesty:{
@@ -283,7 +286,7 @@ async function writeBody(body){
  const intimate=p=>p.intimate??(modesty.hide.test(p.name)?'hide':modesty.mask.test(p.name)?'mask':undefined);
  const conceptList=[...concepts.values()].map(c=>{const latin=latinFor(c.id);return latin?{...c,latin}:c;});
  const atlas={
-  body:body.id,version:body.version,source:body.source,triangles:totalTriangles,systems,
+  body:body.id,version:body.version,source:body.source,triangles:totalTriangles,systems,partial:body.partial??[],
   modesty:{boxes:modesty.boxes},
   parts:parts.map((p,i)=>{const out={id:p.id,name:p.name,concept:p.concept,system:p.system,bounds:p.bounds,path:paths[i]};const m=intimate(p);if(m)out.intimate=m;if(p.derived)out.derived=true;return out;}),
   concepts:conceptList,

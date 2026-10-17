@@ -11,7 +11,7 @@ const MOTION_OPTIONS:{value:MotionPref;label:string}[]=[
 const QUALITY_OPTIONS:{value:Quality;label:string}[]=[
  {value:'battery',label:'Battery'},{value:'balanced',label:'Balanced'},{value:'high',label:'High'},
 ];
-const FEMALE_HELP='The female model comes from a different reference set with fewer bones and muscles; its organs and nervous system are detailed.';
+const FEMALE_HELP='The female model comes from a different open reference set. Its organs, brain and nerves are detailed, but its bones cover only the spine, pelvis and legs, and its muscles only the eyes and front thighs.';
 
 function Section({title,children}:{title:string;children:ReactNode}){
  const id=useId();

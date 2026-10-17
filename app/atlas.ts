@@ -14,7 +14,9 @@ export interface AtlasPart {id:string;name:string;concept:string;system:SystemId
  derived?:boolean}
 export interface AtlasConcept {id:string;name:string;latin?:string;parts:number[]}
 export interface Atlas {body:'male'|'female';version:string;source:string;triangles:number;systems:AtlasSystem[];parts:AtlasPart[];concepts:AtlasConcept[];
- modesty:{boxes:[number[],number[]][]}}
+ modesty:{boxes:[number[],number[]][]};
+ /** Systems the source data covers only partly (female: skeleton, muscles). */
+ partial:SystemId[]}
 
 export interface LoadedSystem {geometry:T.BufferGeometry;matrix:T.Matrix4}
 
