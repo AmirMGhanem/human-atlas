@@ -22,7 +22,9 @@ npm run build && npx cap sync ios
 
 `codemagic.yaml`: `npm ci` → `npm run build` → `cap sync ios` → `xcode-project use-profiles` → `xcode-project build-ipa`
 → publish to TestFlight. Two workflows share those steps: `ios-testflight` (testing build: stats overlay, dev buttons,
-Web Inspector) and `ios-release` (`VITE_STATS=0`, `CAP_RELEASE=1`: none of those; the build to submit).
+Web Inspector; run by hand, usually from `ios-app`) and `ios-release` (`VITE_STATS=0`, `CAP_RELEASE=1`: none of those;
+runs on every push to `main`). Branches: `ios-app` is development, `main` is production; a release is a fast-forward of
+`main` to a tested `ios-app` commit.
 
 - Signing: `ios_signing` (`app_store`) picks identities from Codemagic → Team settings → codemagic.yaml settings →
   Code signing identities: certificate "Apple Distribution: Amir Ghanem (P99B8PPLB7)" (.p12) and its app_store profile for
