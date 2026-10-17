@@ -1,0 +1,25 @@
+Body Explorer is a 3D atlas of the human body that fits in your pocket. Turn it, zoom in, peel it back layer by layer, and tap any structure to learn what it is.
+
+More than 2,000 individually selectable structures, from the largest bones to the smallest nerve branches, all rendered in real time on your iPhone or iPad.
+
+TAP TO LEARN
+Tap any part to see its name, its Latin term, the systems it belongs to and a short explanation of what it does. Step out to the region it sits in, or step in to the parts it contains.
+
+PEEL BACK THE LAYERS
+Skin, muscles, arteries, veins, nerves, bones, ligaments and organs each have their own layer. Fade any of them to glass to see what lies beneath, or long-press a layer to see that system on its own.
+
+MALE AND FEMALE ANATOMY
+Switch between a male and a female model in Settings. Intimate anatomy is hidden by default and can be turned on when you need it.
+
+MADE FOR STUDYING
+• Frame any structure in one tap
+• Latin terms alongside English names
+• Smooth on iPhone and iPad, with a battery-saving graphics mode
+• Respects Reduce Motion
+
+OFFLINE AND PRIVATE
+Everything runs on your device. No account, no ads, no tracking, and nothing is collected. It works on a plane, in a lecture hall or anywhere without a signal.
+
+Built on open scientific data: BodyParts3D (© The Database Center for Life Science, CC BY 4.0) and the Human Reference Atlas 3D Reference Organ Set for Female (HuBMAP, CC BY 4.0). Full credits are in Settings.
+
+Body Explorer is for education and general reference. It is not medical advice.

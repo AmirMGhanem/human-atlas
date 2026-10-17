@@ -1,0 +1,10 @@
+Body Explorer is an offline 3D anatomy atlas for education. No account or sign-in is needed, and the app makes no network requests.
+
+How to try it:
+1. Tap any structure on the body to open its details (name, Latin term, explanation).
+2. Tap the layers button on the left to fade layers; long-press a layer to isolate it.
+3. Open Settings (gear, top right) to switch between the male and female model.
+
+Settings → "Show intimate anatomy" is off by default. When it is on, the untextured anatomical models show external genitalia for educational completeness. It is never shown unless the user turns it on.
+
+The 3D data comes from BodyParts3D (CC BY 4.0) and the HuBMAP Human Reference Atlas (CC BY 4.0); attributions are in Settings → Credits & Licenses.

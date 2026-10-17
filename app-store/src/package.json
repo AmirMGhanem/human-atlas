@@ -1,0 +1,13 @@
+{
+  "name": "body-explorer-store-art",
+  "private": true,
+  "type": "module",
+  "description": "Renders App Store icon and screenshots from the running app. See ../README.md.",
+  "scripts": {
+    "capture": "node capture.mjs renders iphone && node capture.mjs renders ipad && node art.mjs renders",
+    "compose": "node compose.mjs && node icon.mjs"
+  },
+  "dependencies": {
+    "puppeteer-core": "23.11.1"
+  }
+}

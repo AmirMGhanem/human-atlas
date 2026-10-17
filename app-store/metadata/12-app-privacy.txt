@@ -1,0 +1,11 @@
+App Store Connect → App Privacy → Get Started
+
+Do you or your third-party partners collect data from this app?
+→ No, we do not collect data from this app.
+
+Result shown on the store: "Data Not Collected".
+
+Why that's accurate: the app makes no network requests (all anatomy data and
+licences are bundled), has no account, analytics, ads or crash reporting SDK,
+and its privacy manifest declares no tracking and no collected data.
+Settings are stored only on the device.

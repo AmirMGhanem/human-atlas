@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&family=Instrument+Serif&display=block" rel="stylesheet">
+<style>
+ /* Body Explorer store art. One wide strip per device; compose.mjs cuts it into panels. */
+ :root{
+  --ink:#04070a;        /* specimen-case black */
+  --haze:#0b2229;       /* teal haze behind each device */
+  --signal:#5fe3f0;     /* the nerve signal */
+  --bone:#eee7d6;       /* headlines */
+  --mist:#8fa6ac;       /* supporting lines */
+ }
+ *{box-sizing:border-box;margin:0}
+ html,body{background:var(--ink)}
+ body{position:relative;overflow:hidden;-webkit-font-smoothing:antialiased}
+ .strip{position:absolute;inset:0;background:
+   radial-gradient(120% 60% at 50% 115%,#0a1418 0%,transparent 70%),
+   linear-gradient(180deg,#061016 0%,var(--ink) 45%,#030507 100%)}
+ .haze{position:absolute;border-radius:50%;filter:blur(140px);background:var(--haze);opacity:.9}
+ svg.signal{position:absolute;inset:0;overflow:visible}
+ .panel{position:absolute;top:0}
+ .copy{position:absolute;color:var(--bone)}
+ .copy h1{font:400 var(--h)/0.98 'Instrument Serif',serif;letter-spacing:-.012em;white-space:pre-line}
+ .copy p{font:400 var(--p)/1.32 'Instrument Sans',sans-serif;color:var(--mist);margin-top:calc(var(--p)*.9);max-width:var(--pw);text-wrap:pretty}
+ .device{position:absolute;background:linear-gradient(145deg,#2a3236 0%,#0d1215 40%,#05080a 100%);
+   box-shadow:0 0 0 2px rgba(255,255,255,.13) inset,0 60px 140px rgba(0,0,0,.75),0 0 120px rgba(95,227,240,.10)}
+ .device img{position:absolute;display:block;object-fit:cover}
+ .island{position:absolute;background:#000;border-radius:999px}
+ .hero{position:absolute}
+ .hero-glow{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(95,227,240,.28),transparent 65%);filter:blur(30px)}
+</style>
+</head>
+<body>
+<div class="strip"></div>
+<div id="root"></div>
+<script>
+// Called by compose.mjs with the layout for one device.
+window.build=cfg=>{
+ const {W,H,panels,hero,device,type,signalY}=cfg;
+ document.body.style.width=`${W*panels.length}px`;document.body.style.height=`${H}px`;
+ const root=document.getElementById('root');
+ const el=(tag,cls,style,parent=root)=>{const e=document.createElement(tag);if(cls)e.className=cls;for(const [k,v] of Object.entries(style||{}))e.style.setProperty(k.replace(/[A-Z]/g,c=>'-'+c.toLowerCase()),v);parent.appendChild(e);return e;};
+
+ // Teal haze behind every device, and a larger one behind the hero.
+ panels.forEach((p,i)=>{if(p.shot)el('div','haze',{left:`${i*W+W*.1}px`,top:`${H*.42}px`,width:`${W*.8}px`,height:`${H*.5}px`});});
+
+ // The signal: one nerve fibre leaving the hero's brain and crossing every seam.
+ const NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg');svg.setAttribute('class','signal');
+ svg.setAttribute('width',W*panels.length);svg.setAttribute('height',H);root.appendChild(svg);
+ const start=[hero.x+hero.w*hero.brain[0],hero.y+hero.h*hero.brain[1]];
+ const pts=[start,...signalY.map((y,k)=>[(k+1)*W,y])];
+ let d=`M${start[0]},${start[1]} C${start[0]+W*.35},${start[1]+H*.05} ${pts[1][0]-W*.45},${pts[1][1]} ${pts[1][0]},${pts[1][1]}`;
+ for(let k=1;k<pts.length-1;k++){const [x0,y0]=pts[k],[x1,y1]=pts[k+1];d+=` C${x0+W*.5},${y0} ${x1-W*.5},${y1} ${x1},${y1}`;}
+ const last=pts[pts.length-1];d+=` C${last[0]+W*.5},${last[1]} ${last[0]+W*.6},${last[1]-H*.08} ${last[0]+W*1.05},${last[1]-H*.12}`;
+ const defs=document.createElementNS(NS,'defs');defs.innerHTML=`<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="${W*.012}"/></filter>
+  <linearGradient id="fade" x1="0" x2="1"><stop offset="0" stop-color="#5fe3f0" stop-opacity=".9"/><stop offset=".85" stop-color="#5fe3f0" stop-opacity=".75"/><stop offset="1" stop-color="#5fe3f0" stop-opacity="0"/></linearGradient>`;svg.appendChild(defs);
+ const path=(w,op,filter)=>{const p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('fill','none');p.setAttribute('stroke','url(#fade)');p.setAttribute('stroke-width',w);p.setAttribute('stroke-linecap','round');p.setAttribute('opacity',op);if(filter)p.setAttribute('filter',filter);svg.appendChild(p);};
+ path(W*.03,.55,'url(#glow)');path(W*.0045,1);
+ // A synapse where the fibre crosses each seam.
+ pts.slice(1).forEach(([x,y])=>{for(const [r,op,f] of [[W*.03,.5,'url(#glow)'],[W*.008,1,null]]){const c=document.createElementNS(NS,'circle');c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',r);c.setAttribute('fill','#c9f7fc');c.setAttribute('opacity',op);if(f)c.setAttribute('filter',f);svg.appendChild(c);}});
+
+ // Hero render, spilling across the first seam.
+ el('div','hero-glow',{left:`${hero.x+hero.w*.15}px`,top:`${hero.y}px`,width:`${hero.w*.7}px`,height:`${hero.w*.7}px`});
+ const hi=el('img','hero',{left:`${hero.x}px`,top:`${hero.y}px`,width:`${hero.w}px`,height:`${hero.h}px`});hi.src=hero.src;
+ // Fade the hero out at the bottom edge.
+ el('div','',{position:'absolute',left:`${hero.x}px`,top:`${H-H*.16}px`,width:`${hero.w}px`,height:`${H*.16}px`,background:'linear-gradient(transparent,var(--ink))'});
+
+ panels.forEach((p,i)=>{
+  const x0=i*W;
+  if(p.shot){
+   const d=device,frame=el('div','device',{left:`${x0+(W-d.w)/2+(p.dx||0)}px`,top:`${d.top}px`,width:`${d.w}px`,height:`${d.h}px`,borderRadius:`${d.r}px`});
+   const img=el('img','',{left:`${d.b}px`,top:`${d.b}px`,width:`${d.w-2*d.b}px`,height:`${d.h-2*d.b}px`,borderRadius:`${d.r-d.b}px`},frame);img.src=p.shot;
+   if(d.island)el('div','island',{left:`${(d.w-d.island[0])/2}px`,top:`${d.b+d.island[2]}px`,width:`${d.island[0]}px`,height:`${d.island[1]}px`},frame);
+  }
+  const c=el('div','copy',{left:`${x0+type.x}px`,top:`${type.y}px`,width:`${W-2*type.x}px`,'--h':`${type.h}px`,'--p':`${type.p}px`,'--pw':`${type.pw}px`});
+  el('h1','',{},c).textContent=p.title;el('p','',{},c).textContent=p.sub;
+ });
+};
+</script>
+</body>
+</html>

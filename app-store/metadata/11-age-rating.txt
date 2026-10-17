@@ -1,0 +1,25 @@
+App Store Connect → App Information → Age Rating → Edit
+
+Suggested answers (your call; check against Apple's current wording):
+
+Parental controls / age assurance ............ No
+Unrestricted web access ...................... No
+User-generated content / messaging / chat .... No
+Advertising .................................. No
+Gambling, contests, loot boxes ............... None / No
+Violence (cartoon, realistic, graphic) ....... None
+Horror / fear themes ......................... None
+Profanity or crude humor ..................... None
+Alcohol, tobacco, drugs ...................... None
+Mature or suggestive themes .................. None
+Sexual content or nudity ..................... None
+Medical or treatment information ............. Infrequent/Mild
+  (the app is an anatomy reference, not treatment advice; answering
+   Infrequent/Mild is the conservative choice)
+
+Decide before submitting: the male and female models include external
+genitalia, hidden by default behind Settings → Show intimate anatomy. They
+are untextured anatomical models, not photographs. If you want zero review
+risk, answer "Nudity: Infrequent/Mild" instead of None; that may raise the
+rating. Mention the toggle in the review notes either way (already in
+13-review-notes.txt).
