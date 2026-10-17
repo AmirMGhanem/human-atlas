@@ -11,10 +11,10 @@ workflows:
     environment:
       node: 22
       xcode: latest
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: com.burrowcode.bodyexplorer
+      groups:
+        - ios_signing # CERTIFICATE_PRIVATE_KEY: RSA key of the Apple Distribution certificate
       vars:
+        BUNDLE_ID: com.burrowcode.bodyexplorer
         XCODE_PROJECT: ios/App/App.xcodeproj
         XCODE_SCHEME: App
         APP_STORE_APPLE_ID: 6823626044
@@ -25,6 +25,11 @@ workflows:
         script: npm run build
       - name: Sync Capacitor iOS
         script: npx cap sync ios
+      - name: Fetch or create signing files
+        script: |
+          keychain initialize
+          app-store-connect fetch-signing-files "$BUNDLE_ID" --type IOS_APP_STORE --create
+          keychain add-certificates
       - name: Apply signing profiles
         script: xcode-project use-profiles --project "$XCODE_PROJECT"
       - name: Build IPA
