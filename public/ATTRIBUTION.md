@@ -32,6 +32,10 @@ The female model is: Kristen Browne and Heidi Schlehlein, Human Reference Atlas 
 
 Adaptations: translated native meter/Y-up coordinates onto the stage; coincident vertices welded and source normals averaged; geometry simplified with a 0.2% per-structure relative error bound (plus a lighter motion level of detail); normals quantized; merged per display system with a per-vertex structure index; quantized and compressed with meshoptimizer. Colors and display systems are curated for this app. 880 of the 888 source meshes are represented. The eight placenta and umbilical structures (pregnancy reference) are not included. Unnamed source meshes are labelled from their source identifiers. This is a reference assembly with partial skeleton and muscle coverage, not a single-person scan.
 
+## Female model: structures borrowed from BodyParts3D
+
+The HRA female set has no skull, ribs, sternum, shoulder girdle, arm, hand or foot bones, almost no muscles and no ligaments. In the female model these 688 structures are taken from BodyParts3D 4.0 (male, CC BY 4.0, credited above) and fitted to the female body with a thin-plate-spline warp anchored on structures both models share (vertebrae, pelvis, leg bones, organs, skin outline), plus a rotation of each arm to her pose. The female dataset's own spine, pelvis, legs, organs and nervous system are kept. Borrowed structures are labelled in the app. Their shape is male anatomy and is an approximation in this body.
+
 ## Modesty adaptation (both models)
 
 By default the app hides external genitalia. For this, the skin mesh of each model is split: the external-genital region becomes its own structure, and a smooth generated surface spanning the opening is shown in its place. The original geometry is kept unchanged and shown when the user turns on "Show intimate anatomy".

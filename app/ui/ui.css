@@ -161,3 +161,6 @@
  .lp-name-short{display:inline;font-size:11px}
  .lp-row{font-size:11px;gap:8px}
 }
+
+/* Female model: structure borrowed from the male reference. */
+.id-borrowed{margin:10px 0 0;padding:8px 10px;font-size:12px;line-height:1.45;color:var(--text-muted);background:rgba(77,208,225,.07);border:1px solid rgba(77,208,225,.22);border-radius:10px}

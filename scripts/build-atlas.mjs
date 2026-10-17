@@ -19,6 +19,7 @@ const SYSTEM_NAMES={skeletal:'Skeleton',muscular:'Muscles',cardiac:'Heart',senso
 const readChunks=(dir,manifest)=>manifest.chunks.map(c=>{const b=fs.readFileSync(at(dir+c.url.split('/').pop()));if(b.length!==c.bytes)throw new Error('chunk size mismatch '+c.url);return b;});
 const latinTable=file=>new Map(fs.readFileSync(at('data/wikidata/'+file),'utf8').trim().split('\n').slice(1).map(l=>{const [id,,latin]=l.split('\t');return [id,latin];}));
 const latinByFma=latinTable('fma-latin.tsv'),latinByUberon=latinTable('uberon-latin.tsv');
+const heByFma=latinTable('fma-he.tsv'),heByUberon=latinTable('uberon-he.tsv');
 
 // Modesty: `hide` parts are external genitalia (and nipples on the female model), removed entirely unless the user
 // opts in. `mask` parts are single meshes that pass through that region (skin, urethra, ducts, vessels): only their
@@ -37,14 +38,16 @@ function bodyParts3D(){
  // TA terms are unsided; BodyParts3D meshes are usually "left X"/"right X" under an IS-A parent "X".
  // Inherit the parent's Latin only across such pure laterality steps, never across a real generalisation.
  const unsided=n=>n.replace(/\b(left|right) /g,'').trim();
- const latinFor=id=>{
+ // Hebrew works the same way, but a term inherited across a laterality step gets its side back: (שמאל) / (ימין).
+ const termFor=(table,sided)=>id=>{
   let c=id;
   for(let hops=0;hops<4&&c;hops++){
-   if(latinByFma.has(c))return latinByFma.get(c);
+   if(table.has(c)){const term=table.get(c);if(c===id||!sided)return term;const side=/^left /i.test(isa.name.get(id)??'')?'שמאל':/^right /i.test(isa.name.get(id)??'')?'ימין':'';return side?`${term} (${side})`:term;}
    const p=isa.parent.get(c);if(!p||unsided(isa.name.get(c)??'')!==isa.name.get(p))return undefined;
    c=p;
   }
  };
+ const latinFor=termFor(latinByFma,false),heFor=termFor(heByFma,true);
 
  // Breadcrumb root → leaf as concept ids. PART-OF (spatial) when the concept is in that tree; otherwise
  // Body → System → the specific tail of its IS-A chain (ancestors spanning one system and at most half of it).
@@ -62,7 +65,7 @@ function bodyParts3D(){
  return {
   id:'male',version:manifest.version,
   source:'BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International',
-  parts,concepts,paths,latinFor,
+  parts,concepts,paths,latinFor,heFor,
   modesty:{
    // Pubic hair is a ring around the base of the penis: with the penis hidden its hole shows, so it goes too.
    hide:/^(corpus cavernosum of penis|corpus spongiosum of penis|glans penis|(left |right )?(testis|epididymis)|.*dorsal (artery|vein) of penis|pubic hair)$/i,
@@ -101,14 +104,15 @@ function hraFemale(){
  const concepts=new Map(raw.map(c=>[c.id==='HRA:VH_F'?'body':c.id,{...c,id:c.id==='HRA:VH_F'?'body':c.id}]));
  const paths=parts.map(p=>{const out=[p.concept];let c=p.concept;while(parent.has(c)){c=parent.get(c);out.push(c==='HRA:VH_F'?'body':c);}return out.reverse();});
  const sourceLatin=new Map(parts.map(p=>[p.concept,p.sourceConcept]));
- const latinFor=id=>{const src=sourceLatin.get(id);if(!src)return;return src.startsWith('UBERON:')?latinByUberon.get(src):src.startsWith('FMA')?latinByFma.get(src.replace(':','')):undefined;};
+ const termFor=(uberon,fma)=>id=>{const src=sourceLatin.get(id);if(!src)return;return src.startsWith('UBERON:')?uberon.get(src):src.startsWith('FMA')?fma.get(src.replace(':','')):undefined;};
+ const latinFor=termFor(latinByUberon,latinByFma),heFor=termFor(heByUberon,heByFma);
  return {
   id:'female',version:manifest.version,
   // Verified against the source: no skull, ribs, sternum, arm or hand bones; muscles = 12 extra-ocular + both rectus
   // femoris (+ tendons); no connective tissue at all. The UI labels these layers as partial (empty layers are hidden).
   partial:['skeletal','muscular'],
   source:'Kristen Browne and Heidi Schlehlein, Human Reference Atlas / HuBMAP, 3D Reference Organ Set for Female v1.5 (2023). CC BY 4.0.',
-  parts,concepts,paths,latinFor,
+  parts,concepts,paths,latinFor,heFor,
   modesty:{
    // The HRA female set has no separate external genital meshes: the vulva is part of the skin (split below).
    hide:/^$/,
@@ -225,6 +229,137 @@ function nearCloud(points,cell){ // kept for future modesty selections
  return (p,r)=>{const [x,y,z]=p;for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++)for(let dz=-1;dz<=1;dz++){const b=grid.get(`${Math.floor(x/cell)+dx},${Math.floor(y/cell)+dy},${Math.floor(z/cell)+dz}`);if(b)for(const i of b)if(Math.hypot(points[i]-x,points[i+1]-y,points[i+2]-z)<=r)return true;}return false;};
 }
 
+// ---------- female hybrid: borrow the male skeleton, muscles and ligaments, warped into the female body ----------
+// The HRA female set has no skull, ribs, sternum, shoulder girdle, arm, hand or foot bones, almost no muscles and no
+// ligaments. Those come from BodyParts3D (male), fitted to the female body with a thin-plate-spline warp driven by
+// structures both models share (vertebrae, pelvis, leg bones, organs, skin crown and feet) plus a rigid rotation per
+// arm (her arms are held further from the body). Every borrowed part is flagged `borrowed` and labelled in the app.
+const ORD=['first','second','third','fourth','fifth','sixth','seventh','eighth','ninth','tenth','eleventh','twelfth'];
+/** Comparable name across the two datasets: lower case, no side, vertebrae as "<region> vertebra <n>". */
+function norm(name){
+ let n=name.toLowerCase().replace(/^(left|right) /,'').replace(/^mammalian /,'').replace(/^vh_f_/,'').trim();
+ const v=n.match(/^(\w+) (cervical|thoracic|lumbar) vertebra$/);if(v&&ORD.includes(v[1]))n=`${v[2]} vertebra ${ORD.indexOf(v[1])+1}`;
+ if(n==='atlas')n='cervical vertebra 1';if(n==='axis')n='cervical vertebra 2';if(n==='sacrum'||n==='fused sacrum')n='sacrum';
+ return n;
+}
+const sideOf=(name,b)=>/^left\b|_l$/i.test(name)?'L':/^right\b|_r$/i.test(name)?'R':Math.abs(b[0][0]+b[1][0])<.02?'':((b[0][0]+b[1][0])>0?'L':'R');
+const centre=b=>[0,1,2].map(i=>(b[0][i]+b[1][i])/2);
+// Thin-plate spline in 3D (kernel r) with a little smoothing; solves the (N+4)² system once per axis.
+function tps(src,dst,lambda=1e-4){
+ const N=src.length,M=N+4,A=Array.from({length:M},()=>new Float64Array(M));
+ for(let i=0;i<N;i++){for(let j=0;j<N;j++)A[i][j]=Math.hypot(src[i][0]-src[j][0],src[i][1]-src[j][1],src[i][2]-src[j][2])+(i===j?lambda:0);A[i][N]=A[N][i]=1;for(let k=0;k<3;k++)A[i][N+1+k]=A[N+1+k][i]=src[i][k];}
+ const solve=b=>{const a=A.map(r=>Float64Array.from(r)),x=Float64Array.from(b);
+  for(let c=0;c<M;c++){let p=c;for(let r=c+1;r<M;r++)if(Math.abs(a[r][c])>Math.abs(a[p][c]))p=r;[a[c],a[p]]=[a[p],a[c]];[x[c],x[p]]=[x[p],x[c]];
+   for(let r=c+1;r<M;r++){const f=a[r][c]/a[c][c];if(!f)continue;for(let k=c;k<M;k++)a[r][k]-=f*a[c][k];x[r]-=f*x[c];}}
+  for(let r=M-1;r>=0;r--){let t=x[r];for(let k=r+1;k<M;k++)t-=a[r][k]*x[k];x[r]=t/a[r][r];}return x;};
+ const W=[0,1,2].map(k=>solve([...dst.map(d=>d[k]),0,0,0,0]));
+ return (x,y,z)=>{const out=[0,0,0];for(let k=0;k<3;k++){const w=W[k];let v=w[N]+w[N+1]*x+w[N+2]*y+w[N+3]*z;for(let i=0;i<N;i++)v+=w[i]*Math.hypot(x-src[i][0],y-src[i][1],z-src[i][2]);out[k]=v;}return out;};
+}
+const sub=(a,b)=>a.map((x,i)=>x-b[i]),add3=(a,b)=>a.map((x,i)=>x+b[i]),mul=(a,s)=>a.map(x=>x*s),dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
+const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],unit=a=>mul(a,1/(Math.hypot(...a)||1));
+/** Rotation matrix (rows) taking unit vector a onto unit vector b (Rodrigues). */
+function rotationBetween(a,b){const v=cross(a,b),c=dot(a,b),k=1/(1+c);return [[v[0]*v[0]*k+c,v[0]*v[1]*k-v[2],v[0]*v[2]*k+v[1]],[v[1]*v[0]*k+v[2],v[1]*v[1]*k+c,v[1]*v[2]*k-v[0]],[v[2]*v[0]*k-v[1],v[2]*v[1]*k+v[0],v[2]*v[2]*k+c]];}
+const apply=(R,v)=>R.map(r=>dot(r,v));
+
+function borrowIntoFemale(female,male){
+ const fName=p=>p.name,fKey=p=>`${norm(fName(p))}|${sideOf(fName(p),p.bounds)}`,mKey=p=>`${norm(p.name)}|${sideOf(p.name,p.bounds)}`;
+ const group=(parts,key)=>{const m=new Map();for(const p of parts){const k=key(p);if(!m.has(k))m.set(k,[]);m.get(k).push(p);}return m;};
+ const F=group(female.parts,fKey),Mm=group(male.parts,mKey);
+ const pairs=[];const pair=(a,b)=>pairs.push([a,b]);
+ const unionBounds=ps=>[[0,1,2].map(i=>Math.min(...ps.map(p=>p.bounds[0][i]))),[0,1,2].map(i=>Math.max(...ps.map(p=>p.bounds[1][i])))];
+ const pairPart=(mk,fk,ends=false)=>{const m=Mm.get(mk),f=F.get(fk);if(!m||!f||m.length!==1)return false;const mb=m[0].bounds,fb=unionBounds(f);
+  pair(centre(mb),centre(fb));if(ends){const mc=centre(mb),fc=centre(fb);pair([mc[0],mb[0][1],mc[2]],[fc[0],fb[0][1],fc[2]]);pair([mc[0],mb[1][1],mc[2]],[fc[0],fb[1][1],fc[2]]);}return true;};
+ // Spine, pelvis and legs.
+ for(const [region,n] of [['cervical',7],['thoracic',12],['lumbar',5]])for(let i=1;i<=n;i++)pairPart(`${region} vertebra ${i}|`,`${region} vertebra ${i}|`);
+ pairPart('sacrum|','sacrum|');pairPart('coccyx|','coccyx|');
+ for(const side of ['L','R']){
+  for(const bone of ['femur','tibia','fibula'])pairPart(`${bone}|${side}`,`${bone}|${side}`,true);
+  pairPart(`patella|${side}`,`patella|${side}`);
+  const hip=Mm.get(`hip bone|${side}`),fhip=female.parts.filter(p=>/_(ilium|ischium|pubis)_compact_bone_/i.test(p.id)&&p.id.endsWith('_'+side));
+  if(hip?.length===1&&fhip.length){const mb=hip[0].bounds,fb=unionBounds(fhip);pair(centre(mb),centre(fb));pair(mb[0],fb[0]);pair(mb[1],fb[1]);}
+ }
+ // Organs both sets contain once per side.
+ for(const name of ['trachea','arch of aorta','ascending aorta','gallbladder','rectum','cricoid cartilage','thyroid cartilage','transverse colon','ascending colon','descending colon','pulmonary trunk','main bronchus','lens','cornea','ureter'])
+  for(const side of ['','L','R'])pairPart(`${name}|${side}`,`${name}|${side}`);
+ // Skin: crown, and per foot the toe tip and heel (she has no foot bones).
+ const skinVerts=p=>sourceArrays(p).position;
+ const mSkin=skinVerts(male.parts.find(p=>p.name==='Skin')),fSkin=skinVerts(female.parts.find(p=>p.name==='skin of body'));
+ const extreme=(pos,filter,score)=>{let best=null,bs=-Infinity;for(let i=0;i<pos.length;i+=3){const v=[pos[i],pos[i+1],pos[i+2]];if(!filter(v))continue;const sc=score(v);if(sc>bs){bs=sc;best=v;}}return best;};
+ pair(extreme(mSkin,()=>true,v=>v[1]),extreme(fSkin,()=>true,v=>v[1]));
+ for(const sgn of [1,-1]){
+  const foot=v=>v[1]<.07&&Math.sign(v[0])===sgn;
+  pair(extreme(mSkin,foot,v=>v[2]),extreme(fSkin,foot,v=>v[2]));pair(extreme(mSkin,foot,v=>-v[2]),extreme(fSkin,foot,v=>-v[2]));
+ }
+ // Leg surfaces: per side, the skin's outer/inner/front/back extremes on horizontal slices of thigh and calf. Without
+ // these, soft tissue far from the bone axis (iliotibial tract, thigh muscles) is extrapolated outward to her wider hips.
+ // |x| < .22 keeps his hands (beside the thighs) out of the slices.
+ // The slice's torso/leg extent ends at the first gap ≥ 2 cm in |x| beyond 6 cm from the midline, which separates the
+ // body from an arm or hand beside it (his hands hang by his thighs; her arms are held out).
+ const bodyLimit=(pos,h,sgn)=>{const xs=[];for(let i=0;i<pos.length;i+=3)if(Math.abs(pos[i+1]-h)<.008&&Math.sign(pos[i])===sgn)xs.push(Math.abs(pos[i]));xs.sort((a,b)=>a-b);
+  for(let i=1;i<xs.length;i++)if(xs[i-1]>.06&&xs[i]-xs[i-1]>=.02)return xs[i-1]+.005;return Infinity;};
+ for(const sgn of [1,-1])for(const h of [.18,.3,.45,.55,.65,.75,.85,.95]){
+  const hip=h>.7,slice=lim=>v=>Math.abs(v[1]-h)<.008&&Math.sign(v[0])===sgn&&Math.abs(v[0])<lim&&Math.abs(v[0])>.01;
+  const ml=bodyLimit(mSkin,h,sgn),fl=bodyLimit(fSkin,h,sgn);
+  for(const score of hip?[v=>sgn*v[0],v=>v[2],v=>-v[2]]:[v=>sgn*v[0],v=>-sgn*v[0],v=>v[2],v=>-v[2]]){const m=extreme(mSkin,slice(ml),score),f=extreme(fSkin,slice(fl),score);if(m&&f)pair(m,f);}
+ }
+ const torsoPairs=pairs.length,torso=tps(pairs.map(p=>p[0]),pairs.map(p=>p[1]));
+ // Arms: rigid rotation + scale about the shoulder joint, expressed as landmarks so the spline blends it into the torso.
+ const armInfo=[];
+ for(const [side,sgn] of [['L',1],['R',-1]]){
+  const hum=Mm.get(`humerus|${side}`)?.[0];if(!hum)throw new Error('male humerus missing');
+  const hand=male.parts.filter(p=>/distal phalanx of (left|right) middle finger/i.test(p.name)&&sideOf(p.name,p.bounds)===side)[0];
+  const Sm=[centre(hum.bounds)[0],hum.bounds[1][1]-.02,centre(hum.bounds)[2]];
+  const tipM=hand?[centre(hand.bounds)[0],hand.bounds[0][1],centre(hand.bounds)[2]]:null;if(!tipM)throw new Error('male middle fingertip missing');
+  const am=unit(sub(tipM,Sm)),Lm=Math.hypot(...sub(tipM,Sm));
+  const Sf=torso(...Sm);
+  // Her arm: skin vertices lateral of the shoulder and below it; principal axis by power iteration.
+  const pts=[];for(let i=0;i<fSkin.length;i+=3){const v=[fSkin[i],fSkin[i+1],fSkin[i+2]];if(sgn*v[0]>sgn*Sf[0]+.045&&v[1]<Sf[1]&&v[1]>.55)pts.push(v);}
+  const mean=[0,1,2].map(k=>pts.reduce((t,v)=>t+v[k],0)/pts.length);
+  let ax=unit(sub(mean,Sf));for(let it=0;it<30;it++){const n=[0,0,0];for(const v of pts){const d=sub(v,mean),pr=dot(d,ax);for(let k=0;k<3;k++)n[k]+=d[k]*pr;}ax=unit(n);}
+  if(dot(ax,sub(mean,Sf))<0)ax=mul(ax,-1);
+  const Lf=Math.max(...pts.map(v=>dot(sub(v,Sf),ax))),scale=Lf/Lm,R=rotationBetween(am,ax);
+  const u=unit(cross(am,[0,0,1])),w=unit(cross(am,u));
+  const mapArm=P=>add3(Sf,mul(apply(R,sub(P,Sm)),scale));
+  pairs.push([Sm,Sf]);
+  for(const t of [.12,.25,.4,.55,.7,.85,1]){const c=add3(Sm,mul(am,t*Lm));for(const off of [[0,0],[1,0],[-1,0],[0,1],[0,-1]]){const P=add3(c,add3(mul(u,off[0]*.035),mul(w,off[1]*.035)));pairs.push([P,mapArm(P)]);}}
+  armInfo.push({side,scale:+scale.toFixed(3),angleDeg:+(Math.acos(Math.min(1,dot(am,ax)))*180/Math.PI).toFixed(1)});
+ }
+ const warp=tps(pairs.map(p=>p[0]),pairs.map(p=>p[1]));
+
+ // What to borrow: male skeleton, muscles and ligaments, minus anything she has and male-specific perineal muscles.
+ const has=new Set(female.parts.map(fKey));
+ for(const side of ['L','R'])if(female.parts.some(p=>/_(ilium|ischium|pubis)_/i.test(p.id)&&p.id.endsWith('_'+side)))has.add(`hip bone|${side}`);
+ const MALE_ONLY=/(perineal|bulbospongiosus|ischiocavernosus|cremaster|urethra)/i;
+ const take=male.parts.map((p,i)=>[p,i]).filter(([p])=>['skeletal','muscular','connective'].includes(p.system)&&!has.has(mKey(p))&&!MALE_ONLY.test(p.name));
+ // 1. Warp every borrowed vertex.
+ const warped=take.map(([p])=>{const {position}=sourceArrays(p),pos=new Float32Array(position.length);
+  for(let v=0;v<position.length;v+=3){const o=warp(position[v],position[v+1],position[v+2]);pos[v]=o[0];pos[v+1]=o[1];pos[v+2]=o[2];}return pos;});
+ const conceptParts=new Map();
+ take.forEach(([p,i],n)=>{
+  const {normal,index}=sourceArrays(p),pos=warped[n];
+  // 2. Recompute normals on the deformed surface; keep the source orientation.
+  const acc=new Float32Array(pos.length);
+  for(let t=0;t<index.length;t+=3){const [a,b,c]=[index[t]*3,index[t+1]*3,index[t+2]*3];const nn=cross([pos[b]-pos[a],pos[b+1]-pos[a+1],pos[b+2]-pos[a+2]],[pos[c]-pos[a],pos[c+1]-pos[a+1],pos[c+2]-pos[a+2]]);for(const v of [a,b,c])for(let k=0;k<3;k++)acc[v+k]+=nn[k];}
+  const nor=new Int16Array(normal.length);
+  for(let v=0;v<pos.length;v+=3){let nn=[acc[v],acc[v+1],acc[v+2]];if(dot(nn,[normal[v],normal[v+1],normal[v+2]])<0)nn=mul(nn,-1);nn=unit(nn);for(let k=0;k<3;k++)nor[v+k]=Math.round(nn[k]*32767);}
+  const k=female.parts.length;
+  female.parts.push({...p,geometry:{position:pos,normal:nor,index},bounds:boundsOf(pos),borrowed:true,derived:true});
+  const path=['body',...male.paths[i].slice(1)];female.paths.push(path);
+  for(const id of path.slice(1)){if(!conceptParts.has(id))conceptParts.set(id,[]);conceptParts.get(id).push(k);}
+ });
+ for(const [id,list] of conceptParts){
+  const existing=female.concepts.get(id);
+  if(existing)existing.parts=[...new Set([...existing.parts,...list])].sort((a,b)=>a-b);
+  else female.concepts.set(id,{id,name:male.concepts.get(id)?.name??id,parts:list});
+ }
+ female.concepts.get('body').parts=female.parts.map((_,i)=>i);
+ const femaleLatin=female.latinFor,femaleHe=female.heFor;
+ female.latinFor=id=>femaleLatin(id)??(conceptParts.has(id)?male.latinFor(id):undefined);
+ female.heFor=id=>femaleHe(id)??(conceptParts.has(id)?male.heFor(id):undefined);
+ female.partial=[];
+ return {borrowed:take.length,landmarks:pairs.length,torsoLandmarks:torsoPairs,arms:armInfo.map(({side,scale,angleDeg})=>({side,scale,angleDeg}))};
+}
+
 function groupBySystem(parts){const m=new Map();parts.forEach((p,i)=>{if(!m.has(p.system))m.set(p.system,[]);m.get(p.system).push(i);});return m;}
 
 // ---------- geometry ----------
@@ -284,21 +419,23 @@ async function writeBody(body){
   systems.push({id:system,name:SYSTEM_NAMES[system],file:full.file,parts:list.length,triangles:full.triangles,vertices:full.vertices,bytes:full.bytes,lod1:low});
  }
  const intimate=p=>p.intimate??(modesty.hide.test(p.name)?'hide':modesty.mask.test(p.name)?'mask':undefined);
- const conceptList=[...concepts.values()].map(c=>{const latin=latinFor(c.id);return latin?{...c,latin}:c;});
+ const conceptList=[...concepts.values()].map(c=>{const out={...c},latin=latinFor(c.id),he=body.heFor(c.id);if(latin)out.latin=latin;if(he)out.he=he;return out;});
  const atlas={
   body:body.id,version:body.version,source:body.source,triangles:totalTriangles,systems,partial:body.partial??[],
   modesty:{boxes:modesty.boxes},
-  parts:parts.map((p,i)=>{const out={id:p.id,name:p.name,concept:p.concept,system:p.system,bounds:p.bounds,path:paths[i]};const m=intimate(p);if(m)out.intimate=m;if(p.derived)out.derived=true;return out;}),
+  parts:parts.map((p,i)=>{const out={id:p.id,name:p.name,concept:p.concept,system:p.system,bounds:p.bounds,path:paths[i]};const m=intimate(p);if(m)out.intimate=m;if(p.derived)out.derived=true;if(p.borrowed)out.borrowed=true;return out;}),
   concepts:conceptList,
  };
  fs.writeFileSync(new URL('atlas.json',OUT),JSON.stringify(atlas));
  const count=k=>atlas.parts.filter(p=>p.intimate===k).length;
- console.log(JSON.stringify({body:body.id,covers:count('cover'),systems:systems.length,parts:parts.length,concepts:conceptList.length,triangles:totalTriangles,lod1Triangles:lodTriangles,glbMB:+(totalBytes/1e6).toFixed(2),metaMB:+(fs.statSync(new URL('atlas.json',OUT)).size/1e6).toFixed(2),latinParts:parts.filter(p=>latinFor(p.concept)).length,hidden:count('hide'),masked:count('mask')}));
+ console.log(JSON.stringify({body:body.id,covers:count('cover'),systems:systems.length,parts:parts.length,concepts:conceptList.length,triangles:totalTriangles,lod1Triangles:lodTriangles,glbMB:+(totalBytes/1e6).toFixed(2),metaMB:+(fs.statSync(new URL('atlas.json',OUT)).size/1e6).toFixed(2),latinParts:parts.filter(p=>latinFor(p.concept)).length,hebrewParts:parts.filter(p=>body.heFor(p.concept)).length,hidden:count('hide'),masked:count('mask')}));
  return atlas;
 }
 
 fs.rmSync(at('public/atlas/'),{recursive:true,force:true});
-const bodies=[bodyParts3D(),hraFemale()];
+const male=bodyParts3D(),female=hraFemale();
+console.log('female: borrowed from male',JSON.stringify(borrowIntoFemale(female,male)));
+const bodies=[male,female];
 for(const body of bodies)await writeBody(body);
 // Index of bodies for the app's model switcher.
 fs.writeFileSync(at('public/atlas/bodies.json'),JSON.stringify(bodies.map(b=>({id:b.id,file:`atlas/${b.id}/atlas.json`,source:b.source}))));

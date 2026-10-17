@@ -28,6 +28,7 @@ const EN = {
  'drawer.about': 'About',
  'drawer.systemFallback': 'system',
  'drawer.partOf': 'Part of',
+ 'drawer.borrowed': 'From the male reference model, fitted to this body: the open female dataset does not include this structure.',
  'drawer.includes': 'Includes',
  'drawer.more': '+{n} more',
  'drawer.frame': 'Frame',
@@ -44,7 +45,7 @@ const EN = {
  'settings.model': 'Model',
  'settings.male': 'Male',
  'settings.female': 'Female',
- 'settings.femaleHelp': 'The female model comes from a different open reference set. Its organs, brain and nerves are detailed, but its bones cover only the spine, pelvis and legs, and its muscles only the eyes and front thighs.',
+ 'settings.femaleHelp': 'The female model comes from a different open reference set (organs, brain, nerves, spine, pelvis and legs). Its skull, ribs, arms, hands, feet, muscles and ligaments are borrowed from the male model and fitted to her body, and are labelled as such.',
  'settings.anatomy': 'Anatomy',
  'settings.intimate': 'Show intimate anatomy',
  'settings.intimateDesc': 'External genitalia. Hidden by default.',
@@ -102,6 +103,7 @@ const HE: Record<Key, string> = {
  'drawer.about': 'אודות',
  'drawer.systemFallback': 'המערכת',
  'drawer.partOf': 'חלק מ',
+ 'drawer.borrowed': 'מבנה זה נלקח מדגם הייחוס הגברי והותאם לגוף זה, משום שמאגר הנתונים הנשי הפתוח אינו כולל אותו.',
  'drawer.includes': 'כולל',
  'drawer.more': '+{n} נוספים',
  'drawer.frame': 'מיקוד',
@@ -118,7 +120,7 @@ const HE: Record<Key, string> = {
  'settings.model': 'דגם',
  'settings.male': 'זכר',
  'settings.female': 'נקבה',
- 'settings.femaleHelp': 'דגם הנקבה מגיע ממאגר ייחוס פתוח אחר. האיברים, המוח והעצבים שלו מפורטים, אך עצמותיו מכסות רק את עמוד השדרה, האגן והרגליים, ושריריו מכסים רק את העיניים ואת הירכיים הקדמיות.',
+ 'settings.femaleHelp': 'דגם הנקבה מבוסס על מאגר ייחוס פתוח אחר (איברים, מוח, עצבים, עמוד שדרה, אגן ורגליים). הגולגולת, הצלעות, הזרועות, כפות הידיים והרגליים, השרירים והרצועות נלקחו מהדגם הגברי והותאמו לגופה, ומסומנים ככאלה.',
  'settings.anatomy': 'אנטומיה',
  'settings.intimate': 'הצגת אברי מין חיצוניים',
  'settings.intimateDesc': 'מוסתרים כברירת מחדל',
@@ -179,7 +181,7 @@ export const SYSTEM_NAMES: Record<SystemId, Record<Language, string>> = {
  digestive: {en: 'Digestive', he: 'מערכת העיכול'},
  urinary: {en: 'Urinary', he: 'מערכת השתן'},
  lymphatic: {en: 'Lymphatic', he: 'מערכת הלימפה'},
- endocrine: {en: 'Endocrine', he: 'מערכת האנדוקרינית'},
+ endocrine: {en: 'Endocrine', he: 'המערכת האנדוקרינית'},
  reproductive: {en: 'Reproductive', he: 'מערכת הרבייה'},
  integumentary: {en: 'Body surface', he: 'פני הגוף'},
  connective: {en: 'Connective tissue', he: 'רקמת חיבור'},
@@ -245,7 +247,13 @@ export function useT(){
 /** Concept display name: Hebrew when the language is he and a Hebrew term exists, else the English name. */
 export function useConceptName(){
  const lang=useLanguage();
- return useCallback((c:{name:string;he?:string})=>(lang==='he'&&c.he?c.he:displayName(c.name)),[lang]);
+ // The synthetic hierarchy roots ('body', 'system:<id>') are named here rather than in the data.
+ return useCallback((c:{id?:string;name:string;he?:string})=>{
+  if(c.id==='body')return lang==='he'?'גוף':'Body';
+  const sys=c.id?.startsWith('system:')?c.id.slice(7) as SystemId:undefined;
+  if(sys&&SYSTEM_NAMES[sys])return SYSTEM_NAMES[sys][lang];
+  return lang==='he'&&c.he?c.he:displayName(c.name);
+ },[lang]);
 }
 
 /** Localized group or system name, in the current language. */

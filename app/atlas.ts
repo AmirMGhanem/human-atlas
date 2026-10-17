@@ -10,8 +10,10 @@ export interface AtlasPart {id:string;name:string;concept:string;system:SystemId
  /** hide = external genitalia, removed unless intimate anatomy is shown · mask = clipped by the modesty boxes ·
   *  cover = closes the skin where genital skin was cut out, shown only while intimate anatomy is hidden. */
  intimate?:'hide'|'mask'|'cover';
- /** Geometry was changed by the pipeline (modesty split), so it isn't a verbatim copy of a source mesh. */
- derived?:boolean}
+ /** Geometry was changed by the pipeline (modesty split, warp), so it isn't a verbatim copy of a source mesh. */
+ derived?:boolean;
+ /** Female model only: taken from the male BodyParts3D model and warped to fit (the female set lacks it). */
+ borrowed?:boolean}
 export interface AtlasConcept {id:string;name:string;latin?:string;
  /** Hebrew name (Wikidata `he` label), when one exists. */
  he?:string;parts:number[]}

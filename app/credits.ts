@@ -27,15 +27,15 @@ export const DATA_SOURCES:DataSource[]=[
   credit:'Kristen Browne and Heidi Schlehlein, Human Reference Atlas / HuBMAP, 3D Reference Organ Set for Female v1.5 (2023). CC BY 4.0.',
   license:'CC BY 4.0',licenseUrl:'https://creativecommons.org/licenses/by/4.0/',
   url:'https://doi.org/10.48539/HBM352.BTSQ.586',
-  usedFor:'Female model geometry and names. The source set has partial skeleton and muscle coverage.',
+  usedFor:'Female model: organs, brain, nerves, vessels, skin, spine, pelvis and legs. The set has no skull, ribs, arm, hand or foot bones and almost no muscles; those are taken from BodyParts3D (male) and fitted to this body.',
   changes:'Coincident vertices welded; simplified with meshoptimizer (0.2% error per structure, plus a motion level of detail); merged per system with a per-vertex structure index; quantized and compressed. Pregnancy reference structures are not included.',
  },
  {
   id:'wikidata',title:'Wikidata',
-  credit:'Latin anatomical terms from Wikidata (wikidata.org), linked by FMA and UBERON identifiers.',
+  credit:'Latin and Hebrew anatomical terms from Wikidata (wikidata.org), linked by FMA and UBERON identifiers.',
   license:'CC0 1.0',licenseUrl:'https://creativecommons.org/publicdomain/zero/1.0/',
   url:'https://www.wikidata.org',
-  usedFor:'Latin terms shown under structure names.',
+  usedFor:'Latin terms under structure names, and Hebrew structure names.',
  },
  {
   id:'human-atlas',title:'Human Atlas (upstream project)',

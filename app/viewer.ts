@@ -157,12 +157,16 @@ export class Viewer {
  setView(view:PartView){
   this.view=view;const d=this.stateData,sel=view.selected,flags=new Map<SystemId,{opaque:boolean;ghost:boolean;pickable:boolean}>();
   this.uniforms.modesty.value=view.showIntimate?0:1;
+  // An opaque skin hides everything inside it, so with skin on and nothing selected only the body surface is drawn.
+  // Saves most of the GPU work, and hides any internal geometry that pokes through the skin (the female model's
+  // borrowed male muscles are bulkier than her body). A selection fades the skin and brings the inside back.
+  const skinSolid=!sel&&view.layer('integumentary')==='on';
   this.atlas.parts.forEach((p,i)=>{
    // Hidden intimate parts stay hidden even when a selection includes them (e.g. stepping out to a region).
    // Cover parts close the skin where the genital skin was cut out; they only exist while that skin is hidden.
    const banned=view.showIntimate?p.intimate==='cover':p.intimate==='hide';
    const layer=view.layer(p.system),selected=!banned&&!!sel?.has(i);
-   const visible=!banned&&(layer!=='off'||selected);
+   const visible=!banned&&(layer!=='off'||selected)&&!(skinSolid&&p.system!=='integumentary');
    const base=layer==='on'?1:FADED_ALPHA;
    const alpha=selected?1:sel?Math.min(base,DIM_ALPHA):base;
    const pickable=!banned&&(selected||layer==='on');

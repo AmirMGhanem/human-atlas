@@ -180,6 +180,8 @@ export default function InfoDrawer(){
      })}
     </nav>
 
+    {concept.parts.length>0&&concept.parts.every(i=>index.atlas.parts[i].borrowed)&&<p className="id-borrowed">{t('drawer.borrowed')}</p>}
+
     {explanation.text&&(
      <section>
       <h3 className="id-h">

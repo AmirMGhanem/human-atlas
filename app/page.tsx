@@ -68,7 +68,7 @@ export default function Home(){
  },[index,layers,selection,settings.showIntimate]);
  // Frame on selection change, and again when the drawer opening changes the free screen area.
  useEffect(()=>{viewer.current?.setInsets(insets);},[insets,index]);
- useEffect(()=>{const parts=selectionParts(useAtlas.getState());if(parts)viewer.current?.frameParts(parts);},[frameNonce,insets.right,insets.bottom]);
+ useEffect(()=>{const parts=selectionParts(useAtlas.getState());if(parts)viewer.current?.frameParts(parts);},[frameNonce,insets.left,insets.right,insets.bottom]);
  useEffect(()=>{if(resetNonce)viewer.current?.resetView();},[resetNonce]);
  useEffect(()=>{viewer.current?.setReducedMotion(reduceMotion);},[reduceMotion,index]);
  useEffect(()=>{if(viewer.current)viewer.current.spin=spin;},[spin,index]);

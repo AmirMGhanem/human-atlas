@@ -23,7 +23,10 @@ const manifest={...raw,parts:raw.parts.filter(src.keep)};manifest.triangles=mani
 const atlas=JSON.parse(fs.readFileSync(at('public/'+b.file),'utf8'));
 // Parts the pipeline derived (modesty split of the skin) are appended or modified, so they're checked structurally only.
 const S=manifest.parts.length,N=atlas.parts.length;
-assert.ok(N>=S&&N<=S+2,`${b.id}: unexpected part count ${N} (source ${S})`);
+// Extra parts: the 2 modesty parts, plus (female) structures borrowed from the male model.
+const borrowed=atlas.parts.filter(p=>p.borrowed).length;
+assert.equal(N,S+2+borrowed,`${b.id}: unexpected part count ${N} (source ${S}, borrowed ${borrowed})`);
+assert.ok(atlas.parts.slice(0,S).every(p=>!p.borrowed),'borrowed parts must come after the source parts');
 const verbatim=i=>i<S&&!atlas.parts[i].derived;
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder});
 
