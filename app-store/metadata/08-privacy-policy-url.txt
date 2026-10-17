@@ -1,1 +1,1 @@
-https://github.com/AmirMGhanem/human-atlas/blob/main/app-store/privacy-policy.md
+https://github.com/AmirMGhanem/human-atlas/blob/ios-app/app-store/privacy-policy.md

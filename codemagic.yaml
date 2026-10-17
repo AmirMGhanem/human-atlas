@@ -1,6 +1,42 @@
-# iOS build → TestFlight. Runs from a clean checkout; nothing depends on local state.
+# iOS builds → TestFlight. Run from a clean checkout; nothing depends on local state.
 # Capacitor iOS uses Swift Package Manager, so there is no CocoaPods step.
 # Setup lives in the Codemagic UI (see ARCHITECTURE.md → "CI / TestFlight").
+#   ios-testflight: testing build (stats overlay, dev buttons, Safari Web Inspector on).
+#   ios-release:    the build to submit to the App Store (all of those off).
+definitions:
+  ios_signing: &ios_signing
+    distribution_type: app_store
+    bundle_identifier: com.burrowcode.bodyexplorer
+  vars: &vars
+    XCODE_PROJECT: ios/App/App.xcodeproj
+    XCODE_SCHEME: App
+    APP_STORE_APPLE_ID: 6823626044
+  scripts: &scripts
+    - name: Install dependencies
+      script: npm ci
+    - name: Build web app
+      script: npm run build
+    - name: Sync Capacitor iOS
+      script: npx cap sync ios
+    - name: Apply signing profiles
+      script: xcode-project use-profiles --project "$XCODE_PROJECT"
+    - name: Build IPA
+      script: |
+        LATEST=$(app-store-connect get-latest-testflight-build-number "$APP_STORE_APPLE_ID" || echo 0)
+        BUILD_NUMBER=$((LATEST + 1))
+        echo "Build number $BUILD_NUMBER"
+        xcode-project build-ipa \
+          --project "$XCODE_PROJECT" \
+          --scheme "$XCODE_SCHEME" \
+          --archive-xcargs "CURRENT_PROJECT_VERSION=$BUILD_NUMBER"
+  artifacts: &artifacts
+    - build/ios/ipa/*.ipa
+    - /tmp/xcodebuild_logs/*.log
+  publishing: &publishing
+    app_store_connect:
+      auth: integration
+      submit_to_testflight: true
+
 workflows:
   ios-testflight:
     name: iOS → TestFlight
@@ -11,35 +47,26 @@ workflows:
     environment:
       node: 22
       xcode: latest
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: com.burrowcode.bodyexplorer
+      ios_signing: *ios_signing
+      vars: *vars
+    scripts: *scripts
+    artifacts: *artifacts
+    publishing: *publishing
+
+  ios-release:
+    name: iOS → App Store release
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    integrations:
+      app_store_connect: burrowcode
+    environment:
+      node: 22
+      xcode: latest
+      ios_signing: *ios_signing
       vars:
-        XCODE_PROJECT: ios/App/App.xcodeproj
-        XCODE_SCHEME: App
-        APP_STORE_APPLE_ID: 6823626044
-    scripts:
-      - name: Install dependencies
-        script: npm ci
-      - name: Build web app
-        script: npm run build
-      - name: Sync Capacitor iOS
-        script: npx cap sync ios
-      - name: Apply signing profiles
-        script: xcode-project use-profiles --project "$XCODE_PROJECT"
-      - name: Build IPA
-        script: |
-          LATEST=$(app-store-connect get-latest-testflight-build-number "$APP_STORE_APPLE_ID" || echo 0)
-          BUILD_NUMBER=$((LATEST + 1))
-          echo "Build number $BUILD_NUMBER"
-          xcode-project build-ipa \
-            --project "$XCODE_PROJECT" \
-            --scheme "$XCODE_SCHEME" \
-            --archive-xcargs "CURRENT_PROJECT_VERSION=$BUILD_NUMBER"
-    artifacts:
-      - build/ios/ipa/*.ipa
-      - /tmp/xcodebuild_logs/*.log
-    publishing:
-      app_store_connect:
-        auth: integration
-        submit_to_testflight: true
+        <<: *vars
+        VITE_STATS: "0"   # no stats overlay or dev buttons (read by vite at build time)
+        CAP_RELEASE: "1"  # Safari Web Inspector off (read by capacitor.config.ts at cap sync)
+    scripts: *scripts
+    artifacts: *artifacts
+    publishing: *publishing

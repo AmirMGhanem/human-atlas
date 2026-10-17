@@ -1,25 +1,18 @@
-App Store Connect → App Information → Age Rating → Edit
+Set in App Store Connect on 2026-10-17 (via the API). Resulting rating: 13+.
 
-Suggested answers (your call; check against Apple's current wording):
-
-Parental controls / age assurance ............ No
-Unrestricted web access ...................... No
-User-generated content / messaging / chat .... No
-Advertising .................................. No
-Gambling, contests, loot boxes ............... None / No
-Violence (cartoon, realistic, graphic) ....... None
-Horror / fear themes ......................... None
-Profanity or crude humor ..................... None
-Alcohol, tobacco, drugs ...................... None
-Mature or suggestive themes .................. None
-Sexual content or nudity ..................... None
-Medical or treatment information ............. Infrequent/Mild
-  (the app is an anatomy reference, not treatment advice; answering
-   Infrequent/Mild is the conservative choice)
-
-Decide before submitting: the male and female models include external
-genitalia, hidden by default behind Settings → Show intimate anatomy. They
-are untextured anatomical models, not photographs. If you want zero review
-risk, answer "Nudity: Infrequent/Mild" instead of None; that may raise the
-rating. Mention the toggle in the review notes either way (already in
-13-review-notes.txt).
+Sexual content or nudity ..................... Infrequent
+  Apple's definitions have no exemption for educational anatomy. Both bodies
+  include external genitalia (untextured models, hidden by default behind
+  Settings → Show intimate anatomy). This matches the category: Human Anatomy
+  Atlas, Essential Anatomy, Visible Body, BioDigital and Anatomy 3D Atlas all
+  declare Infrequent/Mild Sexual Content and Nudity.
+Graphic sexual content and nudity ............ None
+Medical or treatment information ............. None
+  (Apple: "diagnoses or guidance around the management of medical
+   conditions"; the app is an anatomy reference and gives none)
+Health or wellness topics .................... No
+Everything else (violence, horror, profanity, mature themes, alcohol/drugs,
+contests, gambling, weapons) ................. None
+Advertising, loot boxes, chat, user content,
+social media, unrestricted web, parental
+controls, age assurance ...................... No
