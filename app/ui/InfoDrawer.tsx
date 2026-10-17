@@ -34,6 +34,8 @@ export default function InfoDrawer(){
  const stepOut=useAtlas(s=>s.stepOut);
  const frame=useAtlas(s=>s.frame);
  const setInsets=useAtlas(s=>s.setInsets);
+ const showLatin=useAtlas(s=>s.settings.showLatin);
+ const showIntimate=useAtlas(s=>s.settings.showIntimate);
 
  const wide=useWide();
  const titleId=useId();
@@ -95,7 +97,8 @@ export default function InfoDrawer(){
  const collapseCrumbs=!crumbsOpen&&crumbs.length>CRUMB_COLLAPSE_AT;
  const crumbItems:(Crumb|'more')[]=collapseCrumbs?[crumbs[0],'more',...crumbs.slice(-3)]:crumbs;
 
- const children=index.children(concept.id);
+ // Structures that are hidden for modesty are not offered as children either.
+ const children=index.children(concept.id).filter(id=>showIntimate||!(index.concept(id)?.parts.every(i=>index.atlas.parts[i].intimate==='hide')));
  const shownChildren=children.slice(0,CHILD_LIMIT);
 
  const classes=['id',wide?'is-wide':'is-sheet',leaving?'is-leaving':'',!wide&&compact?'is-compact':''].filter(Boolean).join(' ');
@@ -122,7 +125,7 @@ export default function InfoDrawer(){
    </header>
 
    <div className="id-body">
-    {concept.latin&&<p className="id-latin">{concept.latin}</p>}
+    {showLatin&&concept.latin&&<p className="id-latin">{concept.latin}</p>}
 
     {systems.length>0&&(
      <div className="id-chips">

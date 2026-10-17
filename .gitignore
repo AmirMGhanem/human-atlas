@@ -45,5 +45,6 @@ next-env.d.ts
 *.cer
 .codemagic-token
 
-# asset pipeline output (scripts/build-atlas.mjs)
+# generated at build time (scripts/build-atlas.mjs, scripts/build-licenses.mjs)
 /public/atlas/
+/public/licenses.json

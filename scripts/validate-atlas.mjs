@@ -10,23 +10,38 @@ import {dequantize} from '@gltf-transform/functions';
 import {MeshoptDecoder} from 'meshoptimizer';
 
 const root=new URL('../',import.meta.url),at=p=>new URL(p,root);
-const manifest=JSON.parse(fs.readFileSync(at('data/bp3d/mesh/manifest.json'),'utf8'));
-const chunks=manifest.chunks.map(c=>fs.readFileSync(at('data/bp3d/mesh/'+c.url.split('/').pop())));
-const atlas=JSON.parse(fs.readFileSync(at('public/atlas/atlas.json'),'utf8'));
 await MeshoptDecoder.ready;
+// Source of each body, in the same part order build-atlas.mjs emits (index = meshId).
+const SOURCES={male:{dir:'data/bp3d/mesh/',keep:()=>true},female:{dir:'data/hra/mesh/',keep:p=>p.system!=='pregnancy'}};
+const bodies=JSON.parse(fs.readFileSync(at('public/atlas/bodies.json'),'utf8'));
+assert.deepEqual(bodies.map(b=>b.id).sort(),Object.keys(SOURCES).sort());
+for(const b of bodies){
+const src=SOURCES[b.id];
+const raw=JSON.parse(fs.readFileSync(at(src.dir+'manifest.json'),'utf8'));
+const chunks=raw.chunks.map(c=>fs.readFileSync(at(src.dir+c.url.split('/').pop())));
+const manifest={...raw,parts:raw.parts.filter(src.keep)};manifest.triangles=manifest.parts.reduce((n,p)=>n+p.indexCount/3,0);
+const atlas=JSON.parse(fs.readFileSync(at('public/'+b.file),'utf8'));
+// Parts the pipeline derived (modesty split of the skin) are appended or modified, so they're checked structurally only.
+const S=manifest.parts.length,N=atlas.parts.length;
+assert.ok(N>=S&&N<=S+2,`${b.id}: unexpected part count ${N} (source ${S})`);
+const verbatim=i=>i<S&&!atlas.parts[i].derived;
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder});
 
-assert.equal(atlas.parts.length,2234);assert.equal(new Set(atlas.parts.map(p=>p.id)).size,2234);
+assert.equal(atlas.parts.length,N);assert.equal(new Set(atlas.parts.map(p=>p.id)).size,N);
 const conceptIds=new Set(atlas.concepts.map(c=>c.id));
 atlas.parts.forEach((p,i)=>{
- assert.equal(p.id,manifest.parts[i].id,'part order must match source (index = meshId)');
+ if(i<S)assert.equal(p.id,manifest.parts[i].id,'part order must match source (index = meshId)');
  assert.ok(p.name.trim(),p.id);assert.equal(p.path[0],'body');assert.equal(p.path.at(-1),p.concept,`${p.id}: path must end at its concept`);
  for(const id of p.path)assert.ok(conceptIds.has(id),`${p.id}: unknown path node ${id}`);
 });
-for(const c of atlas.concepts){assert.ok(c.parts.length,`${c.id}: no parts`);for(const i of c.parts)assert.ok(i>=0&&i<2234);}
+for(const c of atlas.concepts){assert.ok(c.parts.length,`${c.id}: no parts`);for(const i of c.parts)assert.ok(i>=0&&i<N);}
+// Modesty rules matched what they should: hidden parts exist, masks have boxes.
+assert.ok(atlas.parts.some(p=>p.intimate==='hide'),'no intimate parts flagged');
+if(atlas.parts.some(p=>p.intimate==='mask'))assert.ok(atlas.modesty.boxes.length>0,'masked parts need modesty boxes');
+if(atlas.parts.some(p=>p.derived))assert.equal(atlas.parts.filter(p=>p.intimate==='cover').length,1,'a split skin needs exactly one cover');
 
 let maxPos=0,minNormalDot=1,triangles=0,bytes=0,checkedNormals=0,badNormals=0;
-const seen=new Uint8Array(2234);
+const seen=new Uint8Array(N);
 for(const s of atlas.systems){
  const file=at('public/'+s.file);bytes+=fs.statSync(file).size;
  const doc=await io.read(file.pathname);
@@ -42,6 +57,7 @@ for(const s of atlas.systems){
  for(let v=0;v<pos.getCount();v++){const id=ids.getScalar(v);assert.equal(atlas.parts[id].system,s.id,`meshId ${id} in wrong system`);seen[id]=1;if(!byPart.has(id))byPart.set(id,[]);byPart.get(id).push(v);}
  assert.equal(byPart.size,s.parts);
  for(const [id,verts] of byPart){
+  if(!verbatim(id))continue;
   const src=manifest.parts[id],b=chunks[src.chunk];
   const sp=new Float32Array(b.buffer,b.byteOffset+src.positions,src.vertexCount*3),sn=new Int16Array(b.buffer,b.byteOffset+src.normals,src.vertexCount*3);
   assert.equal(verts.length,src.vertexCount,`${src.id}: vertex count`);
@@ -64,10 +80,10 @@ for(const s of atlas.systems){
  for(let t=0;t<ic;t+=3){const a=ids.getScalar(index.getScalar(t));assert.equal(ids.getScalar(index.getScalar(t+1)),a,'triangle spans two meshIds');assert.equal(ids.getScalar(index.getScalar(t+2)),a,'triangle spans two meshIds');}
  triangles+=ic/3;
 }
-assert.equal(seen.reduce((a,b)=>a+b,0),2234,'every part present exactly in its system');
+assert.equal(seen.reduce((a,b)=>a+b,0),N,'every part present exactly in its system');
 
 // LOD 1: same contract minus vertex identity — every part present, ids exact, no mixed triangles.
-let lodTriangles=0;const lodSeen=new Uint8Array(2234);
+let lodTriangles=0;const lodSeen=new Uint8Array(N);
 for(const s of atlas.systems){
  const file=at('public/'+s.lod1.file);bytes+=fs.statSync(file).size;
  const doc=await io.read(file.pathname),prim=doc.getRoot().listMeshes()[0].listPrimitives()[0];
@@ -76,8 +92,11 @@ for(const s of atlas.systems){
  for(let t=0;t<index.getCount();t+=3){const a=ids.getScalar(index.getScalar(t));assert.ok(ids.getScalar(index.getScalar(t+1))===a&&ids.getScalar(index.getScalar(t+2))===a,'LOD1 triangle spans two meshIds');}
  lodTriangles+=index.getCount()/3;
 }
-assert.equal(lodSeen.reduce((a,b)=>a+b,0),2234,'LOD1 dropped a part');
-assert.equal(triangles,manifest.triangles);
+assert.equal(lodSeen.reduce((a,b)=>a+b,0),N,'LOD1 dropped a part');
+assert.equal(triangles,atlas.triangles);
+const verbatimTriangles=manifest.parts.reduce((n,p,i)=>n+(verbatim(i)?p.indexCount/3:0),0);
+assert.ok(verbatimTriangles>manifest.triangles*.95,'too much geometry was derived instead of copied');
 assert.ok(maxPos<.0005,`position error ${maxPos} m exceeds 0.5 mm`);
-assert.ok(checkedNormals>1e6&&badNormals===0,`${badNormals} normals deviate more than 11°`);
-console.log(JSON.stringify({systems:atlas.systems.length,drawCalls:atlas.systems.length,parts:2234,triangles,lodTriangles,maxPositionErrorMm:+(maxPos*1000).toFixed(3),minNormalDot:+minNormalDot.toFixed(4),geometryMB:+(bytes/1e6).toFixed(2)}));
+assert.ok(checkedNormals>1e5&&badNormals===0,`${badNormals} normals deviate more than 11°`);
+console.log(JSON.stringify({body:b.id,systems:atlas.systems.length,drawCalls:atlas.systems.length,parts:N,triangles,lodTriangles,maxPositionErrorMm:+(maxPos*1000).toFixed(3),minNormalDot:+minNormalDot.toFixed(4),geometryMB:+(bytes/1e6).toFixed(2)}));
+}

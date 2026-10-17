@@ -1,26 +1,24 @@
 import * as T from 'three';
+import {FRAGMENT_HEAD,MODESTY_DISCARD,VERTEX_HEAD,vertexBody,type SharedUniforms} from './shader-chunks';
 
 // GPU id picking. Every system mesh is re-drawn with a flat id shader into a tiny render target that covers
 // only the pixels around the touch point (camera view offset), then those pixels are read back.
 // Encoding: id = meshId + 1 in R (low byte) and G (high byte); 0 = nothing.
 const RADIUS=4,SIZE=RADIUS*2+1;
 
-const PICK_VERTEX=`
-attribute float _meshid;
-uniform sampler2D partState;
-uniform float stateWidth;
+const PICK_VERTEX=`${VERTEX_HEAD}
 varying float vId;
-varying float vPickable;
 void main(){
  vId=_meshid;
- vPickable=texture2D(partState,vec2((_meshid+.5)/stateWidth,.5)).a;
+ ${vertexBody('position')}
  gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);
 }`;
-const PICK_FRAGMENT=`
+const PICK_FRAGMENT=`${FRAGMENT_HEAD}
 varying float vId;
-varying float vPickable;
 void main(){
- if(vPickable<.5)discard;
+ // Only pickable parts (state alpha): faded layers and hidden parts let taps through.
+ if(vPart.a<.5)discard;
+ ${MODESTY_DISCARD}
  float id=floor(vId+.5)+1.;
  gl_FragColor=vec4(mod(id,256.)/255.,floor(id/256.)/255.,0.,1.);
 }`;
@@ -30,9 +28,8 @@ export class Picker {
  private target=new T.WebGLRenderTarget(SIZE,SIZE,{type:T.UnsignedByteType,format:T.RGBAFormat,depthBuffer:true,generateMipmaps:false,minFilter:T.NearestFilter,magFilter:T.NearestFilter,colorSpace:T.NoColorSpace});
  private pixels=new Uint8Array(SIZE*SIZE*4);
  readonly material:T.ShaderMaterial;
- constructor(partState:T.Texture,stateWidth:number){
-  // Only parts whose state alpha channel marks them pickable are drawn: faded layers let taps through.
-  this.material=new T.ShaderMaterial({vertexShader:PICK_VERTEX,fragmentShader:PICK_FRAGMENT,side:T.DoubleSide,uniforms:{partState:{value:partState},stateWidth:{value:stateWidth}}});
+ constructor(uniforms:SharedUniforms){
+  this.material=new T.ShaderMaterial({vertexShader:PICK_VERTEX,fragmentShader:PICK_FRAGMENT,side:T.DoubleSide,uniforms:{...uniforms}});
  }
  add(geometry:T.BufferGeometry,matrix:T.Matrix4){
   const m=new T.Mesh(geometry,this.material);m.matrixAutoUpdate=false;m.matrix.copy(matrix);m.matrixWorldNeedsUpdate=true;m.frustumCulled=false;this.scene.add(m);return m;

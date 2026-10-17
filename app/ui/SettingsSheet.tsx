@@ -144,7 +144,7 @@ export default function SettingsSheet(){
        <Section title="Anatomy">
         <SwitchRow
          label="Show intimate anatomy"
-         description="External genitalia (and nipples on the female model). Hidden by default."
+         description="External genitalia. Hidden by default."
          checked={settings.showIntimate}
          onChange={v=>setSetting('showIntimate',v)}
         />

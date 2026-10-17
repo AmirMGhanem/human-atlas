@@ -6,15 +6,21 @@ import type {SystemId} from './anatomy';
 // Shape of public/atlas/atlas.json, written by scripts/build-atlas.mjs.
 export interface AtlasLod {file:string;triangles:number;vertices:number;bytes:number}
 export interface AtlasSystem {id:SystemId;name:string;file:string;parts:number;triangles:number;vertices:number;bytes:number;lod1:AtlasLod}
-export interface AtlasPart {id:string;name:string;concept:string;system:SystemId;bounds:[number[],number[]];path:string[]}
+export interface AtlasPart {id:string;name:string;concept:string;system:SystemId;bounds:[number[],number[]];path:string[];
+ /** hide = external genitalia, removed unless intimate anatomy is shown · mask = clipped by the modesty boxes ·
+  *  cover = closes the skin where genital skin was cut out, shown only while intimate anatomy is hidden. */
+ intimate?:'hide'|'mask'|'cover';
+ /** Geometry was changed by the pipeline (modesty split), so it isn't a verbatim copy of a source mesh. */
+ derived?:boolean}
 export interface AtlasConcept {id:string;name:string;latin?:string;parts:number[]}
-export interface Atlas {version:string;source:string;triangles:number;systems:AtlasSystem[];parts:AtlasPart[];concepts:AtlasConcept[]}
+export interface Atlas {body:'male'|'female';version:string;source:string;triangles:number;systems:AtlasSystem[];parts:AtlasPart[];concepts:AtlasConcept[];
+ modesty:{boxes:[number[],number[]][]}}
 
 export interface LoadedSystem {geometry:T.BufferGeometry;matrix:T.Matrix4}
 
 // Bundled with the app; served from capacitor://localhost, never the network.
-export async function loadAtlas():Promise<Atlas>{
- const r=await fetch('atlas/atlas.json');if(!r.ok)throw new Error('Anatomy index missing from the app bundle.');
+export async function loadAtlas(body:'male'|'female'):Promise<Atlas>{
+ const r=await fetch(`atlas/${body}/atlas.json`);if(!r.ok)throw new Error('Anatomy index missing from the app bundle.');
  return r.json();
 }
 

@@ -32,7 +32,7 @@ export type Quality='high'|'balanced'|'battery';
 export type MotionPref='system'|'reduce'|'full';
 export interface Settings {
  body:BodyId;
- /** External genitalia (and, on the female model, nipples/areolae) are hidden unless this is on. */
+ /** External genitalia are hidden (and the skin covered over) unless this is on. */
  showIntimate:boolean;
  showLatin:boolean;
  haptics:boolean;

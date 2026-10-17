@@ -4,6 +4,7 @@ import {SYSTEMS,type SystemId} from './anatomy';
 import {loadSystem,type Atlas} from './atlas';
 import {CameraRig,type Insets} from './camera-rig';
 import {Picker} from './picker';
+import {FRAGMENT_HEAD,MAX_MODESTY_BOXES,MODESTY_DISCARD,VERTEX_HEAD,vertexBody,type SharedUniforms} from './shader-chunks';
 import {Stats} from './stats';
 
 const ACCENT=new T.Color('#4DD0E1');
@@ -11,31 +12,29 @@ const ACCENT=new T.Color('#4DD0E1');
 export const DIM_ALPHA=.35,FADED_ALPHA=.14;
 
 export type LayerState='on'|'faded'|'off';
-export interface PartView {layer:(system:SystemId)=>LayerState;selected:ReadonlySet<number>|null}
+export interface PartView {layer:(system:SystemId)=>LayerState;selected:ReadonlySet<number>|null;
+ /** When false, parts flagged `intimate: hide` are not drawn or tappable, and `mask` parts are clipped by the modesty boxes. */
+ showIntimate:boolean}
 export interface ViewerEvents {
  onTap:(part:number)=>void;onDoubleTap:()=>void;onTwoFingerDoubleTap:()=>void;
  onProgress:(loaded:number,total:number)=>void;onReady:(ms:number)=>void;onError:(message:string)=>void;
 }
 
-// Part state texture (RGBA8, one texel per meshId):
-//   R visible (drawn at all) · G selected · B opacity · A pickable
 // Each system has: LOD0 + LOD1 opaque meshes (draw parts with opacity 1), a ghost depth pre-pass and a ghost colour
 // pass (both on LOD1) that draw only translucent parts. The pre-pass keeps the nearest translucent surface, so ghosts
-// blend once instead of stacking unsorted layers of a merged mesh.
-const STATE_VERTEX_HEAD='attribute float _meshid;\nuniform sampler2D partState;\nuniform float stateWidth;\nvarying vec4 vPart;\n';
-const STATE_VERTEX_BODY='vPart=texture2D(partState,vec2((_meshid+.5)/stateWidth,.5));';
-
-const GHOST_VERTEX=`${STATE_VERTEX_HEAD}
+// blend once instead of stacking unsorted layers of a merged mesh. State/modesty GLSL lives in shader-chunks.ts.
+const GHOST_VERTEX=`${VERTEX_HEAD}
 varying vec3 vNormalV;varying vec3 vViewPos;
 void main(){
- ${STATE_VERTEX_BODY}
+ ${vertexBody('position')}
  vec4 mv=modelViewMatrix*vec4(position,1.);vViewPos=-mv.xyz;vNormalV=normalize(normalMatrix*normal);
  gl_Position=projectionMatrix*mv;
 }`;
-const GHOST_DEPTH_FRAGMENT=`varying vec4 vPart;void main(){if(vPart.r<.5||vPart.b>.996)discard;gl_FragColor=vec4(0.);}`;
-const GHOST_COLOR_FRAGMENT=`varying vec4 vPart;varying vec3 vNormalV;varying vec3 vViewPos;uniform vec3 color;
+const GHOST_DEPTH_FRAGMENT=`${FRAGMENT_HEAD}void main(){if(vPart.r<.5||vPart.b>.996)discard;${MODESTY_DISCARD}gl_FragColor=vec4(0.);}`;
+const GHOST_COLOR_FRAGMENT=`${FRAGMENT_HEAD}varying vec3 vNormalV;varying vec3 vViewPos;uniform vec3 color;
 void main(){
  if(vPart.r<.5||vPart.b>.996)discard;
+ ${MODESTY_DISCARD}
  vec3 n=normalize(vNormalV),v=normalize(vViewPos);
  float fres=pow(1.-abs(dot(n,v)),2.);
  float light=.5+.5*abs(dot(n,normalize(vec3(-.3,.6,.75))));
@@ -52,12 +51,13 @@ export class Viewer {
  readonly camera=new T.PerspectiveCamera(32,1,.01,50);
  readonly rig:CameraRig;
  private scene=new T.Scene();
- private stateWidth:number;private stateData:Uint8Array<ArrayBuffer>;private stateTexture:T.DataTexture;
+ private stateWidth:number;private stateData:Uint8Array<ArrayBuffer>;private stateTexture:T.DataTexture;private flagsTexture:T.DataTexture;
+ private uniforms:SharedUniforms;
  private picker:Picker;private stats:Stats|null=null;
  private materials:T.Material[]=[];private ghostDepthMaterial:T.ShaderMaterial;
  private systems=new Map<SystemId,SystemMeshes>();
  private disposed=false;private dirty=true;private frame=0;private ready=false;private last=performance.now();
- private observer:ResizeObserver;private view:PartView={layer:()=>'on',selected:null};
+ private observer:ResizeObserver;private view:PartView={layer:()=>'on',selected:null,showIntimate:false};
  private body=new T.Box3();private placed=false;
  /** full = LOD 0 always; low = LOD 1 always; auto = LOD 1 while the camera moves, LOD 0 at rest. */
  lod:'full'|'low'|'auto'='auto';
@@ -72,8 +72,14 @@ export class Viewer {
   this.stateData=new Uint8Array(this.stateWidth*4);
   this.stateTexture=new T.DataTexture(this.stateData,this.stateWidth,1,T.RGBAFormat,T.UnsignedByteType);
   this.stateTexture.minFilter=this.stateTexture.magFilter=T.NearestFilter;
-  this.picker=new Picker(this.stateTexture,this.stateWidth);
-  this.ghostDepthMaterial=new T.ShaderMaterial({vertexShader:GHOST_VERTEX,fragmentShader:GHOST_DEPTH_FRAGMENT,uniforms:this.stateUniforms(),side:T.DoubleSide,colorWrite:false});
+  // Static per-part flags: R = clipped by the modesty boxes.
+  const flags=new Uint8Array(this.stateWidth*4);atlas.parts.forEach((p,i)=>{if(p.intimate==='mask')flags[i*4]=255;});
+  this.flagsTexture=new T.DataTexture(flags,this.stateWidth,1,T.RGBAFormat,T.UnsignedByteType);this.flagsTexture.minFilter=this.flagsTexture.magFilter=T.NearestFilter;this.flagsTexture.needsUpdate=true;
+  const boxes=atlas.modesty?.boxes??[],pad=(i:number,k:0|1)=>boxes[i]?vec(boxes[i][k]):new T.Vector3();
+  this.uniforms={partState:{value:this.stateTexture},partFlags:{value:this.flagsTexture},stateWidth:{value:this.stateWidth},modesty:{value:1},
+   modestyMin:{value:Array.from({length:MAX_MODESTY_BOXES},(_,i)=>pad(i,0))},modestyMax:{value:Array.from({length:MAX_MODESTY_BOXES},(_,i)=>pad(i,1))},modestyCount:{value:Math.min(boxes.length,MAX_MODESTY_BOXES)}};
+  this.picker=new Picker(this.uniforms);
+  this.ghostDepthMaterial=new T.ShaderMaterial({vertexShader:GHOST_VERTEX,fragmentShader:GHOST_DEPTH_FRAGMENT,uniforms:{...this.uniforms},side:T.DoubleSide,colorWrite:false});
   this.materials.push(this.ghostDepthMaterial);
 
   // Three-point rig plus a soft studio environment for the physically based tissue materials.
@@ -93,16 +99,15 @@ export class Viewer {
   this.load();this.frame=requestAnimationFrame(this.loop);
  }
 
- private stateUniforms(){return {partState:{value:this.stateTexture},stateWidth:{value:this.stateWidth}};}
 
  private opaqueMaterial(system:SystemId){
   const color=SYSTEMS.find(s=>s.id===system)?.color??'#aebbb8';
   const m=new T.MeshStandardMaterial({color,metalness:.04,roughness:.58,side:T.DoubleSide});
   m.onBeforeCompile=shader=>{
-   Object.assign(shader.uniforms,this.stateUniforms(),{accent:{value:ACCENT}});
-   shader.vertexShader=STATE_VERTEX_HEAD+shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\n'+STATE_VERTEX_BODY);
-   shader.fragmentShader='uniform vec3 accent;\nvarying vec4 vPart;\n'+shader.fragmentShader
-    .replace('#include <clipping_planes_fragment>','#include <clipping_planes_fragment>\nif(vPart.r<.5||vPart.b<.996)discard;')
+   Object.assign(shader.uniforms,this.uniforms,{accent:{value:ACCENT}});
+   shader.vertexShader=VERTEX_HEAD+shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\n'+vertexBody('transformed'));
+   shader.fragmentShader='uniform vec3 accent;\n'+FRAGMENT_HEAD+shader.fragmentShader
+    .replace('#include <clipping_planes_fragment>','#include <clipping_planes_fragment>\nif(vPart.r<.5||vPart.b<.996)discard;\n'+MODESTY_DISCARD)
     .replace('#include <color_fragment>','#include <color_fragment>\nfloat sel=step(.5,vPart.g);diffuseColor.rgb=mix(diffuseColor.rgb,accent*.42,sel*.9);')
     // Fresnel rim so overlapping structures separate; brighter and cyan on the selection.
     .replace('#include <opaque_fragment>','float rimF=pow(1.-clamp(abs(dot(normal,normalize(vViewPosition))),0.,1.),3.);\noutgoingLight+=mix(vec3(.16,.17,.19),accent*.4,sel)*rimF;\n#include <opaque_fragment>');
@@ -111,7 +116,7 @@ export class Viewer {
  }
  private ghostMaterial(system:SystemId){
   const color=new T.Color(SYSTEMS.find(s=>s.id===system)?.color??'#aebbb8');
-  const m=new T.ShaderMaterial({vertexShader:GHOST_VERTEX,fragmentShader:GHOST_COLOR_FRAGMENT,uniforms:{...this.stateUniforms(),color:{value:color}},side:T.DoubleSide,transparent:true,depthWrite:false,depthFunc:T.LessEqualDepth});
+  const m=new T.ShaderMaterial({vertexShader:GHOST_VERTEX,fragmentShader:GHOST_COLOR_FRAGMENT,uniforms:{...this.uniforms,color:{value:color}},side:T.DoubleSide,transparent:true,depthWrite:false,depthFunc:T.LessEqualDepth});
   this.materials.push(m);return m;
  }
  private mesh(geometry:T.BufferGeometry,matrix:T.Matrix4,material:T.Material,order:number){
@@ -151,12 +156,16 @@ export class Viewer {
  /** Recompute every part's state from layer states and the selection. Cheap (2,234 texels). */
  setView(view:PartView){
   this.view=view;const d=this.stateData,sel=view.selected,flags=new Map<SystemId,{opaque:boolean;ghost:boolean;pickable:boolean}>();
+  this.uniforms.modesty.value=view.showIntimate?0:1;
   this.atlas.parts.forEach((p,i)=>{
-   const layer=view.layer(p.system),selected=!!sel?.has(i);
-   const visible=layer!=='off'||selected;
+   // Hidden intimate parts stay hidden even when a selection includes them (e.g. stepping out to a region).
+   // Cover parts close the skin where the genital skin was cut out; they only exist while that skin is hidden.
+   const banned=view.showIntimate?p.intimate==='cover':p.intimate==='hide';
+   const layer=view.layer(p.system),selected=!banned&&!!sel?.has(i);
+   const visible=!banned&&(layer!=='off'||selected);
    const base=layer==='on'?1:FADED_ALPHA;
    const alpha=selected?1:sel?Math.min(base,DIM_ALPHA):base;
-   const pickable=selected||layer==='on';
+   const pickable=!banned&&(selected||layer==='on');
    d[i*4]=visible?255:0;d[i*4+1]=selected?255:0;d[i*4+2]=Math.round(alpha*255);d[i*4+3]=pickable?255:0;
    const f=flags.get(p.system)??{opaque:false,ghost:false,pickable:false};
    if(visible&&alpha>=.996)f.opaque=true;if(visible&&alpha<.996)f.ghost=true;if(pickable)f.pickable=true;flags.set(p.system,f);
@@ -177,16 +186,19 @@ export class Viewer {
  }
 
  /** Fly the camera to fit the given parts (or the whole body), in the space not covered by UI. */
- frameParts(parts:readonly number[]|null,dur=450){
+ frameParts(parts:readonly number[]|null,dur=this.motionMs){
   if(!parts?.length){this.rig.flyTo(this.homePose(),dur);return;}
   const box=new T.Box3();for(const i of parts){const b=this.atlas.parts[i].bounds;box.expandByPoint(vec(b[0]));box.expandByPoint(vec(b[1]));}
   this.rig.flyTo(this.rig.fit(box),dur);
  }
  private homePose(){return this.rig.fit(this.body,.3,.05);}
- resetView(dur=450){this.rig.home=this.homePose();this.rig.goHome(dur);}
+ resetView(dur=this.motionMs){this.rig.home=this.homePose();this.rig.goHome(dur);}
  setInsets(i:Insets){this.rig.setInsets(i);this.dirty=true;}
  setLod(lod:'full'|'low'|'auto'){this.lod=lod;this.applyVisibility();}
  set spin(v:boolean){this.rig.spin=v;}
+ /** Camera animation length; 0 when the user prefers reduced motion (also disables orbit momentum). */
+ private motionMs=450;
+ setReducedMotion(reduce:boolean){this.motionMs=reduce?0:450;this.rig.momentum=!reduce;}
 
  private tap(x:number,y:number){
   if(!this.ready)return;
@@ -222,7 +234,7 @@ export class Viewer {
  dispose(){
   this.disposed=true;cancelAnimationFrame(this.frame);this.observer.disconnect();this.rig.dispose();
   const geos=new Set<T.BufferGeometry>();this.scene.traverse(o=>{if((o as T.Mesh).isMesh)geos.add((o as T.Mesh).geometry);});geos.forEach(g=>g.dispose());
-  this.materials.forEach(m=>m.dispose());this.picker.dispose();this.stateTexture.dispose();this.scene.environment?.dispose();this.stats?.dispose();
+  this.materials.forEach(m=>m.dispose());this.picker.dispose();this.stateTexture.dispose();this.flagsTexture.dispose();this.scene.environment?.dispose();this.stats?.dispose();
   this.renderer.dispose();this.renderer.domElement.remove();
  }
 }

@@ -34,6 +34,8 @@ export class CameraRig {
  private gestureScale=1;
  private changed=true;private lastActive=0;
  spin=false;
+ /** Release momentum after an orbit; off for reduced motion. */
+ momentum=true;
 
  constructor(private camera:T.PerspectiveCamera,private el:HTMLElement,private events:RigEvents){
   el.addEventListener('pointerdown',this.down);el.addEventListener('pointermove',this.move);
@@ -59,7 +61,9 @@ export class CameraRig {
  flyTo(to:Pose,dur=450){
   const from={...this.pose,target:this.pose.target.clone()};
   to={...to,yaw:from.yaw+wrap(to.yaw-from.yaw)};
-  this.velocity.yaw=this.velocity.pitch=0;this.anim={from,to,t0:performance.now(),dur};
+  this.velocity.yaw=this.velocity.pitch=0;
+  if(dur<=0){Object.assign(this.pose,to,{target:to.target.clone()});this.anim=null;this.changed=true;return;}
+  this.anim={from,to,t0:performance.now(),dur};
  }
  goHome(dur=450){this.flyTo(this.home,dur);}
 
@@ -169,7 +173,7 @@ export class CameraRig {
    this.pinch=null;this.velocity.yaw=this.velocity.pitch=0;return;
   }
   if(count!==1)return;
-  if(pt.moved){if(now-this.lastMoveAt>60)this.velocity.yaw=this.velocity.pitch=0;return;}
+  if(pt.moved){if(now-this.lastMoveAt>60||!this.momentum)this.velocity.yaw=this.velocity.pitch=0;return;}
   if(now-pt.t0>TAP_MS||pt.sx<-1e5)return;
   this.velocity.yaw=this.velocity.pitch=0;
   if(now-this.lastTap.t<DOUBLE_MS&&Math.hypot(pt.x-this.lastTap.x,pt.y-this.lastTap.y)<DOUBLE_PX){this.lastTap.t=0;this.events.onDoubleTap();return;}
