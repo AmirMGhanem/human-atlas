@@ -1,0 +1,139 @@
+/* Settings and Credits sheets. Shared chrome: both sheets render the .st-* shell below. */
+
+@keyframes st-rise{from{opacity:0;transform:translateY(calc(100% + 20px))}to{opacity:1;transform:none}}
+@keyframes st-fade{from{opacity:0}to{opacity:1}}
+
+/* ---------- Gear (always visible, top-right) ---------- */
+
+.st-gear{
+ position:fixed;top:calc(env(safe-area-inset-top) + 10px);right:calc(env(safe-area-inset-right) + 10px);z-index:12;
+ box-sizing:border-box;display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;
+ border:1px solid var(--border);border-radius:50%;background:rgba(38,38,38,.86);color:var(--text-primary);
+ -webkit-backdrop-filter:blur(24px) saturate(1.2);backdrop-filter:blur(24px) saturate(1.2);touch-action:manipulation;
+}
+
+/* ---------- Scrim + sheet ---------- */
+
+.st-backdrop{
+ position:fixed;inset:0;z-index:20;margin:0;padding:0;border:0;background:rgba(0,0,0,.35);
+ animation:st-fade 220ms ease-out both;touch-action:manipulation;
+}
+.st-sheet{
+ position:fixed;z-index:21;box-sizing:border-box;display:flex;flex-direction:column;min-height:0;overflow:hidden;
+ left:calc(env(safe-area-inset-left) + 10px);right:calc(env(safe-area-inset-right) + 10px);
+ bottom:calc(env(safe-area-inset-bottom) + 10px);max-height:82vh;
+ color:var(--text-primary);background:rgba(38,38,38,.86);border:1px solid var(--border);border-radius:18px;
+ -webkit-backdrop-filter:blur(24px) saturate(1.2);backdrop-filter:blur(24px) saturate(1.2);
+ animation:st-rise 260ms cubic-bezier(.2,.8,.2,1) both;
+ user-select:text;-webkit-user-select:text;-webkit-touch-callout:default;
+}
+.st-sheet:focus{outline:none}
+/* Wide (iPad): centred 440px panel that fades in. */
+@media (min-width:768px){
+ .st-sheet{
+  left:50%;right:auto;top:50%;bottom:auto;width:440px;max-width:calc(100vw - 40px);max-height:80vh;
+  transform:translate(-50%,-50%);animation-name:st-fade;
+ }
+}
+
+.st-head{
+ display:flex;align-items:center;gap:6px;flex:none;min-height:56px;box-sizing:border-box;
+ padding:0 8px 0 10px;border-bottom:1px solid var(--border);
+}
+.st-title{flex:1;min-width:0;margin:0;font-size:17px;font-weight:600;line-height:1.25;text-align:center}
+.st-icon-btn{
+ flex:none;display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;
+ border:0;border-radius:12px;background:transparent;color:var(--text-muted);touch-action:manipulation;
+}
+
+.st-body{
+ flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+ padding:0 16px calc(env(safe-area-inset-bottom) + 16px);
+}
+
+/* ---------- Sections, cards, rows ---------- */
+
+.st-section{margin-top:18px}
+.st-h{margin:0 4px 6px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)}
+.st-card{overflow:hidden;background:var(--bg-surface);border:1px solid var(--border);border-radius:14px}
+.st-card > :first-child{border-top:0}
+
+.st-row{
+ box-sizing:border-box;display:flex;align-items:center;gap:12px;min-height:44px;padding:10px 14px;
+ border-top:1px solid var(--border);
+}
+.st-row.is-stack{flex-direction:column;align-items:stretch;gap:10px}
+.st-row-text{flex:1;min-width:0}
+.st-label{display:block;font-size:15px;line-height:1.3}
+.st-desc{margin:2px 0 0;font-size:12px;line-height:1.4;color:var(--text-muted)}
+.st-help{margin:0;font-size:12px;line-height:1.4;color:var(--text-muted)}
+
+/* iOS-style switch: 51x31 track, 44px hit area via ::before. */
+.st-switch{
+ position:relative;flex:none;box-sizing:border-box;width:51px;height:31px;margin:0;padding:0;border:0;border-radius:999px;
+ background:var(--bg-elevated);touch-action:manipulation;transition:background 200ms cubic-bezier(.2,.8,.2,1);
+}
+.st-switch::before{content:'';position:absolute;left:-7px;right:-7px;top:-7px;bottom:-7px}
+.st-switch::after{
+ content:'';position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:50%;
+ background:var(--text-primary);box-shadow:0 2px 4px rgba(0,0,0,.35);
+ transition:transform 200ms cubic-bezier(.2,.8,.2,1);
+}
+.st-switch[aria-checked="true"]{background:var(--accent)}
+.st-switch[aria-checked="true"]::after{transform:translateX(20px)}
+
+/* Segmented control: equal buttons; selected = elevated fill + cyan border. */
+.st-seg{display:flex;gap:6px}
+.st-seg-btn{
+ flex:1 1 0;min-width:0;min-height:44px;margin:0;padding:0 6px;box-sizing:border-box;
+ border:1px solid var(--border);border-radius:10px;background:transparent;color:var(--text-muted);
+ font-size:14px;font-weight:500;touch-action:manipulation;
+}
+.st-seg-btn[aria-pressed="true"]{background:var(--bg-elevated);border-color:var(--accent);color:var(--text-primary);font-weight:600}
+
+/* Row-style buttons (navigation, reset, licence toggles). */
+.st-link{
+ display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:44px;box-sizing:border-box;
+ margin:0;padding:10px 14px;border:0;border-top:1px solid var(--border);background:transparent;
+ color:var(--text-primary);font-size:15px;text-align:left;touch-action:manipulation;
+}
+.st-link.is-muted{color:var(--text-muted);justify-content:flex-start}
+.st-link svg{flex:none;color:var(--text-muted)}
+
+.st-foot{margin:18px 4px 0;font-size:12px;line-height:1.5;color:var(--text-muted)}
+
+/* ---------- Credits ---------- */
+
+.st-src{padding:14px}
+.st-src + .st-src{border-top:1px solid var(--border)}
+.st-src-title{margin:0;font-size:15px;font-weight:600;line-height:1.3}
+.st-credit{margin:6px 0 0;font-size:14px;line-height:1.5}
+.st-meta{margin:8px 0 0;font-size:13px;line-height:1.5}
+.st-muted{margin:8px 0 0;font-size:13px;line-height:1.5;color:var(--text-muted)}
+.st-url{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--text-muted);overflow-wrap:anywhere}
+.st-status{margin:0;padding:14px;font-size:13px;color:var(--text-muted)}
+
+.st-lic{border-top:1px solid var(--border)}
+.st-lic-btn{
+ display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:44px;box-sizing:border-box;
+ margin:0;padding:10px 14px;border:0;background:transparent;color:var(--text-primary);font-size:13px;text-align:left;
+ touch-action:manipulation;
+}
+.st-lic-name{min-width:0;overflow-wrap:anywhere}
+.st-chev{flex:none;color:var(--text-muted);transition:transform 200ms cubic-bezier(.2,.8,.2,1)}
+.st-lic-btn[aria-expanded="true"] .st-chev{transform:rotate(180deg)}
+.st-lic-text{
+ margin:0;padding:12px 14px;background:var(--bg-base);border-top:1px solid var(--border);
+ font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;line-height:1.45;
+ color:var(--text-primary);white-space:pre-wrap;overflow-wrap:anywhere;
+}
+
+/* ---------- Focus + reduced motion ---------- */
+
+.st-gear:focus-visible,.st-icon-btn:focus-visible,.st-switch:focus-visible,.st-seg-btn:focus-visible,
+.st-link:focus-visible,.st-lic-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+@media (prefers-reduced-motion: reduce){
+ .st-sheet,.st-backdrop{animation-name:st-fade}
+ .st-switch,.st-switch::after,.st-chev{transition:none}
+}
