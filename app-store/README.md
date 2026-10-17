@@ -55,6 +55,9 @@ APP_ROOT=$(cd ../.. && pwd) npm run capture    # raw app screens + hero/icon art
 npm run compose                                 # store screenshots + icon → ../screenshots, ../icon
 ```
 
+The scripts drive the app through `window.__viewer` and `window.__store`, which exist only while `VITE_STATS` isn't `0`.
+Run them against the dev server, never a release build.
+
 - `capture.mjs`: app screens with the real UI (selection sheets, layer panel, female model).
 - `art.mjs`: transparent hero body and icon head (glass skin, glowing nervous system).
 - `compose.html` / `compose.mjs`: lays the seven panels out as one wide strip per device, with a nerve signal running
