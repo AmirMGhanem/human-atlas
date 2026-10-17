@@ -1,6 +1,7 @@
 import {useEffect,useRef,useState} from 'react';
 import {loadAtlas} from './atlas';
 import {buildIndex} from './atlas-index';
+import {useT} from './i18n';
 import {groupOfSystem,selectionParts,useAtlas,type Quality} from './store';
 import CreditsSheet from './ui/CreditsSheet';
 import InfoDrawer from './ui/InfoDrawer';
@@ -24,15 +25,19 @@ export default function Home(){
  const host=useRef<HTMLDivElement>(null),viewer=useRef<Viewer|null>(null);
  const index=useAtlas(s=>s.index),layers=useAtlas(s=>s.layers),selection=useAtlas(s=>s.selection),insets=useAtlas(s=>s.insets);
  const frameNonce=useAtlas(s=>s.frameNonce),resetNonce=useAtlas(s=>s.resetNonce),settings=useAtlas(s=>s.settings);
- const [progress,setProgress]=useState('Loading…'),[error,setError]=useState('');
+ // 'start' = loading, a number = percent loaded, null = nothing to show. Text is translated at render time.
+ const [progress,setProgress]=useState<number|'start'|null>('start'),[error,setError]=useState('');
+ const t=useT();
  const systemReduce=usePrefersReducedMotion(),reduceMotion=settings.motion==='reduce'||(settings.motion==='system'&&systemReduce);
+ // Document language and direction follow the UI language (Hebrew is right-to-left).
+ useEffect(()=>{document.documentElement.lang=settings.language;document.documentElement.dir=settings.language==='he'?'rtl':'ltr';},[settings.language]);
  // Dev overrides for measuring; they follow the Graphics setting until touched.
  const [spin,setSpin]=useState(false),[dpr,setDpr]=useState(QUALITY[settings.quality].dpr),[lod,setLod]=useState<'full'|'low'|'auto'>(QUALITY[settings.quality].lod);
  useEffect(()=>{setDpr(QUALITY[settings.quality].dpr);setLod(QUALITY[settings.quality].lod);},[settings.quality]);
 
  // (Re)load the anatomy whenever the body changes; the store drops the old index on switch.
  useEffect(()=>{
-  let live=true;setError('');setProgress('Loading…');
+  let live=true;setError('');setProgress('start');
   loadAtlas(settings.body).then(a=>{if(live)useAtlas.getState().setIndex(buildIndex(a));},e=>{if(live)setError(String(e?.message??e));});
   return()=>{live=false;};
  },[settings.body]);
@@ -44,7 +49,7 @@ export default function Home(){
    onTap:part=>{if(part<0)s().clearSelection();else s().selectPart(part);},
    onDoubleTap:()=>s().resetView(),
    onTwoFingerDoubleTap:()=>s().stepOut(),
-   onProgress:(n,t)=>setProgress(n<t?`Loading anatomy ${Math.round(n/t*100)}%`:''),
+   onProgress:(n,total)=>setProgress(n<total?Math.round(n/total*100):null),
    onReady:ms=>console.log('[ready]',(ms/1000).toFixed(2),'s since launch'),
    onError:setError,
   },{stats:STATS,dpr});
@@ -72,7 +77,7 @@ export default function Home(){
 
  return <main className="app">
   <div className="viewport" ref={host} key={settings.body}/>
-  {(progress||error)&&<div className="app-status" role="status">{error||progress}</div>}
+  {(progress!==null||error)&&<div className="app-status" role="status">{error?t('status.error',{detail:error}):progress==='start'||progress===null?t('status.loading'):t('status.loadingPct',{p:progress})}</div>}
   {index&&<LayerPanel/>}
   {index&&<InfoDrawer/>}
   <SettingsSheet/>

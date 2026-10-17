@@ -1,17 +1,14 @@
 import {useEffect, useId, useRef, type ReactNode} from 'react';
 import {ChevronRight, Settings, X} from 'lucide-react';
-import {useAtlas, type BodyId, type MotionPref, type Quality} from '../store';
+import {useAtlas, type BodyId, type Language, type MotionPref, type Quality} from '../store';
+import {translate, useT} from '../i18n';
 import {haptic} from './haptics';
 import './settings.css';
 
-const BODY_OPTIONS:{value:BodyId;label:string}[]=[{value:'male',label:'Male'},{value:'female',label:'Female'}];
-const MOTION_OPTIONS:{value:MotionPref;label:string}[]=[
- {value:'system',label:'System'},{value:'reduce',label:'Reduced'},{value:'full',label:'Full'},
+// Each language is labelled in its own language, whatever the current UI language is.
+const LANGUAGE_OPTIONS:{value:Language;label:string}[]=[
+ {value:'en',label:translate('en','settings.langEn')},{value:'he',label:translate('he','settings.langHe')},
 ];
-const QUALITY_OPTIONS:{value:Quality;label:string}[]=[
- {value:'battery',label:'Battery'},{value:'balanced',label:'Balanced'},{value:'high',label:'High'},
-];
-const FEMALE_HELP='The female model comes from a different open reference set. Its organs, brain and nerves are detailed, but its bones cover only the spine, pelvis and legs, and its muscles only the eyes and front thighs.';
 
 function Section({title,children}:{title:string;children:ReactNode}){
  const id=useId();
@@ -45,6 +42,32 @@ function SwitchRow({label,description,checked,onChange}:{label:string;descriptio
  );
 }
 
+interface SegmentedButtonsProps<T extends string>{
+ label:string;
+ describedBy?:string;
+ value:T;
+ options:{value:T;label:string}[];
+ onChange:(v:T)=>void;
+}
+
+function SegmentedButtons<T extends string>({label,describedBy,value,options,onChange}:SegmentedButtonsProps<T>){
+ return (
+  <div className="st-seg" role="group" aria-label={label} aria-describedby={describedBy}>
+   {options.map(o=>(
+    <button
+     key={o.value}
+     type="button"
+     className="st-seg-btn"
+     aria-pressed={value===o.value}
+     onClick={()=>{if(o.value!==value){onChange(o.value);haptic.light();}}}
+    >
+     {o.label}
+    </button>
+   ))}
+  </div>
+ );
+}
+
 interface SegmentedRowProps<T extends string>{
  label:string;
  description?:string;
@@ -65,25 +88,14 @@ function SegmentedRow<T extends string>({label,description,help,value,options,on
     <span id={labelId} className="st-label">{label}</span>
     {description&&<p id={descId} className="st-desc">{description}</p>}
    </div>
-   <div className="st-seg" role="group" aria-labelledby={labelId} aria-describedby={describedBy}>
-    {options.map(o=>(
-     <button
-      key={o.value}
-      type="button"
-      className="st-seg-btn"
-      aria-pressed={value===o.value}
-      onClick={()=>{if(o.value!==value){onChange(o.value);haptic.light();}}}
-     >
-      {o.label}
-     </button>
-    ))}
-   </div>
+   <SegmentedButtons label={label} describedBy={describedBy} value={value} options={options} onChange={onChange}/>
    {help&&<p id={helpId} className="st-help">{help}</p>}
   </div>
  );
 }
 
 export default function SettingsSheet(){
+ const t=useT();
  const settings=useAtlas(s=>s.settings);
  const setSetting=useAtlas(s=>s.setSetting);
  const resetSettings=useAtlas(s=>s.resetSettings);
@@ -94,6 +106,14 @@ export default function SettingsSheet(){
  const titleId=useId();
  const gearRef=useRef<HTMLButtonElement>(null);
  const sheetRef=useRef<HTMLDivElement>(null);
+
+ const bodyOptions:{value:BodyId;label:string}[]=[{value:'male',label:t('settings.male')},{value:'female',label:t('settings.female')}];
+ const motionOptions:{value:MotionPref;label:string}[]=[
+  {value:'system',label:t('settings.motion.system')},{value:'reduce',label:t('settings.motion.reduce')},{value:'full',label:t('settings.motion.full')},
+ ];
+ const qualityOptions:{value:Quality;label:string}[]=[
+  {value:'battery',label:t('settings.quality.battery')},{value:'balanced',label:t('settings.quality.balanced')},{value:'high',label:t('settings.quality.high')},
+ ];
 
  // Escape closes; focus moves into the sheet on open and returns to the gear on close.
  useEffect(()=>{
@@ -113,7 +133,7 @@ export default function SettingsSheet(){
     ref={gearRef}
     type="button"
     className="st-gear"
-    aria-label="Settings"
+    aria-label={t('settings.open')}
     onClick={()=>openSheet('settings')}
    >
     <Settings size={22} strokeWidth={1.75}/>
@@ -121,73 +141,84 @@ export default function SettingsSheet(){
 
    {open&&(
     <>
-     <button type="button" className="st-backdrop" aria-label="Close settings" tabIndex={-1} onClick={()=>openSheet(null)}/>
+     <button type="button" className="st-backdrop" aria-label={t('settings.close')} tabIndex={-1} onClick={()=>openSheet(null)}/>
      <div ref={sheetRef} className="st-sheet" role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1}>
       <header className="st-head">
-       <h2 id={titleId} className="st-title">Settings</h2>
-       <button type="button" className="st-icon-btn" aria-label="Close settings" onClick={()=>openSheet(null)}>
+       <h2 id={titleId} className="st-title">{t('settings.title')}</h2>
+       <button type="button" className="st-icon-btn" aria-label={t('settings.close')} onClick={()=>openSheet(null)}>
         <X size={22}/>
        </button>
       </header>
 
       <div className="st-body">
-       <Section title="Body">
+       <Section title={t('settings.language')}>
+        <div className="st-row is-stack">
+         <SegmentedButtons
+          label={t('settings.language')}
+          value={settings.language}
+          options={LANGUAGE_OPTIONS}
+          onChange={v=>setSetting('language',v)}
+         />
+        </div>
+       </Section>
+
+       <Section title={t('settings.body')}>
         <SegmentedRow
-         label="Model"
+         label={t('settings.model')}
          value={settings.body}
-         options={BODY_OPTIONS}
-         help={settings.body==='female'?FEMALE_HELP:undefined}
+         options={bodyOptions}
+         help={settings.body==='female'?t('settings.femaleHelp'):undefined}
          onChange={v=>setSetting('body',v)}
         />
        </Section>
 
-       <Section title="Anatomy">
+       <Section title={t('settings.anatomy')}>
         <SwitchRow
-         label="Show intimate anatomy"
-         description="External genitalia. Hidden by default."
+         label={t('settings.intimate')}
+         description={t('settings.intimateDesc')}
          checked={settings.showIntimate}
          onChange={v=>setSetting('showIntimate',v)}
         />
         <SwitchRow
-         label="Latin terms"
-         description="Show the formal Latin name under each structure."
+         label={t('settings.latin')}
+         description={t('settings.latinDesc')}
          checked={settings.showLatin}
          onChange={v=>setSetting('showLatin',v)}
         />
        </Section>
 
-       <Section title="Experience">
-        <SwitchRow label="Haptics" checked={settings.haptics} onChange={v=>setSetting('haptics',v)}/>
+       <Section title={t('settings.experience')}>
+        <SwitchRow label={t('settings.haptics')} checked={settings.haptics} onChange={v=>setSetting('haptics',v)}/>
         <SegmentedRow
-         label="Motion"
+         label={t('settings.motion')}
          value={settings.motion}
-         options={MOTION_OPTIONS}
+         options={motionOptions}
          onChange={v=>setSetting('motion',v)}
         />
         <SegmentedRow
-         label="Graphics"
-         description="High uses full screen resolution; Battery saves power on older devices."
+         label={t('settings.graphics')}
+         description={t('settings.graphicsDesc')}
          value={settings.quality}
-         options={QUALITY_OPTIONS}
+         options={qualityOptions}
          onChange={v=>setSetting('quality',v)}
         />
        </Section>
 
-       <Section title="About">
+       <Section title={t('settings.about')}>
         <button type="button" className="st-link" onClick={()=>openSheet('credits')}>
-         Credits &amp; Licenses
-         <ChevronRight size={18} aria-hidden="true"/>
+         {t('settings.credits')}
+         <ChevronRight size={18} aria-hidden="true" className="ico-flip"/>
         </button>
         <button
          type="button"
          className="st-link is-muted"
          onClick={()=>{resetSettings();haptic.light();}}
         >
-         Reset settings
+         {t('settings.reset')}
         </button>
        </Section>
 
-       <p className="st-foot">Body Explorer is an educational reference, not a diagnostic or clinical tool.</p>
+       <p className="st-foot">{t('settings.disclaimer')}</p>
       </div>
      </div>
     </>

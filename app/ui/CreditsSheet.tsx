@@ -2,6 +2,7 @@ import {useEffect, useId, useRef, useState, type ReactNode} from 'react';
 import {ChevronDown, ChevronLeft, X} from 'lucide-react';
 import {useAtlas} from '../store';
 import {DATA_SOURCES} from '../credits';
+import {useT} from '../i18n';
 import './settings.css';
 
 interface OssLicense {name:string;version:string;license:string;text:string}
@@ -30,6 +31,7 @@ function Section({title,children}:{title:string;children:ReactNode}){
 }
 
 export default function CreditsSheet(){
+ const t=useT();
  const sheet=useAtlas(s=>s.sheet);
  const openSheet=useAtlas(s=>s.openSheet);
  const open=sheet==='credits';
@@ -69,35 +71,35 @@ export default function CreditsSheet(){
 
  return (
   <>
-   <button type="button" className="st-backdrop" aria-label="Close credits" tabIndex={-1} onClick={()=>openSheet(null)}/>
+   <button type="button" className="st-backdrop" aria-label={t('credits.close')} tabIndex={-1} onClick={()=>openSheet(null)}/>
    <div ref={sheetRef} className="st-sheet" role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1}>
     <header className="st-head">
-     <button type="button" className="st-icon-btn" aria-label="Back to settings" onClick={()=>openSheet('settings')}>
-      <ChevronLeft size={22}/>
+     <button type="button" className="st-icon-btn" aria-label={t('credits.back')} onClick={()=>openSheet('settings')}>
+      <ChevronLeft size={22} className="ico-flip"/>
      </button>
-     <h2 id={titleId} className="st-title">Credits &amp; Licenses</h2>
-     <button type="button" className="st-icon-btn" aria-label="Close credits" onClick={()=>openSheet(null)}>
+     <h2 id={titleId} className="st-title">{t('credits.title')}</h2>
+     <button type="button" className="st-icon-btn" aria-label={t('credits.close')} onClick={()=>openSheet(null)}>
       <X size={22}/>
      </button>
     </header>
 
     <div className="st-body">
-     <Section title="Anatomy data">
+     <Section title={t('credits.anatomyData')}>
       {DATA_SOURCES.map(src=>(
        <article key={src.id} className="st-src">
-        <h4 className="st-src-title">{src.title}</h4>
-        <p className="st-credit">{src.credit}</p>
-        <p className="st-meta">License: {src.license}<br/><span className="st-url">{src.licenseUrl}</span></p>
-        <p className="st-meta">Source: <span className="st-url">{src.url}</span></p>
+        <h4 className="st-src-title"><bdi dir="ltr">{src.title}</bdi></h4>
+        <p className="st-credit"><bdi dir="ltr">{src.credit}</bdi></p>
+        <p className="st-meta">{t('credits.license')} <bdi dir="ltr">{src.license}</bdi><br/><span className="st-url" dir="ltr">{src.licenseUrl}</span></p>
+        <p className="st-meta">{t('credits.source')} <span className="st-url" dir="ltr">{src.url}</span></p>
         <p className="st-muted">{src.usedFor}</p>
-        {src.changes&&<p className="st-muted">Changes: {src.changes}</p>}
+        {src.changes&&<p className="st-muted">{t('credits.changes')} {src.changes}</p>}
        </article>
       ))}
      </Section>
 
-     <Section title="Open-source software">
-      {licenses.status==='loading'&&<p className="st-status">Loading…</p>}
-      {licenses.status==='error'&&<p className="st-status">License texts unavailable.</p>}
+     <Section title={t('credits.oss')}>
+      {licenses.status==='loading'&&<p className="st-status">{t('status.loading')}</p>}
+      {licenses.status==='error'&&<p className="st-status">{t('credits.unavailable')}</p>}
       {licenses.status==='ready'&&licenses.items.map((lic,i)=>{
        const key=`${lic.name}@${lic.version}`;
        const isOpen=expanded.has(key);
@@ -111,10 +113,10 @@ export default function CreditsSheet(){
           aria-controls={isOpen?panelId:undefined}
           onClick={()=>toggle(key)}
          >
-          <span className="st-lic-name">{`${lic.name} ${lic.version} — ${lic.license}`}</span>
+          <span className="st-lic-name" dir="ltr">{`${lic.name} ${lic.version} — ${lic.license}`}</span>
           <ChevronDown size={18} className="st-chev" aria-hidden="true"/>
          </button>
-         {isOpen&&<pre id={panelId} className="st-lic-text">{lic.text}</pre>}
+         {isOpen&&<pre id={panelId} className="st-lic-text" dir="ltr">{lic.text}</pre>}
         </div>
        );
       })}

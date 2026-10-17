@@ -38,7 +38,7 @@
 
 .st-head{
  display:flex;align-items:center;gap:6px;flex:none;min-height:56px;box-sizing:border-box;
- padding:0 8px 0 10px;border-bottom:1px solid var(--border);
+ padding-inline-start:10px;padding-inline-end:8px;border-bottom:1px solid var(--border);
 }
 .st-title{flex:1;min-width:0;margin:0;font-size:17px;font-weight:600;line-height:1.25;text-align:center}
 .st-icon-btn{
@@ -75,12 +75,13 @@
 }
 .st-switch::before{content:'';position:absolute;left:-7px;right:-7px;top:-7px;bottom:-7px}
 .st-switch::after{
- content:'';position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:50%;
+ content:'';position:absolute;top:2px;inset-inline-start:2px;width:27px;height:27px;border-radius:50%;
  background:var(--text-primary);box-shadow:0 2px 4px rgba(0,0,0,.35);
  transition:transform 200ms cubic-bezier(.2,.8,.2,1);
 }
 .st-switch[aria-checked="true"]{background:var(--accent)}
 .st-switch[aria-checked="true"]::after{transform:translateX(20px)}
+:root[dir="rtl"] .st-switch[aria-checked="true"]::after{transform:translateX(-20px)}
 
 /* Segmented control: equal buttons; selected = elevated fill + cyan border. */
 .st-seg{display:flex;gap:6px}
@@ -95,7 +96,7 @@
 .st-link{
  display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:44px;box-sizing:border-box;
  margin:0;padding:10px 14px;border:0;border-top:1px solid var(--border);background:transparent;
- color:var(--text-primary);font-size:15px;text-align:left;touch-action:manipulation;
+ color:var(--text-primary);font-size:15px;text-align:start;touch-action:manipulation;
 }
 .st-link.is-muted{color:var(--text-muted);justify-content:flex-start}
 .st-link svg{flex:none;color:var(--text-muted)}
@@ -116,7 +117,7 @@
 .st-lic{border-top:1px solid var(--border)}
 .st-lic-btn{
  display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:44px;box-sizing:border-box;
- margin:0;padding:10px 14px;border:0;background:transparent;color:var(--text-primary);font-size:13px;text-align:left;
+ margin:0;padding:10px 14px;border:0;background:transparent;color:var(--text-primary);font-size:13px;text-align:start;
  touch-action:manipulation;
 }
 .st-lic-name{min-width:0;overflow-wrap:anywhere}

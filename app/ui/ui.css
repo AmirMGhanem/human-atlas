@@ -1,8 +1,15 @@
 /* Floating UI over the full-screen 3D view. Panels never shrink the viewer; they report covered space via insets. */
 
+/* Safe-area insets on the logical start/end edges. Hebrew (dir=rtl) swaps the physical sides. */
+:root{--sai-start:env(safe-area-inset-left);--sai-end:env(safe-area-inset-right)}
+:root[dir="rtl"]{--sai-start:env(safe-area-inset-right);--sai-end:env(safe-area-inset-left)}
+
 @keyframes ui-fade-in{from{opacity:0}to{opacity:1}}
 @keyframes ui-fade-out{from{opacity:1}to{opacity:0}}
 @keyframes lp-slide-in{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+@keyframes lp-slide-in-rtl{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:none}}
+@keyframes id-in-left{from{opacity:0;transform:translateX(calc(-100% - 20px))}to{opacity:1;transform:none}}
+@keyframes id-out-left{from{opacity:1;transform:none}to{opacity:0;transform:translateX(calc(-100% - 20px))}}
 @keyframes id-in-right{from{opacity:0;transform:translateX(calc(100% + 20px))}to{opacity:1;transform:none}}
 @keyframes id-out-right{from{opacity:1;transform:none}to{opacity:0;transform:translateX(calc(100% + 20px))}}
 @keyframes id-in-up{from{opacity:0;transform:translateY(calc(100% + 20px))}to{opacity:1;transform:none}}
@@ -11,7 +18,7 @@
 /* ---------- Layer panel ---------- */
 
 .lp{
- position:fixed;left:calc(env(safe-area-inset-left) + 10px);top:50%;transform:translateY(-50%);
+ position:fixed;inset-inline-start:calc(var(--sai-start) + 10px);top:50%;transform:translateY(-50%);
  z-index:10;display:flex;flex-direction:column;align-items:flex-start;gap:6px;max-width:190px;
 }
 .lp-glass,.id{
@@ -32,14 +39,14 @@
 }
 .lp-row{
  box-sizing:border-box;display:flex;align-items:center;gap:10px;width:100%;min-height:44px;
- padding:0 10px 0 8px;border:0;border-left:2px solid transparent;border-radius:10px;
- background:transparent;color:var(--text-primary);font-size:13px;font-weight:500;line-height:1.2;text-align:left;
+ padding-inline-start:8px;padding-inline-end:10px;border:0;border-inline-start:2px solid transparent;border-radius:10px;
+ background:transparent;color:var(--text-primary);font-size:13px;font-weight:500;line-height:1.2;text-align:start;
  touch-action:manipulation;-webkit-touch-callout:none;transition:color 200ms cubic-bezier(.2,.8,.2,1),opacity 200ms;
 }
 .lp-row[aria-pressed="true"]{color:var(--text-primary)}
 .lp-row[data-state="faded"]{color:var(--text-muted)}
 .lp-row[data-state="off"]{color:var(--text-muted);opacity:.5}
-.lp-row.is-isolated{border-left-color:var(--accent)}
+.lp-row.is-isolated{border-inline-start-color:var(--accent)}
 .lp-dot{
  box-sizing:border-box;flex:none;width:12px;height:12px;border-radius:50%;
  background:var(--c);transition:background 200ms,opacity 200ms;
@@ -48,7 +55,7 @@
 .lp-row[data-state="off"] .lp-dot{opacity:.25}
 .lp-name{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lp-name-short{display:none}
-.lp-partial{margin-left:auto;padding-left:8px;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted);opacity:.8}
+.lp-partial{margin-inline-start:auto;padding-inline-start:8px;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted);opacity:.8}
 .lp-show-all{
  margin-top:4px;min-height:44px;width:100%;border:0;border-top:1px solid var(--border);
  background:transparent;color:var(--text-primary);font-size:13px;font-weight:600;border-radius:0 0 10px 10px;
@@ -62,12 +69,12 @@
 }
 .id.is-wide{
  /* Starts below the settings gear (44px at top + 10px), which shares the top-right corner. */
- top:calc(env(safe-area-inset-top) + 64px);right:calc(env(safe-area-inset-right) + 10px);
+ top:calc(env(safe-area-inset-top) + 64px);inset-inline-end:calc(var(--sai-end) + 10px);
  bottom:calc(env(safe-area-inset-bottom) + 10px);width:min(360px,42vw);
  animation:id-in-right 260ms cubic-bezier(.2,.8,.2,1) both;
 }
 .id.is-sheet{
- left:calc(env(safe-area-inset-left) + 10px);right:calc(env(safe-area-inset-right) + 10px);
+ inset-inline-start:calc(var(--sai-start) + 10px);inset-inline-end:calc(var(--sai-end) + 10px);
  bottom:calc(env(safe-area-inset-bottom) + 10px);max-height:46vh;
  animation:id-in-up 260ms cubic-bezier(.2,.8,.2,1) both;
 }
@@ -79,7 +86,7 @@
  touch-action:manipulation;
 }
 .id-grab-bar{width:36px;height:4px;border-radius:2px;background:var(--text-muted);opacity:.6}
-.id-head{display:flex;align-items:flex-start;gap:8px;padding:0 6px 0 16px;flex:none}
+.id-head{display:flex;align-items:flex-start;gap:8px;padding-inline-start:16px;padding-inline-end:6px;flex:none}
 .id.is-wide .id-head{padding-top:14px}
 .id-title{flex:1;min-width:0;margin:0;padding-top:12px;font-size:18px;font-weight:600;line-height:1.25;overflow-wrap:anywhere}
 .id-close{
@@ -111,7 +118,7 @@
 .id-link{
  display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:44px;padding:0 2px;
  border:0;border-bottom:1px solid var(--border);background:transparent;color:var(--text-primary);
- font-size:15px;text-align:left;touch-action:manipulation;
+ font-size:15px;text-align:start;touch-action:manipulation;
 }
 .id-link:last-child{border-bottom:0}
 .id-more{margin:0;padding-top:6px;font-size:13px;color:var(--text-muted)}
@@ -129,6 +136,23 @@
  .lp-stack{animation-name:ui-fade-in}
  .id.is-wide,.id.is-sheet{animation-name:ui-fade-in}
  .id.is-leaving.is-wide,.id.is-leaving.is-sheet{animation-name:ui-fade-out}
+}
+
+/* ---------- Hebrew: right-to-left ---------- */
+
+/* Hebrew system fonts; globals.css sets the English stack on :root, this overrides it for lang="he". */
+:root[lang="he"]{font-family:-apple-system,'SF Pro Text','SF Hebrew','Arial Hebrew',Inter,system-ui,sans-serif}
+/* Letter-spacing and uppercase are Latin-only tricks; they break Hebrew letters. */
+:root[lang="he"] .id-h,:root[lang="he"] .st-h,:root[lang="he"] .lp-partial{letter-spacing:0;text-transform:none}
+
+/* Breadcrumb separators and back/forward arrows point the other way. */
+:root[dir="rtl"] .id-sep{display:inline-block;transform:scaleX(-1)}
+:root[dir="rtl"] .ico-flip{transform:scaleX(-1)}
+
+@media (prefers-reduced-motion: no-preference){
+ :root[dir="rtl"] .lp-stack{animation-name:lp-slide-in-rtl}
+ :root[dir="rtl"] .id.is-wide{animation-name:id-in-left}
+ :root[dir="rtl"] .id.is-leaving.is-wide{animation-name:id-out-left}
 }
 
 /* ---------- Narrow phones: short layer labels ---------- */

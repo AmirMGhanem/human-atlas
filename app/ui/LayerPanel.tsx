@@ -1,6 +1,7 @@
 import {useEffect, useId, useRef, useState, type CSSProperties, type PointerEvent} from 'react';
 import {Layers} from 'lucide-react';
 import {LAYER_GROUPS, useAtlas, type LayerGroup, type LayerState} from '../store';
+import {useGroupName, useT} from '../i18n';
 import {haptic} from './haptics';
 import './ui.css';
 
@@ -10,6 +11,8 @@ const MOVE_TOLERANCE_PX=10;
 interface RowProps {group:LayerGroup;state:LayerState;isolated:boolean;partial:boolean}
 
 function LayerRow({group,state,isolated,partial}:RowProps){
+ const t=useT();
+ const groupName=useGroupName();
  const toggleLayer=useAtlas(s=>s.toggleLayer);
  const isolateLayer=useAtlas(s=>s.isolateLayer);
  const timer=useRef<number|undefined>(undefined);
@@ -45,7 +48,8 @@ function LayerRow({group,state,isolated,partial}:RowProps){
  };
 
  const style={'--c':group.color} as CSSProperties;
- const short=group.name.split(/\s+/)[0];
+ const name=groupName(group.id);
+ const short=name.split(/\s+/)[0];
 
  return (
   <button
@@ -54,8 +58,8 @@ function LayerRow({group,state,isolated,partial}:RowProps){
    style={style}
    data-state={state}
    aria-pressed={state==='on'}
-   aria-label={partial?`${group.name} (partial in this model)`:group.name}
-   title="Tap to show or hide · long-press to isolate"
+   aria-label={partial?t('layers.partialLabel',{name}):name}
+   title={t('layers.hint')}
    onPointerDown={onPointerDown}
    onPointerMove={onPointerMove}
    onPointerUp={cancelTimer}
@@ -64,9 +68,9 @@ function LayerRow({group,state,isolated,partial}:RowProps){
    onClick={onClick}
   >
    <span className="lp-dot" aria-hidden="true"/>
-   <span className="lp-name lp-name-full">{group.name}</span>
+   <span className="lp-name lp-name-full">{name}</span>
    <span className="lp-name lp-name-short" aria-hidden="true">{short}</span>
-   {partial&&<span className="lp-partial" aria-hidden="true">partial</span>}
+   {partial&&<span className="lp-partial" aria-hidden="true">{t('layers.partial')}</span>}
   </button>
  );
 }
@@ -74,6 +78,7 @@ function LayerRow({group,state,isolated,partial}:RowProps){
 const isWideViewport=()=>typeof window!=='undefined'&&window.innerWidth>=768;
 
 export default function LayerPanel(){
+ const t=useT();
  const layers=useAtlas(s=>s.layers);
  const isolated=useAtlas(s=>s.isolated);
  const atlas=useAtlas(s=>s.index?.atlas);
@@ -90,7 +95,7 @@ export default function LayerPanel(){
    <button
     type="button"
     className="lp-toggle lp-glass"
-    aria-label={open?'Hide layers':'Show layers'}
+    aria-label={open?t('layers.hide'):t('layers.show')}
     aria-expanded={open}
     aria-controls={open?listId:undefined}
     onClick={()=>setOpen(o=>!o)}
@@ -98,12 +103,12 @@ export default function LayerPanel(){
     <Layers size={22} strokeWidth={1.75}/>
    </button>
    {open&&(
-    <div id={listId} className="lp-stack lp-glass" role="group" aria-label="Anatomical layers">
+    <div id={listId} className="lp-stack lp-glass" role="group" aria-label={t('layers.group')}>
      {groups.map(g=>(
       <LayerRow key={g.id} group={g} state={layers[g.id]} isolated={isolated===g.id} partial={isPartial(g)}/>
      ))}
      {isolated!==null&&(
-      <button type="button" className="lp-show-all" onClick={showAllLayers}>Show all</button>
+      <button type="button" className="lp-show-all" onClick={showAllLayers}>{t('layers.showAll')}</button>
      )}
     </div>
    )}
