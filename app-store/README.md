@@ -59,9 +59,9 @@ The scripts drive the app through `window.__viewer` and `window.__store`, which 
 Run them against the dev server, never a release build.
 
 - `capture.mjs`: app screens with the real UI (selection sheets, layer panel, female model).
-- `art.mjs`: transparent hero body and icon head (glass skin, glowing nervous system).
+- `art.mjs`: transparent hero body, and the two icon passes (glass body, and what the scan band reveals).
 - `compose.html` / `compose.mjs`: lays the seven panels out as one wide strip per device, with a nerve signal running
   from the hero's brain across every seam, then cuts it into panels.
-- `icon.html` / `icon.mjs`: the icon composite.
+- `icon.html` / `icon.mjs`: the icon composite: a full body in dark glass with a scan band across the chest.
 
 Copy edits: panel headlines and sub-lines are in `PANELS` in `compose.mjs`.

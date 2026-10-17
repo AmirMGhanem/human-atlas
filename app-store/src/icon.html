@@ -1,18 +1,24 @@
 <!doctype html>
 <html><head><meta charset="utf-8"><style>
- /* App icon: a dark glass head drawn in rim light around a glowing brain. 1024 px, opaque; iOS applies the corner mask. */
+ /* App icon: a full body in dark glass; a scan band across the chest reveals the skeleton and organs inside.
+    1024 px, opaque; iOS applies the corner mask. Renders are 2048 px squares from art.mjs. */
  *{margin:0}
  body{width:1024px;height:1024px;overflow:hidden;position:relative;background:
-  radial-gradient(36% 32% at 55% 38%,#0b2c33 0%,#061419 55%,transparent 100%),
-  radial-gradient(120% 120% at 50% 40%,#04090b 0%,#010203 100%)}
- img{position:absolute;left:-150px;top:-175px;width:1240px;height:1240px}
- .bloom{filter:blur(22px) brightness(1.15) saturate(1.4);mix-blend-mode:screen;opacity:.4}
- /* Softens the rim light just enough to hide the skin mesh's facets. */
- .head{filter:blur(1.6px);mix-blend-mode:screen}
- .floor{position:absolute;left:0;right:0;bottom:0;height:360px;background:linear-gradient(transparent,#010203 85%)}
+  radial-gradient(40% 46% at 50% 46%,#0a2a31 0%,#05121a 55%,transparent 100%),
+  radial-gradient(130% 130% at 50% 45%,#03080b 0%,#010203 100%)}
+ img{position:absolute;left:56px;width:912px;height:912px}
+ .glass{top:66px;filter:blur(1.2px) brightness(1.35)}
+ .band{position:absolute;left:0;right:0;top:240px;height:240px;overflow:hidden}
+ .band img{top:-174px}
+ .bloom{filter:blur(18px) brightness(1.1);mix-blend-mode:screen;opacity:.28}
+ .fade{-webkit-mask:linear-gradient(90deg,transparent,#000 24%,#000 76%,transparent);mask:linear-gradient(90deg,transparent,#000 24%,#000 76%,transparent)}
+ .wash{position:absolute;left:0;right:0;top:240px;height:240px;background:linear-gradient(rgba(95,227,240,.10),rgba(95,227,240,.03) 50%,rgba(95,227,240,.10))}
+ .line{position:absolute;left:0;right:0;height:4px;margin-top:-2px;background:#9ff3fb;
+  box-shadow:0 0 18px 4px rgba(95,227,240,.75),0 0 60px 10px rgba(95,227,240,.3)}
 </style></head><body>
- <img src="renders/icon-brain.png" alt="">
- <img class="bloom" src="renders/icon-brain.png" alt="">
- <img class="head" src="renders/icon-head.png" alt="">
- <div class="floor"></div>
+ <img class="glass" src="renders/icon-glass.png" alt="">
+ <div class="wash fade"></div>
+ <div class="band"><img src="renders/icon-inside.png" alt=""><img class="bloom" src="renders/icon-inside.png" alt=""></div>
+ <div class="line fade" style="top:240px"></div>
+ <div class="line fade" style="top:480px"></div>
 </body></html>

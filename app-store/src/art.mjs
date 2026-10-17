@@ -9,12 +9,11 @@ await scene(p,{...glow,layers:{integumentary:'faded',nervous:'on',arterial:'on',
 await p.screenshot({path:`${out}/hero.png`,omitBackground:true});
 await p.close();
 p=await openApp(b,{w:1024,h:1024,dpr:2,transparent:true,hideUi:true});
-// Icon, in two layers so the head's rim light can be softened on its own (it shows the skin mesh's facets otherwise):
-// the head as a rim of light (dark interior) and the brain glowing inside it, in pure profile.
-const icon={frame:[.87,1],yaw:1.48,pitch:.04,zoom:.34,shift:[0,.012,0],
- color:{nervous:'#123a40'},emissive:{nervous:['#22c4d6',.35]},rim:{integumentary:['#6fe8f5',3.8,3.8],sensory:['#6fe8f5',2.4,2.4]}};
-await scene(p,{...icon,layers:{},selected:'FMA50801'});
-await p.screenshot({path:`${out}/icon-brain.png`,omitBackground:true});
-await scene(p,{...icon,layers:{integumentary:'faded',sensory:'faded'}});
-await p.screenshot({path:`${out}/icon-head.png`,omitBackground:true});
+// Icon: a full body in dark glass with a scan band across the chest that reveals what's inside.
+// Two passes from one camera: the glass body (rim light only) and the inside (skeleton, organs, vessels, nerves).
+const icon={frame:[0,1],yaw:.32,pitch:.04,zoom:.6};
+await scene(p,{...icon,layers:{integumentary:'faded'},rim:{integumentary:['#6fe8f5',3.6,3.2]}});
+await p.screenshot({path:`${out}/icon-glass.png`,omitBackground:true});
+await scene(p,{...icon,layers:{skeletal:'on',cardiac:'on',respiratory:'on',digestive:'on',urinary:'on',endocrine:'on',arterial:'on',venous:'on',nervous:'on'}});
+await p.screenshot({path:`${out}/icon-inside.png`,omitBackground:true});
 await b.close();
